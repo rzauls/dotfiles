@@ -31,6 +31,15 @@ set mouse=a
 set cursorline " this maybe sucks, will see
 
 
+" yank/paste to system clipboard
+nnoremap yy "+yy
+vnoremap y "+y
+
+nnoremap p "+p
+vnoremap p "+p
+nnoremap P "+P
+vnoremap P "+P
+
 " -- Plugins
 
 call plug#begin('~/.config/nvim/plugged')

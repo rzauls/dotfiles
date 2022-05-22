@@ -1,3 +1,14 @@
 set relativenumber
 set number
-set clipboard+=unnamed
+# this remaps all actions to system clipboard, including x witch is somewhat undesirable
+# set clipboard+=unnamed
+
+# this remaps only yank/paste actions to system clipboard
+nnoremap yy "+yy
+vnoremap y "+y
+
+nnoremap p "+p
+vnoremap p "+p
+nnoremap P "+P
+vnoremap P "+P
+
