@@ -63,6 +63,7 @@ fi
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/go/bin
+export PATH=$PATH:/home/rihards/.nimble/bin
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
