@@ -49,6 +49,9 @@ alias la='ls -A'
 alias l='ls -CF'
 alias td='topydo'
 alias todo='topydo'
+alias python='python3'
+alias py='python3'
+alias vim='/usr/local/bin/nvim'
 
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -58,7 +61,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export PATH=$PATH:/usr/local/go/bin
@@ -68,3 +70,10 @@ export PATH=$PATH:/home/rihards/.nimble/bin
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export ENCORE_INSTALL="/home/rihards/.encore"
+export PATH="$ENCORE_INSTALL/bin:$PATH"
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)" # this loads rbenv completion
+. "$HOME/.cargo/env"
