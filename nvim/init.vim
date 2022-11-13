@@ -66,6 +66,9 @@ Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*'}
 Plug 'sainnhe/gruvbox-material' "theme
 Plug 'kyazdani42/nvim-web-devicons' "icons
 
+" git permalinks
+Plug 'ruifm/gitlinker.nvim'
+
 call plug#end()
 
 " theme stuff

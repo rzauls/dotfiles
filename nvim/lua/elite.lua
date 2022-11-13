@@ -100,7 +100,7 @@ require('lspconfig').gopls.setup {
     capabilities = capabilities,
 }
 -- Rust
-require('lspconfig').rust_analyzer.setup{
+require('lspconfig').rust_analyzer.setup {
     on_attach = function()
         generic_lsp_keybinds()
         -- `cargo run` current project
@@ -109,14 +109,14 @@ require('lspconfig').rust_analyzer.setup{
     capabilities = capabilities,
 }
 -- TypeScript/JavaScript
-require('lspconfig').tsserver.setup{
+require('lspconfig').tsserver.setup {
     on_attach = function()
         generic_lsp_keybinds()
     end,
     capabilities = capabilities,
 }
 -- PHP
-require('lspconfig').intelephense.setup{
+require('lspconfig').intelephense.setup {
     on_attach = function()
         generic_lsp_keybinds()
     end,
@@ -125,7 +125,13 @@ require('lspconfig').intelephense.setup{
 -- TODO:
 -- Elixir
 
--- Exported keybind functions 
+-- permalinks for git
+require('gitlinker').setup({
+    -- generate link with specific line
+    mappings = "<leader>gy"
+})
+
+-- Exported keybind functions
 -- (currently no reason to do this, since we dont use them in init.vim anymore)
 local exported_mappings = {
     -- switch buffers
