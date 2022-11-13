@@ -102,14 +102,27 @@ require('lspconfig').gopls.setup {
 require('lspconfig').rust_analyzer.setup{
     on_attach = function()
         generic_lsp_keybinds()
+        -- `cargo run` current project
+        vim.keymap.set("n", "<F10>", "<cmd>!cargo run <cr>")
     end,
     capabilities = capabilities,
 }
-
+-- TypeScript/JavaScript
+require('lspconfig').tsserver.setup{
+    on_attach = function()
+        generic_lsp_keybinds()
+    end,
+    capabilities = capabilities,
+}
+-- PHP
+require('lspconfig').intelephense.setup{
+    on_attach = function()
+        generic_lsp_keybinds()
+    end,
+    capabilities = capabilities,
+}
 -- TODO:
 -- Elixir
--- PHP
--- JS/TS
 
 -- Exported keybind functions (used in init.vim)
 local exported_mappings = {
