@@ -1,7 +1,6 @@
 nnoremap <SPACE> <Nop>
 let mapleader="\<Space>"
 
-
 "General
 set nocompatible
 set noswapfile
@@ -18,7 +17,7 @@ set smartindent
 set number
 set numberwidth=4
 set relativenumber
-set signcolumn=auto
+set signcolumn=yes:1
 set incsearch
 set hlsearch
 set ignorecase
@@ -51,19 +50,13 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-telescope/telescope.nvim', {'tag': '0.1.0'}
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+"lsp
+Plug 'neovim/nvim-lspconfig'
 
 "decorative fluff
 Plug 'sainnhe/gruvbox-material'
 Plug 'kyazdani42/nvim-web-devicons'
 
-"go
-Plug 'fatih/vim-go'
-
-"js/ts
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'peitalin/vim-jsx-typescript'
 call plug#end()
 
 
@@ -86,7 +79,7 @@ nnoremap <F4> :lua package.loaded.elite = nil <cr>:source ~/.config/nvim/init.vi
 
 " actual keybinds
 nnoremap <C-p> <cmd>lua require('elite').find_files() <cr>
-nnoremap <C-Tab> <cmd>lua require('elite').buffers() <cr>
+nnoremap <Leader><Tab> <cmd>lua require('elite').buffers() <cr>
 nnoremap <Leader><C-/> <cmd>lua require('elite').current_buffer_fuzzy_find() <cr>
 nnoremap <Leader>f <cmd>lua require('elite').find_files() <cr>
 

@@ -1,35 +1,54 @@
 local action_state = require('telescope.actions.state') -- load lua library
--- initialize telescope
+local opts = require('telescope.themes').get_dropdown({winblend=10}) -- set theme override for the telescope calls
+local builtins = require('telescope.builtin')
+
+-- Telescope setup
 require('telescope').setup{
     defaults = {
         prompt_prefix = "> ",
         mappings = {
             -- insert mode mappings while in telescope prompt
-            i = { 
+            i = {
                 ["<c-a>"] = function() print(vim.inspect(action_state.get_selected_entry())) end
             }
         }
     }
 }
--- load telescope extensions
+-- load Telescope extensions
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('file_browser')
 
--- define some exported keybind functions
-local mappings = {}
-local opts = require('telescope.themes').get_dropdown() -- set theme override for the telescope calls
-local builtins = require('telescope.builtin')
+-- LSP setup
+-- Lua
+require('lspconfig').sumneko_lua.setup{}
+-- Go
+require('lspconfig').gopls.setup{
+    on_attach = function ()
+        vim.keymap.set("n", "K", vim.lsp.buf.hover) -- peak definition
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition) -- go to definition
+    end,
+}
 
-mappings.buffers = function() 
-    builtins.buffers(opts)
-end
 
-mappings.find_files = function() 
-    builtins.find_files(opts)
-end
+-- TODO:
+-- Rust
+-- Elixir
+-- PHP
+-- JS/TS
 
-mappings.current_buffer_fuzzy_find = function()
-    builtins.current_buffer_fuzzy_find(opts)
-end
-
-return mappings
+-- Exported keybind functions (used in init.vim)
+local exported_mappings = {
+    -- switch buffers
+    buffers = function()
+        builtins.buffers(opts)
+    end,
+    -- find files in cwd
+    find_files = function() -- find files in cwd
+        builtins.find_files(opts)
+    end,
+    -- fuzzy find in current buffer
+    current_buffer_fuzzy_find = function() 
+        builtins.current_buffer_fuzzy_find(opts)
+    end,
+}
+return exported_mappings
