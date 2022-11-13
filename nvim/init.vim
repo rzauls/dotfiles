@@ -1,7 +1,7 @@
+"<leader> remapped to <Space>
 nnoremap <SPACE> <Nop>
 let mapleader="\<Space>"
 
-"General
 "TODO: convert these to lua at some point
 "see ':help vim.opt' and ':help vim.o'
 set nocompatible
@@ -32,10 +32,11 @@ set scrolloff=8
 set updatetime=250
 set encoding=UTF-8
 set mouse=a
-set cursorline " this maybe sucks, will see
+set cursorline
 
-
-"yank/paste to system clipboard
+"copy/paste to system clipboard
+"TODO: fix delete buffer interactions
+"TODO: there probabbly is a better way to do this
 nnoremap yy "+yy
 vnoremap y "+y
 
@@ -55,41 +56,26 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCM
 "lsp/autocomplete
 Plug 'neovim/nvim-lspconfig' "premade lsp configurations with sane defaults
 Plug 'hrsh7th/nvim-cmp' "autocomplete base layer
-" autocomplete suggesstion improvements
+"autocomplete suggesstion improvements
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*'}
 
-"decorative fluff
+" decorative fluff
 Plug 'sainnhe/gruvbox-material' "theme
 Plug 'kyazdani42/nvim-web-devicons' "icons
 
 call plug#end()
 
-
-"Plugin config
-"vim-go
-let g:go_highlight_types=1
-let g:go_highlight_fields=1
-let g:go_highlight_functions=1
-let g:go_highlight_function_calls=1
-
-"theme stuff
+" theme stuff
 set background=dark
 set termguicolors
 colorscheme gruvbox-material
 
-"load lua config
+" load lua config
 lua require('elite')
+
+" NOTE: all keybinds are configured in lua configs, except this one
 " lua config reload with F4 button
 nnoremap <F4> :lua package.loaded.elite = nil <cr>:source ~/.config/nvim/init.vim <cr>
-
-" actual keybinds
-nnoremap <C-p> <cmd>lua require('elite').find_files() <cr>
-nnoremap <Leader><Tab> <cmd>lua require('elite').buffers() <cr>
-nnoremap <Leader><C-/> <cmd>lua require('elite').current_buffer_fuzzy_find() <cr>
-nnoremap <Leader>f <cmd>lua require('elite').find_files() <cr>
-
-
-

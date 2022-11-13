@@ -1,6 +1,6 @@
 local action_state = require('telescope.actions.state') -- load lua library
 local opts = require('telescope.themes').get_dropdown({ winblend = 10 }) -- set theme override for the telescope calls
-local builtins = require('telescope.builtin')
+local ts_builtins = require('telescope.builtin')
 
 -- Telescope setup
 require('telescope').setup {
@@ -14,11 +14,12 @@ require('telescope').setup {
         }
     }
 }
--- load Telescope extensions
+-- Load Telescope extensions
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('file_browser')
 
--- Autocomplete keybinds and logic
+
+-- Autocomplete keybinds and setup
 local cmp = require('cmp')
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 cmp.setup({
@@ -56,7 +57,7 @@ cmp.setup.filetype('gitcommit', {
     })
 })
 
--- capabilities to configure LSP integration with autocomplete
+-- Capabilities to configure LSP integration with autocomplete
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- LSP setup
@@ -75,7 +76,7 @@ local generic_lsp_keybinds = function()
     -- go to previous highlighted error/warning
     vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = 0 })
     -- list diagnostics with fuzzy search
-    vim.keymap.set("n", "<leader>dl", builtins.diagnostics, { buffer = 0 })
+    vim.keymap.set("n", "<leader>dl", ts_builtins.diagnostics, { buffer = 0 })
     -- rename symbol
     vim.keymap.set("n", "<F6>", vim.lsp.buf.rename, { buffer = 0 })
     -- format buffer with lsp-defined formatter
@@ -124,19 +125,27 @@ require('lspconfig').intelephense.setup{
 -- TODO:
 -- Elixir
 
--- Exported keybind functions (used in init.vim)
+-- Exported keybind functions 
+-- (currently no reason to do this, since we dont use them in init.vim anymore)
 local exported_mappings = {
     -- switch buffers
     buffers = function()
-        builtins.buffers(opts)
+        ts_builtins.buffers(opts)
     end,
     -- find files in cwd
     find_files = function() -- find files in cwd
-        builtins.find_files(opts)
+        ts_builtins.find_files(opts)
     end,
     -- fuzzy find in current buffer
     current_buffer_fuzzy_find = function()
-        builtins.current_buffer_fuzzy_find(opts)
+        ts_builtins.current_buffer_fuzzy_find(opts)
     end,
 }
+
+
+-- Generic global keybinds
+vim.keymap.set("n", "<C-p>", exported_mappings.find_files)
+vim.keymap.set("n", "<Leader><Tab>", exported_mappings.buffers)
+vim.keymap.set("n", "<Leader><C-/>", exported_mappings.current_buffer_fuzzy_find)
+
 return exported_mappings
