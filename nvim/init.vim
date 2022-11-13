@@ -2,6 +2,8 @@ nnoremap <SPACE> <Nop>
 let mapleader="\<Space>"
 
 "General
+"TODO: convert these to lua at some point
+"see ':help vim.opt' and ':help vim.o'
 set nocompatible
 set noswapfile
 set nobackup
@@ -50,12 +52,18 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-telescope/telescope.nvim', {'tag': '0.1.0'}
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-"lsp
-Plug 'neovim/nvim-lspconfig'
+"lsp/autocomplete
+Plug 'neovim/nvim-lspconfig' "premade lsp configurations with sane defaults
+Plug 'hrsh7th/nvim-cmp' "autocomplete base layer
+" autocomplete suggesstion improvements
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*'}
 
 "decorative fluff
-Plug 'sainnhe/gruvbox-material'
-Plug 'kyazdani42/nvim-web-devicons'
+Plug 'sainnhe/gruvbox-material' "theme
+Plug 'kyazdani42/nvim-web-devicons' "icons
 
 call plug#end()
 
