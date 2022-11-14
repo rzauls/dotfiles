@@ -125,11 +125,16 @@ require('lspconfig').intelephense.setup {
 -- TODO:
 -- Elixir
 
--- permalinks for git
+-- various other plugin initialization
 require('gitlinker').setup({
     -- generate link with specific line
     mappings = "<leader>gy"
 })
+
+require('indent_blankline').setup()
+require('nvim-autopairs').setup()
+require('Comment').setup()
+require('gitsigns').setup()
 
 -- Exported keybind functions
 -- (currently no reason to do this, since we dont use them in init.vim anymore)

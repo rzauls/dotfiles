@@ -35,15 +35,15 @@ set mouse=a
 set cursorline
 
 "copy/paste to system clipboard
-"TODO: fix delete buffer interactions
-"TODO: there probabbly is a better way to do this
-nnoremap yy "+yy
-vnoremap y "+y
-
-nnoremap p "+p
-vnoremap p "+p
-nnoremap P "+P
-vnoremap P "+P
+set clipboard+=unnamedplus
+"old way (this doesnt work with delete buffers properly)
+" nnoremap yy "+yy
+" vnoremap y "+y
+"
+" nnoremap p "+p
+" vnoremap p "+p
+" nnoremap P "+P
+" vnoremap P "+P
 
 "Plugins
 call plug#begin('~/.config/nvim/plugged')
@@ -57,17 +57,29 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCM
 Plug 'neovim/nvim-lspconfig' "premade lsp configurations with sane defaults
 Plug 'hrsh7th/nvim-cmp' "autocomplete base layer
 "autocomplete suggesstion improvements
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*'}
-
+Plug 'hrsh7th/cmp-nvim-lsp' "suggesstions by lsp
+Plug 'hrsh7th/cmp-buffer' "suggestions from current buffer
+Plug 'hrsh7th/cmp-path' "suggesstions form path
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*'} "snippet engine (supports vs code snippet format)
+"auto brackets and xml tags
+Plug 'windwp/nvim-autopairs' "bracket pairs
+Plug 'tpope/vim-surround' "xml/html tags TODO: learn the keybinds better
 " decorative fluff
 Plug 'sainnhe/gruvbox-material' "theme
 Plug 'kyazdani42/nvim-web-devicons' "icons
+Plug 'lukas-reineke/indent-blankline.nvim' "display indents
+Plug 'lewis6991/gitsigns.nvim'
+" pseudo-productivity 
+Plug 'ruifm/gitlinker.nvim' "git permalinks
+Plug 'numToStr/Comment.nvim' "comment helper
 
-" git permalinks
-Plug 'ruifm/gitlinker.nvim'
+"possible additions at some point:
+" git integration vim-fugitive
+" schemaStore for json autocomplete? (needs json lsp setup then aswell)
+"   - can just initialize the schema store only when working with a
+"   json-buffer to aboid startup slowdown
+"
+" lualine and tabline for buffer list
 
 call plug#end()
 
