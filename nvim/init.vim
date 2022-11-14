@@ -61,6 +61,13 @@ Plug 'hrsh7th/cmp-nvim-lsp' "suggesstions by lsp
 Plug 'hrsh7th/cmp-buffer' "suggestions from current buffer
 Plug 'hrsh7th/cmp-path' "suggesstions form path
 Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*'} "snippet engine (supports vs code snippet format)
+"debugging
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'nvim-telescope/telescope-dap.nvim' 
+Plug 'leoluz/nvim-dap-go'
+
 "auto brackets and xml tags
 Plug 'windwp/nvim-autopairs' "bracket pairs
 Plug 'tpope/vim-surround' "xml/html tags TODO: learn the keybinds better
