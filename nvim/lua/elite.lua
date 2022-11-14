@@ -93,7 +93,12 @@ require('lspconfig').sumneko_lua.setup({
         Lua = {
             diagnostics = {
                 -- assume 'vim' is available to suppress misleading diagnostics
-                globals = { 'vim' }
+                globals = {
+                    'vim',
+                    'awesome',
+                    'client',
+                    'root',
+                }
             }
         }
     }
@@ -136,7 +141,8 @@ vim.keymap.set("n", "<F9>", dap.step_out)
 vim.keymap.set("n", "<Leader>b", dap.toggle_breakpoint)
 vim.keymap.set("n", "<Leader>dr", dap.repl.open)
 vim.keymap.set("n", "<Leader>B", "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
-vim.keymap.set("n", "<Leader>lp", "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>")
+vim.keymap.set("n", "<Leader>lp",
+    "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>")
 require('nvim-dap-virtual-text').setup()
 require("dapui").setup({
     layouts = {
