@@ -10,4 +10,15 @@ This is where I store the dotfiles that I might possibly at some point reuse som
 
 Symlink each file to its respective location:
 
-`ln -s -f <absolute path to dotfiles repo>/.vimrc ~/.vimrc`
+`ln -s -f <absolute path to dotfiles repo>/.bashrc ~/.bashrc`
+
+
+## Default locations
+
+| Directory/file      | Default location |
+| ----------- | ----------- |
+| `awesome`  |  ~/.config/awesome |
+| `nvim`  |  ~/.config/nvim |
+| `kitty`  |  ~/.config/kitty |
+| `.shrc`  |  ~/.bashrc |
+
