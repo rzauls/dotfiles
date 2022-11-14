@@ -1,3 +1,4 @@
+# some voodoo magic
 case $- in
     *i*) ;;
       *) return;;
@@ -19,10 +20,10 @@ case "$TERM" in
     xterm-color|*-256color|xterm-kitty) color_prompt=yes;;
 esac
 
+# pretty prompt with git branch 
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
-
 PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
 unset color_prompt
 
@@ -43,16 +44,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-alias icat='kitty +kitten icat'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias td='topydo'
-alias todo='topydo'
-alias python='python3'
-alias py='python3'
-alias vim='/usr/local/bin/nvim'
-
+# import bash completion helpers
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -61,19 +53,29 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# TODO: move to bash_aliases and import here
+alias icat='kitty +kitten icat'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias python='python3'
+alias py='python3'
+alias vim='/usr/local/bin/nvim'
+alias lg='lazygit'
 
+# go stuff
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/go/bin
-export PATH=$PATH:/home/rihards/.nimble/bin
 
+# npm/nvm stuff
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export ENCORE_INSTALL="/home/rihards/.encore"
-export PATH="$ENCORE_INSTALL/bin:$PATH"
-
+# ruby stuff
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)" # this loads rbenv completion
+
+# rust stuff
 . "$HOME/.cargo/env"
