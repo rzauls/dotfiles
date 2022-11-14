@@ -75,12 +75,11 @@ Plug 'ruifm/gitlinker.nvim' "git permalinks
 Plug 'numToStr/Comment.nvim' "comment helper
 
 "possible additions at some point:
-" git integration vim-fugitive (currently using lazygit outside of nvim)
-" schemaStore for json autocomplete? (needs json lsp setup then aswell)
+" * schemaStore for json autocomplete? (needs json lsp setup then aswell)
 "   - can just initialize the schema store only when working with a
 "   json-buffer to avoid startup slowdown
+" * ggandor/lightspeed.nvim for better motions
 "
-" lualine and tabline for buffer list
 
 call plug#end()
 
