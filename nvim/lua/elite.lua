@@ -135,8 +135,8 @@ vim.keymap.set("n", "<F8>", dap.step_into)
 vim.keymap.set("n", "<F9>", dap.step_out)
 vim.keymap.set("n", "<Leader>b", dap.toggle_breakpoint)
 vim.keymap.set("n", "<Leader>dr", dap.repl.open)
-vim.keymap.set("n", "<Leader>B", "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')")
-vim.keymap.set("n", "<Leader>lp", "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))")
+vim.keymap.set("n", "<Leader>B", "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
+vim.keymap.set("n", "<Leader>lp", "<cmd>lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>")
 require('nvim-dap-virtual-text').setup()
 require("dapui").setup({
     layouts = {
@@ -166,7 +166,7 @@ end
 
 -- go premade configs for dap/delve
 require('dap-go').setup()
-vim.keymap.set("n", "<Leader>dt", ":lua require('dap-go').debug_test()<cr>") -- TODO: this shouldnt be a global keybind
+vim.keymap.set("n", "<Leader>dt", require('dap-go').debug_test) -- TODO: this shouldnt be a global keybind
 
 -- various other plugin initialization
 require('gitlinker').setup({
