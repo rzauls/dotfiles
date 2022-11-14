@@ -175,5 +175,7 @@ local exported_mappings = {
 vim.keymap.set("n", "<C-p>", exported_mappings.find_files)
 vim.keymap.set("n", "<Leader><Tab>", exported_mappings.buffers)
 vim.keymap.set("n", "<Leader>ff", exported_mappings.current_buffer_fuzzy_find)
+vim.keymap.set("n", "<Leader>h", "<cmd>bprev<cr>") -- previous buffer
+vim.keymap.set("n", "<Leader>l", "<cmd>bnext<cr>") -- next buffer
 
 return exported_mappings
