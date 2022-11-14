@@ -1,9 +1,9 @@
-local action_state = require('telescope.actions.state') -- load lua library
+local action_state = require('telescope.actions.state')
 local opts = require('telescope.themes').get_dropdown({ winblend = 10 }) -- set theme override for the telescope calls
 local ts_builtins = require('telescope.builtin')
 
 -- Telescope setup
-require('telescope').setup {
+require('telescope').setup({
     defaults = {
         prompt_prefix = "> ",
         mappings = {
@@ -13,7 +13,7 @@ require('telescope').setup {
             }
         }
     }
-}
+})
 -- Load Telescope extensions
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('file_browser')
@@ -86,42 +86,44 @@ local generic_lsp_keybinds = function()
 end
 -- Language specific settings
 -- Lua
-require('lspconfig').sumneko_lua.setup {
-    on_attach = function()
-        generic_lsp_keybinds()
-    end,
+require('lspconfig').sumneko_lua.setup({
+    on_attach = function() generic_lsp_keybinds() end,
     capabilities = capabilities,
-}
+    settings = {
+        Lua = {
+            diagnostics = {
+                -- assume 'vim' is available to suppress misleading diagnostics
+                globals = { 'vim' }
+            }
+        }
+    }
+})
+
 -- Go
-require('lspconfig').gopls.setup {
-    on_attach = function()
-        generic_lsp_keybinds()
-    end,
+require('lspconfig').gopls.setup({
+    on_attach = function() generic_lsp_keybinds() end,
     capabilities = capabilities,
-}
+})
 -- Rust
-require('lspconfig').rust_analyzer.setup {
+require('lspconfig').rust_analyzer.setup({
     on_attach = function()
         generic_lsp_keybinds()
         -- `cargo run` current project
         vim.keymap.set("n", "<F10>", "<cmd>!cargo run <cr>")
     end,
     capabilities = capabilities,
-}
+})
 -- TypeScript/JavaScript
-require('lspconfig').tsserver.setup {
-    on_attach = function()
-        generic_lsp_keybinds()
-    end,
+-- TODO: needs refinement
+require('lspconfig').tsserver.setup({
+    on_attach = function() generic_lsp_keybinds() end,
     capabilities = capabilities,
-}
+})
 -- PHP
-require('lspconfig').intelephense.setup {
-    on_attach = function()
-        generic_lsp_keybinds()
-    end,
+require('lspconfig').intelephense.setup({
+    on_attach = function() generic_lsp_keybinds() end,
     capabilities = capabilities,
-}
+})
 -- TODO:
 -- Elixir
 
@@ -135,6 +137,20 @@ require('indent_blankline').setup()
 require('nvim-autopairs').setup()
 require('Comment').setup()
 require('gitsigns').setup()
+-- status line
+require('lualine').setup({
+    options = {
+        theme = 'gruvbox'
+    },
+    sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diagnostics' },
+        lualine_c = { 'filename' },
+        lualine_x = { 'encoding', 'filetype' },
+        lualine_y = {},
+        lualine_z = { 'location' }
+    },
+})
 
 -- Exported keybind functions
 -- (currently no reason to do this, since we dont use them in init.vim anymore)
@@ -149,7 +165,8 @@ local exported_mappings = {
     end,
     -- fuzzy find in current buffer
     current_buffer_fuzzy_find = function()
-        ts_builtins.current_buffer_fuzzy_find(opts)
+        -- FIXME: this currently searches in the "previous" not current buffer for some reason
+        ts_builtins.current_buffer_fuzzy_find(opts, { buffer = 0 })
     end,
 }
 
@@ -157,6 +174,6 @@ local exported_mappings = {
 -- Generic global keybinds
 vim.keymap.set("n", "<C-p>", exported_mappings.find_files)
 vim.keymap.set("n", "<Leader><Tab>", exported_mappings.buffers)
-vim.keymap.set("n", "<Leader><C-/>", exported_mappings.current_buffer_fuzzy_find)
+vim.keymap.set("n", "<Leader>ff", exported_mappings.current_buffer_fuzzy_find)
 
 return exported_mappings

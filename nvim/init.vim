@@ -69,15 +69,16 @@ Plug 'sainnhe/gruvbox-material' "theme
 Plug 'kyazdani42/nvim-web-devicons' "icons
 Plug 'lukas-reineke/indent-blankline.nvim' "display indents
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 " pseudo-productivity 
 Plug 'ruifm/gitlinker.nvim' "git permalinks
 Plug 'numToStr/Comment.nvim' "comment helper
 
 "possible additions at some point:
-" git integration vim-fugitive
+" git integration vim-fugitive (currently using lazygit outside of nvim)
 " schemaStore for json autocomplete? (needs json lsp setup then aswell)
 "   - can just initialize the schema store only when working with a
-"   json-buffer to aboid startup slowdown
+"   json-buffer to avoid startup slowdown
 "
 " lualine and tabline for buffer list
 
