@@ -9,20 +9,20 @@ local icon_path = ""
 
 -- Get active outputs
 local function outputs()
-    local outputs = {}
+    local output_table = {}
     local xrandr = io.popen("xrandr -q --current")
 
     if xrandr then
         for line in xrandr:lines() do
             local output = line:match("^([%w-]+) connected ")
             if output then
-                outputs[#outputs + 1] = output
+                output_table[#output_table + 1] = output
             end
         end
         xrandr:close()
     end
 
-    return outputs
+    return output_table
 end
 
 local function arrange(out)
@@ -52,7 +52,7 @@ end
 
 -- Build available choices
 local function menu()
-    local menu = {}
+    local menu_choices = {}
     local out = outputs()
     local choices = arrange(out)
 
@@ -82,10 +82,10 @@ local function menu()
             end
         end
 
-        menu[#menu + 1] = { label, cmd }
+        menu_choices[#menu_choices + 1] = { label, cmd }
     end
 
-    return menu
+    return menu_choices
 end
 
 -- Display xrandr notifications from choices
@@ -110,7 +110,7 @@ local function xrandr()
     end
 
     -- Select one and display the appropriate notification
-    local label, action
+    local label
     local next  = state.menu[state.index]
     state.index = state.index + 1
 
@@ -118,7 +118,7 @@ local function xrandr()
         label = "Keep the current configuration"
         state.index = nil
     else
-        label, action = next[1], next[2]
+        label = next[1]
     end
     state.cid = naughty.notify({ text = label,
         icon = icon_path,

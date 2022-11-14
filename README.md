@@ -13,12 +13,12 @@ Symlink each file to its respective location:
 `ln -s -f <absolute path to dotfiles repo>/.bashrc ~/.bashrc`
 
 
-## Default locations
+## Default config locations
 
-| Directory/file      | Default location |
+| directory / file      | default location |
 | ----------- | ----------- |
-| `awesome`  |  ~/.config/awesome |
-| `nvim`  |  ~/.config/nvim |
-| `kitty`  |  ~/.config/kitty |
-| `.shrc`  |  ~/.bashrc |
+| `awesome`  |  `~/.config/awesome` |
+| `nvim`  |  `~/.config/nvim` |
+| `kitty`  |  `~/.config/kitty` |
+| `.shrc`  |  `~/.bashrc` |
 
