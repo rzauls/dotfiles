@@ -3,13 +3,15 @@
 nnoremap <SPACE> <Nop>
 let mapleader="\<Space>"
 
+" load lua config
+" this contains most of the configuration and plugin setup
+lua require('entry')
+
 "TODO: convert these to lua at some point
 "see ':help vim.opt' and ':help vim.o'
 set nocompatible
 set noswapfile
 set nobackup
-set undodir=~/.config/nvim/undodir
-set undofile
 syntax on
 
 set tabstop=4
@@ -41,59 +43,11 @@ set clipboard+=unnamedplus
 "highlight on yank
 au TextYankPost * silent! lua vim.highlight.on_yank()
 
-"Plugins
-call plug#begin('~/.config/nvim/plugged')
-"telescope/system plugins
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-telescope/telescope.nvim', {'tag': '0.1.0'}
-Plug 'nvim-telescope/telescope-file-browser.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-"lsp/autocomplete
-Plug 'neovim/nvim-lspconfig' "premade lsp configurations with sane defaults
-Plug 'hrsh7th/nvim-cmp' "autocomplete base layer
-"autocomplete suggesstion improvements
-Plug 'hrsh7th/cmp-nvim-lsp' "suggesstions by lsp
-Plug 'hrsh7th/cmp-buffer' "suggestions from current buffer
-Plug 'hrsh7th/cmp-path' "suggesstions form path
-Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*'} "snippet engine (supports vs code snippet format)
-"debugging
-Plug 'mfussenegger/nvim-dap'
-Plug 'rcarriga/nvim-dap-ui'
-Plug 'theHamsta/nvim-dap-virtual-text'
-Plug 'nvim-telescope/telescope-dap.nvim' 
-Plug 'leoluz/nvim-dap-go'
-
-"auto brackets and xml tags
-Plug 'windwp/nvim-autopairs' "bracket pairs
-Plug 'tpope/vim-surround' "xml/html tags TODO: learn the keybinds better
-" decorative fluff
-Plug 'sainnhe/gruvbox-material' "theme
-Plug 'kyazdani42/nvim-web-devicons' "icons
-Plug 'lukas-reineke/indent-blankline.nvim' "display indents
-Plug 'lewis6991/gitsigns.nvim'
-Plug 'nvim-lualine/lualine.nvim'
-" pseudo-productivity 
-Plug 'ruifm/gitlinker.nvim' "git permalinks
-Plug 'numToStr/Comment.nvim' "comment helper
-
-"possible additions at some point:
-" * schemaStore for json autocomplete? (needs json lsp setup then aswell)
-"   - can just initialize the schema store only when working with a
-"   json-buffer to avoid startup slowdown
-" * ggandor/lightspeed.nvim for better motions
-"
-
-call plug#end()
-
-" theme stuff
+" theme
 set background=dark
 set termguicolors
 colorscheme gruvbox-material
 
-" load lua config
-lua require('elite')
-
 " NOTE: all keybinds are configured in lua configs, except this one
 " lua config reload with F4 button
-nnoremap <F4> :lua package.loaded.elite = nil <cr>:source ~/.config/nvim/init.vim <cr>
+nnoremap <F4> :lua package.loaded.entry = nil <cr>:source ~/.config/nvim/init.vim <cr>
