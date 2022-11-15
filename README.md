@@ -22,3 +22,5 @@ Symlink each file to its respective location:
 | `kitty`  |  `~/.config/kitty` |
 | `.shrc`  |  `~/.bashrc` |
 
+## TODO:
+add `stow` support to avoid manual link errors

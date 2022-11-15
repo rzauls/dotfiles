@@ -1,3 +1,4 @@
+"NOTE: this config is only compatible with neovim 0.7 and upwards
 "<leader> remapped to <Space>
 nnoremap <SPACE> <Nop>
 let mapleader="\<Space>"
@@ -36,14 +37,9 @@ set cursorline
 
 "copy/paste to system clipboard
 set clipboard+=unnamedplus
-"old way (this doesnt work with delete buffers properly)
-" nnoremap yy "+yy
-" vnoremap y "+y
-"
-" nnoremap p "+p
-" vnoremap p "+p
-" nnoremap P "+P
-" vnoremap P "+P
+
+"highlight on yank
+au TextYankPost * silent! lua vim.highlight.on_yank()
 
 "Plugins
 call plug#begin('~/.config/nvim/plugged')
