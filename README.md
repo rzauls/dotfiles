@@ -14,3 +14,4 @@ This is where I store the dotfiles that I might possibly at some point reuse som
 
 - Using `stow` makes me not have to worry about where the files should be linked to
 - Using this repo enables me to share configuration between devices
+- .ignore file forces neovim to not show .git in fuzzy file search
