@@ -199,6 +199,7 @@ require('lualine').setup({
     },
 })
 
+
 -- Exported keybind functions
 -- (currently no reason to do this, since we dont use them in init.vim anymore)
 local exported_mappings = {
@@ -208,7 +209,7 @@ local exported_mappings = {
     end,
     -- find files in cwd
     find_files = function() -- find files in cwd
-        ts_builtins.find_files(opts)
+        ts_builtins.find_files({ hidden = true, opts })
     end,
     -- fuzzy find in current buffer
     current_buffer_fuzzy_find = function()
