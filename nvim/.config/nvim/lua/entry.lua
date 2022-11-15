@@ -1,6 +1,6 @@
 -- main config
 local ts_builtins = require('x.telescope') -- telescope config
-require('x.util.helpers') -- helper functions to debug config development
+require('x.util') -- helper functions to debug config development
 require('x.plugins') -- packer and plugin list
 require('x.cmp') -- autocomplete/cmp config
 require('x.lsp') -- lsp config
