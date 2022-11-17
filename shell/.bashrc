@@ -1,4 +1,5 @@
 # some voodoo magic
+#
 case $- in
     *i*) ;;
       *) return;;
@@ -52,7 +53,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
+export PATH="$HOME/.local/bin:$PATH"
 # TODO: move to bash_aliases and import here
 alias icat='kitty +kitten icat'
 alias ll='ls -alF'
