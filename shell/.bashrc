@@ -74,8 +74,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # ruby stuff
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)" # this loads rbenv completion
+if [ -b "$HOME/.rbenv/bin" ]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)" # this loads rbenv completion
+fi
 
 # rust stuff
-. "$HOME/.cargo/env"
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
