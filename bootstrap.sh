@@ -22,6 +22,12 @@ sudo updade-alternatives --config x-terminal-emulator
 # sometimes kitty doesnt show up here, but im sure it is physically possible to google a solution when that happens
 # and choose the appropriate one
 
+# install a font with complete glyphs/devicons and extracto to ~/.fonts
+# https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/FiraCode.zip
+
+# refresh font cache
+fc-cache -f -v
+
 #build neovim
 sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
 git clone https://github.com/neovim/neovim
