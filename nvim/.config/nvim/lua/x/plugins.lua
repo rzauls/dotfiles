@@ -25,7 +25,7 @@ return require('packer').startup(function(use)
     use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
     -- telescope/system plugins
     use({ 'nvim-lua/plenary.nvim' })
-    use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
+    use({ 'nvim-treesitter/nvim-treesitter', run = function() vim.fn['TSUpdate']() end})
     use({ 'nvim-telescope/telescope.nvim', tag = '0.1.0' })
     use({ 'nvim-telescope/telescope-file-browser.nvim' })
     use({ 'nvim-telescope/telescope-fzf-native.nvim',
