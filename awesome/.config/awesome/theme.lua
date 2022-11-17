@@ -1,6 +1,5 @@
----------------------------
--- Default awesome theme --
----------------------------
+-- catppuccino awesome theme
+-- color hex's from https://github.com/catppuccin/kitty/blob/main/mocha.conf
 
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
@@ -11,24 +10,61 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font = "sans 8"
+theme.font = "roboto 9"
+theme.wallpaper = os.getenv("HOME") .. "/.config/awesome/wallpaper2.jpg"
+local dbg = require("gears.debug")
+dbg.print_error("wallpaper string:" .. theme.wallpaper)
 
-theme.bg_normal   = "#222222"
-theme.bg_focus    = "#535d6c"
-theme.bg_urgent   = "#ff0000"
-theme.bg_minimize = "#444444"
+theme.bg_normal   = '#11111B'
+theme.bg_focus    = '#1E1E2E'
+theme.bg_urgent   = '#F39BA8' -- red
+theme.bg_minimize = '#11111B'
 theme.bg_systray  = theme.bg_normal
 
-theme.fg_normal   = "#aaaaaa"
-theme.fg_focus    = "#ffffff"
-theme.fg_urgent   = "#ffffff"
-theme.fg_minimize = "#ffffff"
+theme.fg_normal   = '#CDD6F4'
+theme.fg_focus    = '#B4BEFE'
+theme.fg_urgent   = '#CDD6F4'
+theme.fg_minimize = '#CDD6F4'
 
-theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(1)
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
+theme.useless_gap   = dpi(0) -- lol
+theme.border_width  = dpi(2)
+theme.border_normal = '#6C7086'
+theme.border_focus  = '#B4BEFE'
+theme.border_marked = '#F9E2AF' -- unchanged
+
+
+-- the 16 glorious term colors
+--  black
+theme.color0 = '#45475A'
+theme.color8 = '#585B70'
+
+-- red
+theme.color1 = '#F38BA8'
+theme.color9 = '#F38BA8'
+
+-- green
+theme.color2  = '#A6E3A1'
+theme.color10 = '#A6E3A1'
+
+-- yellow
+theme.color3  = '#F9E2AF'
+theme.color11 = '#F9E2AF'
+
+-- blue
+theme.color4  = '#89B4FA'
+theme.color12 = '#89B4FA'
+
+-- magenta
+theme.color5  = '#F5C2E7'
+theme.color13 = '#F5C2E7'
+
+-- cyan
+theme.color6  = '#94E2D5'
+theme.color14 = '#94E2D5'
+
+-- white
+theme.color7  = '#BAC2DE'
+theme.color15 = '#A6ADC8'
 
 -- There are other variable sets
 -- overriding the default one when
@@ -97,7 +133,6 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path .. "default/titleb
 theme.titlebar_maximized_button_normal_active   = themes_path .. "default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = themes_path .. "default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = "/home/rihards/.config/awesome/test.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh      = themes_path .. "default/layouts/fairhw.png"

@@ -25,7 +25,7 @@ return require('packer').startup(function(use)
     use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
     -- telescope/system plugins
     use({ 'nvim-lua/plenary.nvim' })
-    use({ 'nvim-treesitter/nvim-treesitter', run = function() vim.fn['TSUpdate']() end})
+    use({ 'nvim-treesitter/nvim-treesitter', run = function() vim.fn['TSUpdate']() end })
     use({ 'nvim-telescope/telescope.nvim', tag = '0.1.0' })
     use({ 'nvim-telescope/telescope-file-browser.nvim' })
     use({ 'nvim-telescope/telescope-fzf-native.nvim',
@@ -52,6 +52,7 @@ return require('packer').startup(function(use)
     use({ 'tpope/vim-surround' }) -- xml/html tags TODO: learn the keybinds better
     -- decorative fluff
     use({ 'sainnhe/gruvbox-material' }) -- theme
+    use { "catppuccin/nvim", as = "catppuccin" }
     use({ 'kyazdani42/nvim-web-devicons' }) --icons
     use({ 'lukas-reineke/indent-blankline.nvim' }) --display indents
     use({ 'lewis6991/gitsigns.nvim' })
