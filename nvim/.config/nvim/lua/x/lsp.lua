@@ -16,7 +16,15 @@ local generic_lsp_keybinds = function()
     -- go to previous highlighted error/warning
     vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = 0 })
     -- list diagnostics with fuzzy search
-    vim.keymap.set("n", "<leader>dl", ts_builtins.diagnostics, { buffer = 0 })
+    vim.keymap.set(
+        "n",
+        "<leader>dl",
+        function()
+            local opts = require('telescope.themes').get_dropdown()
+            opts.buffer = 0
+            ts_builtins.diagnostics(opts)
+        end
+    )
     -- rename symbol
     vim.keymap.set("n", "<F6>", vim.lsp.buf.rename, { buffer = 0 })
     -- format buffer with lsp-defined formatter
