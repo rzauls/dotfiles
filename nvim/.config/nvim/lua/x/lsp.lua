@@ -42,6 +42,7 @@ require('lspconfig').sumneko_lua.setup({
             diagnostics = {
                 -- assume 'vim' is available to suppress misleading diagnostics
                 globals = {
+                    'vim',
                     'awesome',
                     'client',
                     'root',
