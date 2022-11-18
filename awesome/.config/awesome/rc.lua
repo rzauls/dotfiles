@@ -15,7 +15,7 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- External monitor support
-local xrandr = require("scripts.xrandr")
+local xrandr = require("x.xrandr")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -182,7 +182,8 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
-local logout_menu = require('scripts.logout')
+local logout_menu = require('x.logout')
+local spotify_widget = require('x.spotify')
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -232,6 +233,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            spotify_widget(),
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
