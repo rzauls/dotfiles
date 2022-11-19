@@ -58,3 +58,6 @@ sudo apt install awesome
 #
 # spotify icon set 
 # https://github.com/horst3180/arc-icon-theme#installation
+#
+# install flameshot for screenshots to work
+sudo apt install flameshot
