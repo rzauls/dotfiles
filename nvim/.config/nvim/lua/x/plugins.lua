@@ -51,7 +51,7 @@ return require('packer').startup(function(use)
     use({ 'windwp/nvim-autopairs' }) -- bracket pairs
     use({ 'tpope/vim-surround' }) -- xml/html tags TODO: learn the keybinds better
     -- decorative fluff
-    use { "catppuccin/nvim", as = "catppuccin" } -- mocha (the darkest variant)
+    use({ "catppuccin/nvim", as = "catppuccin" }) -- mocha (the darkest variant)
     use({ 'kyazdani42/nvim-web-devicons' }) --icons
     use({ 'lukas-reineke/indent-blankline.nvim' }) --display indents
     use({ 'lewis6991/gitsigns.nvim' })
