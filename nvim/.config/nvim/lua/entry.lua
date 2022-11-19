@@ -8,5 +8,4 @@ require('x.cmp') -- autocomplete/cmp config
 require('x.lsp') -- lsp config
 require('x.debug') -- debugger/dap config
 require('x.misc_configs') -- short configs that dont fit anywhere else
-
-vim.keymap.set("n", "<Leader>h", "<cmd>bprev<cr>") -- cycle to previous buffer
+require('x.keymap') -- non-specific keymaps

@@ -9,6 +9,7 @@ require('telescope').load_extension('file_browser')
 
 vim.keymap.set("n", "<C-p>", function() ts_builtins.find_files({ hidden = true }) end)
 vim.keymap.set("n", "<Leader><Tab>", function() ts_builtins.buffers() end)
+vim.keymap.set("n", "<Leader><Up>", function() ts_builtins.command_history() end)
 vim.keymap.set(
     "n",
     "<Leader>ff",
@@ -18,5 +19,7 @@ vim.keymap.set(
         opts.sorting_strategy = "descending"
         ts_builtins.current_buffer_fuzzy_find(opts)
     end)
+
+-- TODO: figure out a good keybind for other builtins
 
 return ts_builtins
