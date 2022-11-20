@@ -184,6 +184,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 local logout_menu = require('x.logout')
 local spotify_widget = require('x.spotify')
+local battery_widget = require('x.battery')
 local vertical_separator = wibox.widget.textbox(" | ")
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -240,6 +241,7 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
+            battery_widget(),
             logout_menu(),
             s.mylayoutbox,
         },
