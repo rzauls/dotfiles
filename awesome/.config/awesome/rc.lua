@@ -325,6 +325,9 @@ globalkeys = gears.table.join(
     awful.key({}, "Print", function() awful.util.spawn("flameshot gui") end,
         { description = "take a screenshot", group = "launcher" }
     ),
+    awful.key({ modkey, "Shift" }, "l", function() awful.util.spawn("xscreensaver-command -lock") end,
+        { description = "lock the screen", group = "launcher" }
+    ),
 
     awful.key({ modkey, "Control" }, "r", awesome.restart,
         { description = "reload awesome", group = "awesome" }
@@ -645,3 +648,6 @@ client.connect_signal("mouse::enter",
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+--
+-- startup apps
+awful.util.spawn("xscreensaver -nosplash")

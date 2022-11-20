@@ -61,3 +61,8 @@ sudo apt install awesome
 #
 # install flameshot for screenshots to work
 sudo apt install flameshot
+#
+# screen locking 
+# install xscreensaver and add to $HOME/.xinitrc
+sudo apt install xscreensaver
+echo
