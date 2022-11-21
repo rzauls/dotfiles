@@ -191,7 +191,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "main", "secondary", "public", "secret"}, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4"}, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -327,7 +327,7 @@ globalkeys = gears.table.join(
     awful.key({}, "Print", function() awful.util.spawn("flameshot gui") end,
         { description = "take a screenshot", group = "launcher" }
     ),
-    awful.key({ modkey, "Shift" }, "l", function() awful.util.spawn("xscreensaver-command -lock") end,
+    awful.key({ modkey, "Shift" }, "Delete", function() awful.util.spawn("xscreensaver-command -lock") end,
         { description = "lock the screen", group = "launcher" }
     ),
 
