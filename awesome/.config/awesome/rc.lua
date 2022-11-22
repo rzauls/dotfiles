@@ -178,6 +178,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 local logout_menu = require('x.logout')
 local spotify_widget = require('x.spotify')
+local volume_widget = require("x.volume-worker")
 local battery_widget = require('x.battery')
 local vertical_separator = wibox.widget.textbox(" | ")
 awful.screen.connect_for_each_screen(function(s)
@@ -185,7 +186,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4"}, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -235,6 +236,7 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
+            volume_widget(),
             battery_widget(),
             logout_menu(),
             s.mylayoutbox,
@@ -242,7 +244,7 @@ awful.screen.connect_for_each_screen(function(s)
     }
 end)
 -- }}}
-
+--
 -- {{{ Mouse bindings
 root.buttons(
     gears.table.join(
