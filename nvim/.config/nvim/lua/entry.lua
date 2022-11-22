@@ -1,8 +1,8 @@
 -- main config
 require('x.util') -- helper functions to debug config development
 require('x.opts') -- global options
-require('x.theme')
 require('x.plugins') -- packer and plugin list
+require('x.theme')
 require('x.telescope') -- telescope config
 require('x.cmp') -- autocomplete/cmp config
 require('x.lsp') -- lsp config

@@ -78,8 +78,12 @@ require('lspconfig').tsserver.setup({
 })
 -- PHP
 require('lspconfig').intelephense.setup({
-    on_attach = function() generic_lsp_keybinds() end,
+    on_attach = function(_, bufnr)
+        generic_lsp_keybinds()
+            vim.keymap.set("n", "<F10>", "<cmd>!cargo run <cr>", { buffer = bufnr })
+    end,
     capabilities = capabilities,
+
 })
 -- TODO:
 -- Elixir

@@ -59,6 +59,11 @@ return require('packer').startup(function(use)
     -- pseudo-productivity
     use({ 'ruifm/gitlinker.nvim' }) --git permalinks
     use({ 'numToStr/Comment.nvim' }) --comment helper
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
+        setup = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end, ft = { "markdown" }
+    })
 
     -- possible additions at some point:
     --  * schemaStore for json autocomplete? (needs json lsp setup then aswell)

@@ -60,9 +60,8 @@ sudo apt install awesome
 # https://github.com/horst3180/arc-icon-theme#installation
 #
 # install flameshot for screenshots to work
-sudo apt install flameshot
+# sudo apt install flameshot
 #
 # screen locking 
 # install xscreensaver and add to $HOME/.xinitrc
-sudo apt install xscreensaver
-echo
+# sudo apt install xscreensaver
