@@ -1,6 +1,21 @@
 -- LSP setup
 local ts_builtins = require('x.telescope')
 local capabilities = require('x.cmp')
+-- Diagnostic keybinds
+-- go to next highlighted error/warning
+vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { buffer = 0 })
+-- go to previous highlighted error/warning
+vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = 0 })
+-- list diagnostics with fuzzy search
+vim.keymap.set(
+    "n",
+    "<leader>dl",
+    function()
+        local opts = require('telescope.themes').get_dropdown()
+        opts.buffer = 0
+        ts_builtins.diagnostics(opts)
+    end
+)
 -- Generic keybinds that work for most language servers
 local generic_lsp_keybinds = function()
     -- peek definition
@@ -11,20 +26,6 @@ local generic_lsp_keybinds = function()
     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
     -- go to implementation
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
-    -- go to next highlighted error/warning
-    vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { buffer = 0 })
-    -- go to previous highlighted error/warning
-    vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = 0 })
-    -- list diagnostics with fuzzy search
-    vim.keymap.set(
-        "n",
-        "<leader>dl",
-        function()
-            local opts = require('telescope.themes').get_dropdown()
-            opts.buffer = 0
-            ts_builtins.diagnostics(opts)
-        end
-    )
     -- rename symbol
     vim.keymap.set("n", "<F6>", vim.lsp.buf.rename, { buffer = 0 })
     -- format buffer with lsp-defined formatter
@@ -54,7 +55,11 @@ require('lspconfig').sumneko_lua.setup({
 
 -- Go
 require('lspconfig').gopls.setup({
-    on_attach = function() generic_lsp_keybinds() end,
+    on_attach = function(_, bufnr)
+        generic_lsp_keybinds()
+        -- TODO: this kinda doesnt work for most things but ok enough for little scripts
+        vim.keymap.set("n", "<F10>", "<cmd>!go run main.go<cr>", { buffer = bufnr })
+    end,
     capabilities = capabilities,
 })
 -- Rust
@@ -80,17 +85,18 @@ require('lspconfig').tsserver.setup({
 require('lspconfig').intelephense.setup({
     on_attach = function(_, bufnr)
         generic_lsp_keybinds()
-            vim.keymap.set("n", "<F10>", "<cmd>!cargo run <cr>", { buffer = bufnr })
+        vim.keymap.set("n", "<F10>", "<cmd>!cargo run <cr>", { buffer = bufnr })
     end,
     capabilities = capabilities,
 
 })
--- TODO:
--- Elixir
-
-
-
-
-
-
+require('lspconfig').marksman.setup({
+    server = {
+        on_attach = function()
+            generic_lsp_keybinds()
+            vim.opt.spell = true
+        end,
+        capabilities = capabilities,
+    }
+})
 return {}

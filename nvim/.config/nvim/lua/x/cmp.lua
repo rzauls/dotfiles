@@ -1,5 +1,6 @@
 -- Autocomplete keybinds and setup
 local cmp = require('cmp')
+vim.opt.spelllang = { 'en' }
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 cmp.setup({
     snippet = {
@@ -23,6 +24,15 @@ cmp.setup({
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         { name = 'luasnip' },
+        {
+            name = 'spell',
+            option = {
+                keep_all_entries = false,
+                enable_in_context = function()
+                    return require('cmp.config.context').in_treesitter_capture('spell')
+                end,
+            }
+        }
     }, {
         { name = 'buffer' },
     })

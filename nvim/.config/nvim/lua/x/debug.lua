@@ -4,6 +4,7 @@ vim.keymap.set("n", "<F5>", dap.continue)
 vim.keymap.set("n", "<F7>", dap.step_over)
 vim.keymap.set("n", "<F8>", dap.step_into)
 vim.keymap.set("n", "<F9>", dap.step_out)
+vim.keymap.set("n", "<S-F12>", dap.terminate)
 vim.keymap.set("n", "<Leader>b", dap.toggle_breakpoint)
 vim.keymap.set("n", "<Leader>dr", dap.repl.open)
 vim.keymap.set("n", "<Leader>B", "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>")
@@ -35,6 +36,7 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
 end
+vim.keymap.set("n", "<F12>", dapui.toggle)
 
 -- go premade configs for dap/delve
 require('dap-go').setup()
