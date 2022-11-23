@@ -63,6 +63,10 @@ alias python='python3'
 alias py='python3'
 alias vim='/usr/local/bin/nvim'
 alias lg='lazygit'
+if command -v exa &> /dev/null
+then
+    alias ls='exa -l'
+fi
 
 # go stuff
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
