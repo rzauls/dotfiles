@@ -24,7 +24,6 @@ return require('packer').startup(function(use)
     use({ "wbthomason/packer.nvim" }) -- Packer can update itself
     use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
     -- telescope/system plugins
-    use({ 'nvim-lua/plenary.nvim' })
     use({ 'nvim-treesitter/nvim-treesitter', run = function() vim.fn['TSUpdate']() end })
     use({ 'nvim-telescope/telescope.nvim', tag = '0.1.0' })
     use({ 'nvim-telescope/telescope-file-browser.nvim' })
@@ -60,10 +59,12 @@ return require('packer').startup(function(use)
     -- pseudo-productivity
     use({ 'ruifm/gitlinker.nvim' }) --git permalinks
     use({ 'numToStr/Comment.nvim' }) --comment helper
+    use({ 'kdheepak/lazygit.vim' }) --lazygit inside vim
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
         setup = function()
             vim.g.mkdp_filetypes = { "markdown" }
-        end, ft = { "markdown" }
+        end,
+        ft = { "markdown" }
     })
 
     -- possible additions at some point:
