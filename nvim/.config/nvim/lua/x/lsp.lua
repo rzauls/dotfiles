@@ -83,9 +83,70 @@ require('lspconfig').tsserver.setup({
 })
 -- PHP
 require('lspconfig').intelephense.setup({
+    settings = {
+        intelephense = {
+            stubs = {
+                "bcmath",
+                "bz2",
+                "Core",
+                "curl",
+                "date",
+                "dom",
+                "fileinfo",
+                "filter",
+                "gd",
+                "gettext",
+                "hash",
+                "iconv",
+                "imap",
+                "intl",
+                "json",
+                "libxml",
+                "mbstring",
+                "mcrypt",
+                "mysql",
+                "mysqli",
+                "password",
+                "pcntl",
+                "pcre",
+                "PDO",
+                "pdo_mysql",
+                "Phar",
+                "readline",
+                "regex",
+                "session",
+                "SimpleXML",
+                "sockets",
+                "sodium",
+                "standard",
+                "superglobals",
+                "tokenizer",
+                "xml",
+                "xdebug",
+                "xmlreader",
+                "xmlwriter",
+                "yaml",
+                "zip",
+                "zlib",
+                "wordpress-stubs",
+                "woocommerce-stubs",
+                "acf-pro-stubs",
+                "wordpress-globals",
+                "wp-cli-stubs",
+                "genesis-stubs",
+                "polylang-stubs"
+            },
+            environment = {
+                includePaths = { os.getenv("HOME") .. '/.composer/vendor/php-stubs/' }
+            },
+            files = {
+                maxSize = 5000000;
+            };
+        }
+
+    },
     on_attach = function(_, bufnr)
         generic_lsp_keybinds()
-        vim.keymap.set("n", "<F10>", "<cmd>!cargo run <cr>", { buffer = bufnr })
     end,
     capabilities = capabilities,
 

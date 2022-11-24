@@ -88,3 +88,7 @@ fi
 if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
+
+# sail/laravel/php stuff
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+
