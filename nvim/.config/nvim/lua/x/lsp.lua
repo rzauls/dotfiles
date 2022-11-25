@@ -3,9 +3,9 @@ local ts_builtins = require('x.telescope')
 local capabilities = require('x.cmp')
 -- Diagnostic keybinds
 -- go to next highlighted error/warning
-vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { buffer = 0 })
+vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { buffer = vim.nvim_get_current_buf })
 -- go to previous highlighted error/warning
-vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = 0 })
+vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = vim.nvim_get_current_buf })
 -- list diagnostics with fuzzy search
 vim.keymap.set(
     "n",
@@ -82,59 +82,21 @@ require('lspconfig').tsserver.setup({
     capabilities = capabilities,
 })
 -- PHP
+-- i dont think the stubs actually do anything
 require('lspconfig').intelephense.setup({
     settings = {
         intelephense = {
             stubs = {
-                "bcmath",
-                "bz2",
-                "Core",
-                "curl",
-                "date",
-                "dom",
-                "fileinfo",
-                "filter",
-                "gd",
-                "gettext",
-                "hash",
-                "iconv",
-                "imap",
-                "intl",
-                "json",
-                "libxml",
-                "mbstring",
-                "mcrypt",
-                "mysql",
-                "mysqli",
-                "password",
-                "pcntl",
-                "pcre",
-                "PDO",
-                "pdo_mysql",
-                "Phar",
-                "readline",
-                "regex",
-                "session",
-                "SimpleXML",
-                "sockets",
-                "sodium",
-                "standard",
-                "superglobals",
-                "tokenizer",
-                "xml",
-                "xdebug",
-                "xmlreader",
-                "xmlwriter",
-                "yaml",
-                "zip",
-                "zlib",
-                "wordpress-stubs",
-                "woocommerce-stubs",
-                "acf-pro-stubs",
-                "wordpress-globals",
-                "wp-cli-stubs",
-                "genesis-stubs",
-                "polylang-stubs"
+                "bcmath", "bz2", "Core", "curl", "date", "dom",
+                "fileinfo", "filter", "gd", "gettext", "hash",
+                "iconv", "imap", "intl", "json", "libxml", "mbstring",
+                "mcrypt", "mysql", "mysqli", "password", "pcntl",
+                "pcre", "PDO", "pdo_mysql", "Phar", "readline", "regex",
+                "session", "SimpleXML", "sockets", "sodium", "standard",
+                "superglobals", "tokenizer", "xml", "xdebug", "xmlreader",
+                "xmlwriter", "yaml", "zip", "zlib", "wordpress-stubs",
+                "woocommerce-stubs", "acf-pro-stubs", "wordpress-globals", 
+                "wp-cli-stubs", "genesis-stubs", "polylang-stubs"
             },
             environment = {
                 includePaths = { os.getenv("HOME") .. '/.composer/vendor/php-stubs/' }
@@ -160,4 +122,9 @@ require('lspconfig').marksman.setup({
         capabilities = capabilities,
     }
 })
+
+
+-- Python
+require('lspconfig').pyright.setup({})
+
 return {}
