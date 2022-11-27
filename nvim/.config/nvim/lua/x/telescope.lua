@@ -27,6 +27,7 @@ vim.keymap.set(
         ts_builtins.current_buffer_fuzzy_find(opts)
     end)
 
+vim.keymap.set("n", "<F4>", function() ts_builtins.reloader() end)
 -- TODO: figure out a good keybind for other builtins
 
 return ts_builtins
