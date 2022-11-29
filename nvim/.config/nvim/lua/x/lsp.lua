@@ -40,6 +40,9 @@ require('lspconfig').sumneko_lua.setup({
     capabilities = capabilities,
     settings = {
         Lua = {
+            workspace = {
+                useGitIgnore = true
+            },
             diagnostics = {
                 -- assume 'vim' is available to suppress misleading diagnostics
                 globals = {
@@ -76,7 +79,6 @@ require('rust-tools').setup({
     }
 })
 -- TypeScript/JavaScript
--- TODO: needs refinement
 require('lspconfig').tsserver.setup({
     on_attach = function() generic_lsp_keybinds() end,
     capabilities = capabilities,
@@ -95,7 +97,7 @@ require('lspconfig').intelephense.setup({
                 "session", "SimpleXML", "sockets", "sodium", "standard",
                 "superglobals", "tokenizer", "xml", "xdebug", "xmlreader",
                 "xmlwriter", "yaml", "zip", "zlib", "wordpress-stubs",
-                "woocommerce-stubs", "acf-pro-stubs", "wordpress-globals", 
+                "woocommerce-stubs", "acf-pro-stubs", "wordpress-globals",
                 "wp-cli-stubs", "genesis-stubs", "polylang-stubs"
             },
             environment = {
@@ -109,6 +111,7 @@ require('lspconfig').intelephense.setup({
     },
     on_attach = function(_, bufnr)
         generic_lsp_keybinds()
+        vim.keymap.set("n", "<F10>", "<cmd>!php %<cr>", { buffer = bufnr })
     end,
     capabilities = capabilities,
 
@@ -125,6 +128,5 @@ require('lspconfig').marksman.setup({
 
 
 -- Python
+-- TODO: prob needs some more configuration
 require('lspconfig').pyright.setup({})
-
-return {}
