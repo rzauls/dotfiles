@@ -27,6 +27,7 @@ return require('packer').startup(function(use)
     use({ 'nvim-treesitter/nvim-treesitter', run = function() vim.fn['TSUpdate']() end })
     use({ 'nvim-telescope/telescope.nvim', tag = '0.1.0' })
     use({ 'nvim-telescope/telescope-file-browser.nvim' })
+    use({ 'nvim-telescope/telescope-ui-select.nvim' })
     use({ 'nvim-telescope/telescope-fzf-native.nvim',
         run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' })
     -- lsp/autocomplete

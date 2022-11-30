@@ -1,9 +1,16 @@
 local ts_builtins = require('telescope.builtin')
 
 -- Telescope setup
-require('telescope').setup()
+require('telescope').setup({
+    extensions = {
+        ["ui-select"] = {
+            require('telescope.themes').get_dropdown()
+        }
+    }
+})
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('file_browser')
+require('telescope').load_extension('ui-select')
 
 -- ts_builtins.current_buffer_fuzzy_find(opts, { buffer = f })
 
