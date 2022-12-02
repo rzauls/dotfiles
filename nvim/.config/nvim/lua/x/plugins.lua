@@ -58,6 +58,8 @@ return require('packer').startup(function(use)
     use({ 'lewis6991/gitsigns.nvim' })
     use({ 'nvim-lualine/lualine.nvim' })
     -- pseudo-productivity
+    --
+    use({'nvim-tree/nvim-tree.lua'})
     use({ 'ruifm/gitlinker.nvim' }) --git permalinks
     use({ 'numToStr/Comment.nvim' }) --comment helper
     use({ 'kdheepak/lazygit.vim' }) --lazygit inside vim
