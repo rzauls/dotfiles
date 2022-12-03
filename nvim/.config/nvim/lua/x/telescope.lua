@@ -14,7 +14,7 @@ require('telescope').load_extension('ui-select')
 
 -- ts_builtins.current_buffer_fuzzy_find(opts, { buffer = f })
 
-vim.keymap.set("n", "<C-p>", function() ts_builtins.find_files({ hidden = true }) end)
+vim.keymap.set("n", "<C-p>", function() ts_builtins.find_files() end)
 vim.keymap.set("n",
     "<Leader><C-p>",
     function()
