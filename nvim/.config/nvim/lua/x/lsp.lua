@@ -41,7 +41,7 @@ local generic_lsp_keybinds = function()
     -- format buffer with lsp-defined formatter
     vim.keymap.set("n", "<leader><A-f>", vim.lsp.buf.format, { buffer = 0 })
     -- list code actions (organize imports, etc)
-    vim.keymap.set("n", "<leader><C-Enter>", vim.lsp.buf.code_action, { buffer = 0 })
+    vim.keymap.set("n", "ga", vim.lsp.buf.code_action, { buffer = 0 })
 end
 -- Language specific settings
 -- Lua
