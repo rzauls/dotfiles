@@ -3,9 +3,9 @@ local ts_builtins = require('x.telescope')
 local capabilities = require('x.cmp')
 -- Diagnostic keybinds
 -- go to next highlighted error/warning
-vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { buffer = vim.nvim_get_current_buf })
+vim.keymap.set("n", "g]", vim.diagnostic.goto_next, { buffer = vim.nvim_get_current_buf })
 -- go to previous highlighted error/warning
-vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { buffer = vim.nvim_get_current_buf })
+vim.keymap.set("n", "g[", vim.diagnostic.goto_prev, { buffer = vim.nvim_get_current_buf })
 -- list diagnostics with fuzzy search
 vim.keymap.set(
     "n",
@@ -16,6 +16,16 @@ vim.keymap.set(
         ts_builtins.diagnostics(opts)
     end
 )
+
+-- Show diagnostic popup on cursor hover
+vim.opt.updatetime = 100
+local diag_float_grp = vim.api.nvim_create_augroup("DiagnosticFloat", { clear = true })
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+   vim.diagnostic.open_float(nil, { focusable = false })
+  end,
+  group = diag_float_grp,
+})
 -- Generic keybinds that work for most language servers
 local generic_lsp_keybinds = function()
     -- peek definition
@@ -68,6 +78,12 @@ require('lspconfig').gopls.setup({
 -- Rust
 -- rust-tools calls lspconfig.setup() under the hood
 require('rust-tools').setup({
+    tools = {
+        runnables = {
+            use_telescope = true,
+        }
+
+    },
     server = {
         on_attach = function(_, bufnr)
             generic_lsp_keybinds()
@@ -75,7 +91,14 @@ require('rust-tools').setup({
             -- vim.keymap.del("n", "<leader><A-f>") -- use rustfmt, since rust-analyzer does not provide formatting
             -- vim.keymap.set("n", "<leader><A-f>", require('rust-tools')., { buffer = 0 })
         end,
-        capabilities = capabilities
+        capabilities = capabilities,
+        settings = {
+            ["rust-analyzer"] = {
+                checkOnSave = {
+                    command = "clippy"
+                }
+            }
+        }
     }
 })
 -- TypeScript/JavaScript
