@@ -1,31 +1,31 @@
 local luasnip = require('luasnip')
-luasnip.config.set_config({
-    history = true,
-    updateEvents = "TextChanged,TextChangedI",
-    enable_autosnippets = true,
-})
-
-vim.keymap.set({"i", "s"}, "<Tab>", function()
-    if luasnip.jumpable(1) then
-        luasnip.jump(1)
-    end
-end)
-vim.keymap.set({"i", "s"}, "<S-Tab>", function()
-    if luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-    end
-end)
-
-vim.keymap.set({"i", "s"}, "<A-j>", function()
-    if luasnip.choice_actice() then
-        luasnip.change_choice(1)
-    end
-end)
-vim.keymap.set({"i", "s"}, "<A-k>", function()
-    if luasnip.choice_actice() then
-        luasnip.change_choice(-1)
-    end
-end)
+-- luasnip.config.set_config({
+--     history = true,
+--     updateEvents = "TextChanged,TextChangedI",
+--     enable_autosnippets = true,
+-- })
+--
+-- vim.keymap.set({"i", "s"}, "<Tab>", function()
+--     if luasnip.jumpable(1) then
+--         luasnip.jump(1)
+--     end
+-- end)
+-- vim.keymap.set({"i", "s"}, "<S-Tab>", function()
+--     if luasnip.jumpable(-1) then
+--         luasnip.jump(-1)
+--     end
+-- end)
+--
+-- vim.keymap.set({"i", "s"}, "<A-j>", function()
+--     if luasnip.choice_actice() then
+--         luasnip.change_choice(1)
+--     end
+-- end)
+-- vim.keymap.set({"i", "s"}, "<A-k>", function()
+--     if luasnip.choice_actice() then
+--         luasnip.change_choice(-1)
+--     end
+-- end)
 -- TODO: fix auto-loading custom snippets
 -- require('luasnip.loaders.from_lua').load({ paths = "~/.config/nvim/lua/snippets"})
 --
