@@ -5,7 +5,7 @@ vim.keymap.set("n", "<Leader>h", "<cmd>bprev<cr>") -- cycle to previous buffer
 vim.keymap.set("n", "<C-d>", "<C-d>zz") -- ccenter view when scrolling by half page
 vim.keymap.set("n", "<C-u>", "<C-u>zz") -- center view when scrolling by half page
 
-vim.keymap.set("n", "<leader><C-w>", "<cmd>bd") -- close buffer
+vim.keymap.set("n", "<leader><C-w>", "<cmd>bd<cr>") -- close buffer
 
 vim.keymap.set("n", "<Leader><C-e>", "<cmd>NvimTreeToggle<cr>") --toggle file tree
 --
