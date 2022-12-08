@@ -7,7 +7,5 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz") -- center view when scrolling by half pa
 
 vim.keymap.set("n", "<leader><C-w>", "<cmd>bd<cr>") -- close buffer
 
-vim.keymap.set("n", "<Leader><C-e>", "<cmd>NvimTreeToggle<cr>") --toggle file tree
---
 -- TODO: figure out a vertical/horizontal split flow
 -- TODO: map movements between splits to something reasonable

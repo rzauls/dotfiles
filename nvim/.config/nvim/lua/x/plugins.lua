@@ -22,6 +22,8 @@ vim.cmd [[
 
 return require('packer').startup(function(use)
     use({ "wbthomason/packer.nvim" }) -- Packer can update itself
+    use({ "williamboman/mason.nvim" })
+    use({"williamboman/mason-lspconfig.nvim"})
     use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
     -- telescope/system plugins
     use({ 'nvim-treesitter/nvim-treesitter', run = function() vim.fn['TSUpdate']() end })
@@ -30,17 +32,31 @@ return require('packer').startup(function(use)
     use({ 'nvim-telescope/telescope-ui-select.nvim' })
     use({ 'nvim-telescope/telescope-fzf-native.nvim',
         run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' })
+
     -- lsp/autocomplete
-    use({ 'neovim/nvim-lspconfig' }) -- premade lsp configurations with sane defaults
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        requires = {
+            -- LSP Support
+            { 'neovim/nvim-lspconfig' },
+            { 'williamboman/mason.nvim' },
+            { 'williamboman/mason-lspconfig.nvim' },
+
+            -- Autocompletion
+            { 'hrsh7th/nvim-cmp' },
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-path' },
+            { 'saadparwaiz1/cmp_luasnip' },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-nvim-lua' },
+
+            -- Snippets
+            { 'L3MON4D3/LuaSnip' },
+            { 'rafamadriz/friendly-snippets' },
+        }
+    }
     use({ 'simrat39/rust-tools.nvim' })
-    -- autocomplete
-    use({ 'hrsh7th/nvim-cmp' }) --autocomplete base layer
-    use({ 'hrsh7th/cmp-nvim-lsp' })
-    use({ 'hrsh7th/cmp-buffer' })
-    use({ 'hrsh7th/cmp-path' })
-    use({ 'f3fora/cmp-spell' }) -- spelling
-    use({ 'hrsh7th/cmp-nvim-lua' })
-    use({ 'L3MON4D3/LuaSnip', tag = 'v1.*' }) -- snippet engine (supports vs code snippet format)
+
     -- debugging
     use({ 'mfussenegger/nvim-dap' })
     use({ 'rcarriga/nvim-dap-ui' })
@@ -59,8 +75,6 @@ return require('packer').startup(function(use)
     use({ 'nvim-lualine/lualine.nvim' })
     -- pseudo-productivity
     --
-    use({'nvim-tree/nvim-tree.lua'})
-    use({ 'ruifm/gitlinker.nvim' }) --git permalinks
     use({ 'numToStr/Comment.nvim' }) --comment helper
     use({ 'kdheepak/lazygit.vim' }) --lazygit inside vim
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
@@ -69,13 +83,6 @@ return require('packer').startup(function(use)
         end,
         ft = { "markdown" }
     })
-
-    -- possible additions at some point:
-    --  * schemaStore for json autocomplete? (needs json lsp setup then aswell)
-    --    - can just initialize the schema store only when working with a
-    --    json-buffer to avoid startup slowdown
-    --  * ggandor/lightspeed.nvim for better motions
-
     -- do the packing
     if packer_bootstrap then
         require("packer").sync()

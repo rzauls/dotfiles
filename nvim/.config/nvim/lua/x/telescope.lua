@@ -1,7 +1,14 @@
 local ts_builtins = require('telescope.builtin')
+require('mason').setup()
+require('mason-lspconfig').setup()
 
 -- Telescope setup
 require('telescope').setup({
+    defaults = {
+        file_ignore_patterns = {
+            "node_modules"
+        }
+    },
     extensions = {
         ["ui-select"] = {
             require('telescope.themes').get_dropdown()
@@ -20,17 +27,25 @@ vim.keymap.set("n",
     function()
         local opts = require('telescope.themes').get_dropdown()
         opts.hidden = true
+        opts.sorting_strategy = "descending"
         require('telescope').extensions.file_browser.file_browser(opts)
     end)
-vim.keymap.set("n", "<Leader><Tab>", function() ts_builtins.buffers() end)
+vim.keymap.set("n", "<Leader><Tab>",
+    function()
+        local opts = require('telescope.themes').get_dropdown()
+        opts.hidden = true
+        opts.sorting_strategy = "descending"
+        ts_builtins.buffers()
+    end)
 vim.keymap.set("n", "<Leader><Up>", function() ts_builtins.command_history() end)
 vim.keymap.set(
     "n",
     "<Leader>ff",
     function()
-        local opts = require('telescope.themes').get_dropdown()
-        opts.buffer = 0
-        opts.sorting_strategy = "descending"
+        local opts = {
+            buffer = 0,
+            sorting_strategy = "descending"
+        }
         ts_builtins.current_buffer_fuzzy_find(opts)
     end)
 
