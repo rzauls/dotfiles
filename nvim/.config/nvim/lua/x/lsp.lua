@@ -71,36 +71,19 @@ lsp.setup_nvim_cmp({
     })
 })
 
-lsp.setup()
--- -- PHP
--- require('lspconfig').intelephense.setup({
---     settings = {
---         intelephense = {
---             stubs = {
---                 "bcmath", "bz2", "Core", "curl", "date", "dom",
---                 "fileinfo", "filter", "gd", "gettext", "hash",
---                 "iconv", "imap", "intl", "json", "libxml", "mbstring",
---                 "mcrypt", "mysql", "mysqli", "password", "pcntl",
---                 "pcre", "PDO", "pdo_mysql", "Phar", "readline", "regex",
---                 "session", "SimpleXML", "sockets", "sodium", "standard",
---                 "superglobals", "tokenizer", "xml", "xdebug", "xmlreader",
---                 "xmlwriter", "yaml", "zip", "zlib", "wordpress-stubs",
---                 "woocommerce-stubs", "acf-pro-stubs", "wordpress-globals",
---                 "wp-cli-stubs", "genesis-stubs", "polylang-stubs"
---             },
---             environment = {
---                 includePaths = { os.getenv("HOME") .. '/.composer/vendor/php-stubs/' }
---             },
---             files = {
---                 maxSize = 5000000;
---             };
---         }
---
+local rust_lsp = lsp.build_options('rust_analyzer', {})
+require('rust-tools').setup({server = rust_lsp})
+
+-- TODO: set up jose-elias-alvarez/typescrip.nvim for better ts experience
+-- require("typescript").setup({
+--     disable_commands = false, -- prevent the plugin from creating Vim commands
+--     debug = false, -- enable debug logging for commands
+--     go_to_source_definition = {
+--         fallback = true, -- fall back to standard LSP definition on failure
 --     },
---     on_attach = function(_, bufnr)
---         generic_lsp_keybinds()
---         vim.keymap.set("n", "<F10>", "<cmd>!php %<cr>", { buffer = bufnr })
---     end,
---     capabilities = capabilities,
---
+--     server = { -- pass options to lspconfig's setup method
+--         on_attach = ...,
+--     },
 -- })
+
+lsp.setup()

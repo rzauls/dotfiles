@@ -56,6 +56,7 @@ return require('packer').startup(function(use)
         }
     }
     use({ 'simrat39/rust-tools.nvim' })
+    use({ 'jose-elias-alvarez/typescript.nvim' })
 
     -- debugging
     use({ 'mfussenegger/nvim-dap' })
@@ -66,7 +67,8 @@ return require('packer').startup(function(use)
 
     -- auto brackets and xml tags
     use({ 'windwp/nvim-autopairs' }) -- bracket pairs
-    use({ 'tpope/vim-surround' }) -- xml/html tags TODO: learn the keybinds better
+    use({ 'windwp/nvim-ts-autotag' }) -- html auto pairs
+    use({ 'tpope/vim-surround' }) -- surrounding things with other things
     -- decorative fluff
     use({ "catppuccin/nvim", as = "catppuccin" }) -- mocha (the darkest variant)
     use({ 'kyazdani42/nvim-web-devicons' }) --icons
