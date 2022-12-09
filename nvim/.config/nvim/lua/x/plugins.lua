@@ -56,6 +56,7 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     }
+    -- language specific improvements
     use({ 'simrat39/rust-tools.nvim' })
     use({ 'jose-elias-alvarez/typescript.nvim' })
     use({ 'jwalton512/vim-blade' }) -- blade template highlighting/indentation
@@ -71,14 +72,16 @@ return require('packer').startup(function(use)
     use({ 'windwp/nvim-autopairs' }) -- bracket pairs
     use({ 'windwp/nvim-ts-autotag' }) -- html auto pairs
     use({ 'tpope/vim-surround' }) -- surrounding things with other things
+    
     -- decorative fluff
+    use({"rcarriga/nvim-notify"})
     use({ "catppuccin/nvim", as = "catppuccin" }) -- mocha (the darkest variant)
     use({ 'kyazdani42/nvim-web-devicons' }) --icons
     use({ 'lukas-reineke/indent-blankline.nvim' }) --display indents
     use({ 'lewis6991/gitsigns.nvim' })
     use({ 'nvim-lualine/lualine.nvim' })
+
     -- pseudo-productivity
-    --
     use({ 'numToStr/Comment.nvim' }) --comment helper
     use({ 'kdheepak/lazygit.vim' }) --lazygit inside vim
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
