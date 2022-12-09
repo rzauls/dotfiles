@@ -9,5 +9,4 @@ require('x.debug') -- debugger/dap config
 require('x.misc_configs') -- short configs that dont fit anywhere else
 require('x.keymap') -- non-specific keymaps
 require('x.commands') -- custom commands
-
-
+require('snippets.all') -- luasnip snippet dump, probably needs to be loaded elsewhere

@@ -23,10 +23,11 @@ vim.cmd [[
 return require('packer').startup(function(use)
     use({ "wbthomason/packer.nvim" }) -- Packer can update itself
     use({ "williamboman/mason.nvim" })
-    use({"williamboman/mason-lspconfig.nvim"})
+    use({ "williamboman/mason-lspconfig.nvim" })
     use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
     -- telescope/system plugins
     use({ 'nvim-treesitter/nvim-treesitter', run = function() vim.fn['TSUpdate']() end })
+    use({ 'nvim-treesitter/playground' })
     use({ 'nvim-telescope/telescope.nvim', tag = '0.1.0' })
     use({ 'nvim-telescope/telescope-file-browser.nvim' })
     use({ 'nvim-telescope/telescope-ui-select.nvim' })
@@ -57,6 +58,7 @@ return require('packer').startup(function(use)
     }
     use({ 'simrat39/rust-tools.nvim' })
     use({ 'jose-elias-alvarez/typescript.nvim' })
+    use({ 'jwalton512/vim-blade' }) -- blade template highlighting/indentation
 
     -- debugging
     use({ 'mfussenegger/nvim-dap' })
