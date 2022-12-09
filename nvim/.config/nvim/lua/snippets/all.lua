@@ -23,18 +23,29 @@ local conds_expand = require("luasnip.extras.conditions.expand")
 local function get_date()
     return os.date("%d/%m/%Y")
 end
+
 -- global snippets
 require("luasnip").add_snippets("all", {
-    s("curdate", f(function() return get_date() end)),
     s("todo", {
-        t("TODO: "),
-        i(1, 'Write something you should do in the future here.')
-    }),
-    s("todod", {
-        f(function() return "TODO(" .. get_date() .. "): " end),
-        i(1, 'Write something you should do in the future here.')
-    }),
-
+        c(1, {
+            t("TODO: "),
+            f(function() return "TODO(" .. get_date() .. "): " end),
+        }),
+        i(2, 'Write something you should do in the future here.')
+    })
 })
 
--- TODO: add more snippets as required. 
+require("luasnip").add_snippets("blade", {
+    s("sect", fmt(
+        [[
+        @section('{}')
+            {}
+        @stop
+        ]],
+        {
+            i(1, 'section_name'),
+            i(0)
+        })
+    )
+})
+-- TODO: add more snippets as required.

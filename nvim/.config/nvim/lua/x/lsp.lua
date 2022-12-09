@@ -1,6 +1,5 @@
 -- LSP setup
 local ts_builtins = require('x.telescope')
--- local capabilities = require('x.cmp')
 -- Diagnostic keybinds
 -- go to next highlighted error/warning
 vim.keymap.set("n", "g]", vim.diagnostic.goto_next, { buffer = vim.nvim_get_current_buf })
@@ -60,6 +59,12 @@ lsp.on_attach(function(_, bufnr)
 end)
 
 local cmp = require('cmp')
+local luasnip = require('luasnip')
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 lsp.setup_nvim_cmp({
     mapping = lsp.defaults.cmp_mappings({
@@ -68,11 +73,38 @@ lsp.setup_nvim_cmp({
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ["<Tab>"] = cmp.mapping(function(fallback) -- smart "forward" in snippet
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            elseif has_words_before() then
+                cmp.complete()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+
+        ["<S-Tab>"] = cmp.mapping(function(fallback) -- smart "back" in snippet
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ["<C-j>"] = cmp.mapping(function(fallback) -- cycle through choices
+            if luasnip.choice_active() then
+                luasnip.change_choice(1)
+            else 
+                fallback()
+            end
+        end)
     })
 })
-
 local rust_lsp = lsp.build_options('rust_analyzer', {})
-require('rust-tools').setup({server = rust_lsp})
+require('rust-tools').setup({ server = rust_lsp })
 
 -- TODO: set up jose-elias-alvarez/typescrip.nvim for better ts experience
 -- require("typescript").setup({
