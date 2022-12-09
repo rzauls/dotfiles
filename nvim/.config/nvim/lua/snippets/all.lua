@@ -24,15 +24,28 @@ local function get_date()
     return os.date("%d/%m/%Y")
 end
 
+-- TODO(09/12/2022): Write something you should do in the future here
+-- coloring stuff to signal that ur in a snippet
+local ext_opts = {
+    active = {
+        virt_text = { { "<-", "DiffAdd" } }
+    },
+    passive = {
+        hl_group = 'Folded'
+    }
+}
+
 -- global snippets
 require("luasnip").add_snippets("all", {
-    s("todo", {
-        c(1, {
-            t("TODO: "),
-            f(function() return "TODO(" .. get_date() .. "): " end),
-        }),
-        i(2, 'Write something you should do in the future here.')
-    })
+    s({ trig = "todo",
+        dscr = "A thing you should probabbly do now, but are actually too lazy\n or dont have enough time for it now." }
+        , {
+            c(1, {
+                t("TODO: "),
+                f(function() return "TODO(" .. get_date() .. "): " end),
+            }),
+            i(2, 'Write something you should do in the future here.')
+        }, { node_ext_opts = ext_opts })
 })
 
 require("luasnip").add_snippets("blade", {
@@ -45,7 +58,8 @@ require("luasnip").add_snippets("blade", {
         {
             i(1, 'section_name'),
             i(0)
-        })
+        }, { node_ext_opts = ext_opts })
     )
 })
+
 -- TODO: add more snippets as required.
