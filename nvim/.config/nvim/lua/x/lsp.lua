@@ -1,3 +1,8 @@
+require('nvim-treesitter.configs').setup({
+    highlight = {
+        enable = true
+    }
+})
 -- LSP setup
 local ts_builtins = require('x.telescope')
 -- Diagnostic keybinds
@@ -105,6 +110,10 @@ lsp.setup_nvim_cmp({
 })
 local rust_lsp = lsp.build_options('rust_analyzer', {})
 require('rust-tools').setup({ server = rust_lsp })
+
+
+local go_lsp = lsp.build_options('rust_analyzer', {})
+require('go').setup({ server = go_lsp})
 
 -- TODO: set up jose-elias-alvarez/typescrip.nvim for better ts experience
 -- require("typescript").setup({

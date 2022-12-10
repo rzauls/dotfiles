@@ -60,6 +60,8 @@ return require('packer').startup(function(use)
     use({ 'simrat39/rust-tools.nvim' })
     use({ 'jose-elias-alvarez/typescript.nvim' })
     use({ 'jwalton512/vim-blade' }) -- blade template highlighting/indentation
+    use({ 'ray-x/go.nvim' })
+    use({ 'ray-x/guihua.lua' })
 
     -- debugging
     use({ 'mfussenegger/nvim-dap' })
@@ -72,9 +74,9 @@ return require('packer').startup(function(use)
     use({ 'windwp/nvim-autopairs' }) -- bracket pairs
     use({ 'windwp/nvim-ts-autotag' }) -- html auto pairs
     use({ 'tpope/vim-surround' }) -- surrounding things with other things
-    
+
     -- decorative fluff
-    use({"rcarriga/nvim-notify"})
+    use({ "rcarriga/nvim-notify" })
     use({ "catppuccin/nvim", as = "catppuccin" }) -- mocha (the darkest variant)
     use({ 'kyazdani42/nvim-web-devicons' }) --icons
     use({ 'lukas-reineke/indent-blankline.nvim' }) --display indents
