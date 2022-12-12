@@ -7,5 +7,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz") -- center view when scrolling by half pa
 
 vim.keymap.set("n", "<leader><C-w>", "<cmd>bd<cr>") -- close buffer
 
--- TODO: figure out a vertical/horizontal split flow
--- TODO: map movements between splits to something reasonable
+-- TODO: learn how quickfix list could be used more in daily stuff
+vim.keymap.set("n", "<leader>co", "<cmd>copen<cr>") -- previous qf item
+vim.keymap.set("n", "<leader>cc", "<cmd>cclose<cr>") -- previous qf item
+vim.keymap.set("n", "<leader>[", "<cmd>cprev<cr>") -- previous qf item
+vim.keymap.set("n", "<leader>]", "<cmd>cnext<cr>") -- previous qf item
+vim.keymap.set("n", "<leader>da", vim.diagnostic.setqflist)
