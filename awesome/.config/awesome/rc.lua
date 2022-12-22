@@ -73,6 +73,7 @@ modkey = "Mod4"
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile.right,
+    awful.layout.suit.fair.horizontal
 }
 -- }}}
 

@@ -11,7 +11,7 @@ local themes_path = gfs.get_themes_dir()
 local theme = {}
 
 theme.font = "roboto 9"
-theme.wallpaper = os.getenv("HOME") .. "/.config/awesome/wallpaper2.jpg"
+theme.wallpaper = os.getenv("HOME") .. "/.config/awesome/wallpaper3.jpg"
 local dbg = require("gears.debug")
 dbg.print_error("wallpaper string:" .. theme.wallpaper)
 

@@ -1,6 +1,13 @@
 require('nvim-treesitter.configs').setup({
     highlight = {
         enable = true
+    },
+    autotag = {
+        enable = true,
+        filetypes = {
+            'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx',
+            'rescript', 'xml', 'php', 'markdown', 'glimmer', 'handlebars', 'hbs', 'blade'
+        }
     }
 })
 -- LSP setup
@@ -66,8 +73,8 @@ end)
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -102,7 +109,7 @@ lsp.setup_nvim_cmp({
         ["<C-j>"] = cmp.mapping(function(fallback) -- cycle through choices
             if luasnip.choice_active() then
                 luasnip.change_choice(1)
-            else 
+            else
                 fallback()
             end
         end)
@@ -113,7 +120,7 @@ require('rust-tools').setup({ server = rust_lsp })
 
 
 local go_lsp = lsp.build_options('rust_analyzer', {})
-require('go').setup({ server = go_lsp})
+require('go').setup({ server = go_lsp })
 
 -- TODO: set up jose-elias-alvarez/typescrip.nvim for better ts experience
 -- require("typescript").setup({
