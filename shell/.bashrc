@@ -93,4 +93,5 @@ fi
 
 # sail/laravel/php stuff
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+alias pint='[ -f pint ] && sh pint || vendor/bin/pint'
 
