@@ -62,6 +62,8 @@ lsp.on_attach(function(_, bufnr)
     remap("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
     -- go to implementation
     remap("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
+    -- show usages
+    remap("n", "gu", vim.lsp.buf.references, { buffer = 0 })
     -- rename symbol
     remap("n", "<F6>", vim.lsp.buf.rename, { buffer = 0 })
     -- format buffer with lsp-defined formatter
