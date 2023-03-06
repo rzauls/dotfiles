@@ -24,21 +24,15 @@ require('telescope').load_extension('ui-select')
 
 vim.keymap.set("n", "<C-p>", function() ts_builtins.find_files() end)
 vim.keymap.set("n", "<Leader><Leader>", function() ts_builtins.live_grep() end)
-vim.keymap.set("n",
-    "<Leader><C-p>",
-    function()
-        local opts = require('telescope.themes').get_dropdown()
-        opts.hidden = true
-        opts.sorting_strategy = "descending"
-        require('telescope').extensions.file_browser.file_browser(opts)
-    end)
-vim.keymap.set("n", "<Leader><Tab>",
-    function()
-        local opts = require('telescope.themes').get_dropdown()
-        opts.hidden = true
-        opts.sorting_strategy = "descending"
-        ts_builtins.buffers()
-    end)
+-- vim.keymap.set("n",
+--     "<Leader><C-p>",
+--     function()
+--         local opts = require('telescope.themes').get_dropdown()
+--         opts.hidden = true
+--         opts.sorting_strategy = "descending"
+--         require('telescope').extensions.file_browser.file_browser(opts)
+--     end)
+vim.keymap.set("n", "<Leader><Tab>", function() ts_builtins.buffers() end)
 vim.keymap.set("n", "<Leader><Up>", function() ts_builtins.command_history() end)
 vim.keymap.set(
     "n",

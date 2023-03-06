@@ -40,12 +40,12 @@ require("luasnip").add_snippets("all", {
     s({ trig = "todo",
         dscr = "A thing you should probabbly do now, but are actually too lazy\n or dont have enough time for it now." }
         , {
-            c(1, {
-                t("TODO: "),
-                f(function() return "TODO(" .. get_date() .. "): " end),
-            }),
-            i(2, 'Write something you should do in the future here.')
-        }, { node_ext_opts = ext_opts })
+        c(1, {
+            t("TODO: "),
+            f(function() return "TODO(" .. get_date() .. "): " end),
+        }),
+        i(2, 'Write something you should do in the future here.')
+    }, { node_ext_opts = ext_opts })
 })
 
 require("luasnip").add_snippets("blade", {
@@ -61,5 +61,26 @@ require("luasnip").add_snippets("blade", {
         }, { node_ext_opts = ext_opts })
     )
 })
+
+require("luasnip").add_snippets("php", {
+    s("oa-prop", fmt(
+        [[
+     /**
+     * @OA\Property(
+     *     format="string",
+     *     example="{}"
+     * )
+     *
+     * @var string
+     */
+    private ${};
+        ]],
+        {
+            i(0, 'example'),
+            i(1, 'field-name')
+        }, { node_ext_opts = ext_opts })
+    )
+})
+
 
 -- TODO: add more snippets as required.

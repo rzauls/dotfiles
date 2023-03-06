@@ -14,6 +14,10 @@ vim.keymap.set("n", "<leader>[", "<cmd>cprev<cr>") -- previous qf item
 vim.keymap.set("n", "<leader>]", "<cmd>cnext<cr>") -- previous qf item
 vim.keymap.set("n", "<leader>da", vim.diagnostic.setqflist)
 
+-- open netrw
+vim.keymap.set("n", "<leader><C-p>", "<cmd>Lexplore<cr>")
+
+-- move focus between panes (including terminal)
 vim.keymap.set("t", "<A-h>", "<C-\\><C-N><C-w>h")
 vim.keymap.set("t", "<A-j>", "<C-\\><C-N><C-w>j")
 vim.keymap.set("t", "<A-k>", "<C-\\><C-N><C-w>k")
