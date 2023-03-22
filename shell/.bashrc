@@ -7,8 +7,8 @@ esac
 
 HISTCONTROL=ignoreboth
 shopt -s histappend
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 # set variable identifying the chroot you work in (used in the prompt below)
@@ -97,3 +97,5 @@ alias pint='[ -f pint ] && sh pint || vendor/bin/pint'
 
 alias apsh='docker compose exec app bash'
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
