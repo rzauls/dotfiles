@@ -39,29 +39,3 @@ sudo make install
 # TODO: this should be somehow better
 nvim
 
-
-# install awesomewm
-sudo apt install awesome
-# switch wm in login screen after relog
-
-# and draw the rest of the owl
-# random stuff needed for some of the widgets to look correct: 
-#
-# spotify client
-# https://www.spotify.com/lv-lv/download/linux/
-#
-# spotify cli client
-# git clone https://gist.github.com/fa6258f3ff7b17747ee3.git
-# cd ./fa6258f3ff7b17747ee3 
-# chmod +x sp
-# sudo cp ./sp /usr/local/bin/
-#
-# spotify icon set 
-# https://github.com/horst3180/arc-icon-theme#installation
-#
-# install flameshot for screenshots to work
-# sudo apt install flameshot
-#
-# screen locking 
-# install xscreensaver and add to $HOME/.xinitrc
-# sudo apt install xscreensaver
