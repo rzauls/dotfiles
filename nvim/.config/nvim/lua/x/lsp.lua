@@ -52,24 +52,25 @@ lsp.set_preferences({
 lsp.on_attach(function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
     local remap = vim.keymap.set
+    local buffer_functions = vim.lsp.buf
 
-    remap('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+    remap('n', '<leader>r', '<cmd>lua buffer_functions.rename()<cr>', opts)
     -- show hover
-    remap("n", "K", vim.lsp.buf.hover, { buffer = 0 })
-    -- go to definition
-    remap("n", "gd", vim.lsp.buf.definition, { buffer = 0 })
+    remap("n", "K", buffer_functions.hover, { buffer = 0 })
+    -- go to definitio
+    remap("n", "gd", buffer_functions.definition, { buffer = 0 })
     -- go to type definition
-    remap("n", "gt", vim.lsp.buf.type_definition, { buffer = 0 })
+    remap("n", "gt", buffer_functions.type_definition, { buffer = 0 })
     -- go to implementation
-    remap("n", "gi", vim.lsp.buf.implementation, { buffer = 0 })
+    remap("n", "gi", buffer_functions.implementation, { buffer = 0 })
     -- show usages
-    remap("n", "gu", vim.lsp.buf.references, { buffer = 0 })
+    remap("n", "gu", buffer_functions.references, { buffer = 0 })
     -- rename symbol
-    remap("n", "<F6>", vim.lsp.buf.rename, { buffer = 0 })
+    remap("n", "<F6>", buffer_functions.rename, { buffer = 0 })
     -- format buffer with lsp-defined formatter
-    remap("n", "<leader><A-f>", vim.lsp.buf.format, { buffer = 0 })
+    remap("n", "<leader><A-f>", buffer_functions.format, { buffer = 0 })
     -- list code actions (organize imports, etc)
-    remap("n", "ga", vim.lsp.buf.code_action, { buffer = 0 })
+    remap("n", "ga", buffer_functions.code_action, { buffer = 0 })
 end)
 
 local cmp = require('cmp')

@@ -27,8 +27,12 @@ vim.o.cursorline = true
 vim.o.swapfile = false
 vim.go.clipboard = 'unnamedplus'
 
-
+-- highlight yanked selection
 local group = vim.api.nvim_create_augroup("GlobalAutoCmds", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", { callback = function() vim.highlight.on_yank() end, group = group })
 
 vim.notify = require("notify")
+
+-- use treesitter for code folding
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

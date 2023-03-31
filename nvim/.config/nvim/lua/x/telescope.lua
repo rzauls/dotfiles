@@ -6,8 +6,9 @@ require('mason-lspconfig').setup()
 require('telescope').setup({
     defaults = {
         file_ignore_patterns = {
-            "node_modules",
-            "vendor"
+            "node_modules/",
+            "vendor/",
+            ".git/"
         }
     },
     extensions = {
@@ -22,16 +23,8 @@ require('telescope').load_extension('ui-select')
 
 -- ts_builtins.current_buffer_fuzzy_find(opts, { buffer = f })
 
-vim.keymap.set("n", "<C-p>", function() ts_builtins.find_files() end)
-vim.keymap.set("n", "<Leader><Leader>", function() ts_builtins.live_grep() end)
--- vim.keymap.set("n",
---     "<Leader><C-p>",
---     function()
---         local opts = require('telescope.themes').get_dropdown()
---         opts.hidden = true
---         opts.sorting_strategy = "descending"
---         require('telescope').extensions.file_browser.file_browser(opts)
---     end)
+vim.keymap.set("n", "<C-p>", function() ts_builtins.find_files({ hidden = true }) end)
+vim.keymap.set("n", "<Leader><Leader>", function() ts_builtins.live_grep({ hidden = true }) end)
 vim.keymap.set("n", "<Leader><Tab>", function() ts_builtins.buffers() end)
 vim.keymap.set("n", "<Leader><Up>", function() ts_builtins.command_history() end)
 vim.keymap.set(
