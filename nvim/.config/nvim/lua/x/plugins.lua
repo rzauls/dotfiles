@@ -1,43 +1,31 @@
-local ensure_packer = function()
-    local fn = vim.fn
-    local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-    if fn.empty(fn.glob(install_path)) > 0 then
-        fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-        vim.cmd [[packadd packer.nvim]]
-        return true
-    end
-    return false
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
+vim.g.mapleader = " "
 
-local packer_bootstrap = ensure_packer()
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
-
-
-return require('packer').startup(function(use)
-    use({ "wbthomason/packer.nvim" }) -- Packer can update itself
-    use({ "williamboman/mason.nvim" })
-    use({ "williamboman/mason-lspconfig.nvim" })
-    use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
+local plugins = {
+    { "williamboman/mason.nvim" },
+    { "williamboman/mason-lspconfig.nvim" },
+    { "nvim-lua/plenary.nvim" },
     -- telescope/system plugins
-    use({ 'nvim-treesitter/nvim-treesitter', run = function() vim.fn['TSUpdate']() end })
-    use({ 'nvim-treesitter/playground' })
-    use({ 'nvim-telescope/telescope.nvim', tag = '0.1.0' })
-    use({ 'nvim-telescope/telescope-file-browser.nvim' })
-    use({ 'nvim-telescope/telescope-ui-select.nvim' })
-    use({ 'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' })
-
-    -- lsp/autocomplete
-    use {
+    { 'nvim-treesitter/nvim-treesitter', build = function() vim.fn['TSUpdate']() end },
+    { 'nvim-treesitter/playground' },
+    { 'nvim-telescope/telescope.nvim', tag = '0.1.0' },
+    { 'nvim-telescope/telescope-file-browser.nvim' },
+    { 'nvim-telescope/telescope-ui-select.nvim' },
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    {
         'VonHeikemen/lsp-zero.nvim',
-        requires = {
+        dependencies = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' },
             { 'williamboman/mason.nvim' },
@@ -55,45 +43,38 @@ return require('packer').startup(function(use)
             { 'L3MON4D3/LuaSnip' },
             { 'rafamadriz/friendly-snippets' },
         }
-    }
+    },
     -- language specific improvements
-    use({ 'simrat39/rust-tools.nvim' })
-    use({ 'jose-elias-alvarez/typescript.nvim' })
-    use({ 'jwalton512/vim-blade' }) -- blade template highlighting/indentation
-    use({ 'ray-x/go.nvim' })
-    use({ 'ray-x/guihua.lua' })
-
+    { 'simrat39/rust-tools.nvim' },
+    { 'jose-elias-alvarez/typescript.nvim' },
+    { 'jwalton512/vim-blade' },
+    { 'ray-x/go.nvim' },
+    { 'ray-x/guihua.lua' },
     -- debugging
-    use({ 'mfussenegger/nvim-dap' })
-    use({ 'rcarriga/nvim-dap-ui' })
-    use({ 'theHamsta/nvim-dap-virtual-text' })
-    use({ 'nvim-telescope/telescope-dap.nvim' })
-    use({ 'leoluz/nvim-dap-go' })
-
+    { 'mfussenegger/nvim-dap' },
+    { 'rcarriga/nvim-dap-ui' },
+    { 'theHamsta/nvim-dap-virtual-text' },
+    { 'nvim-telescope/telescope-dap.nvim' },
+    { 'leoluz/nvim-dap-go' },
     -- auto brackets and xml tags
-    use({ 'windwp/nvim-autopairs' }) -- bracket pairs
-    use({ 'windwp/nvim-ts-autotag' }) -- html auto pairs
-    use({ 'tpope/vim-surround' }) -- surrounding things with other things
-
+    { 'windwp/nvim-autopairs' }, -- bracket pairs
+    { 'windwp/nvim-ts-autotag' }, -- html auto pairs
+    { 'tpope/vim-surround' }, -- surrounding things with other things
     -- decorative fluff
-    use({ "rcarriga/nvim-notify" })
-    use({ "catppuccin/nvim", as = "catppuccin" }) -- mocha (the darkest variant)
-    use({ 'kyazdani42/nvim-web-devicons' }) --icons
-    use({ 'lukas-reineke/indent-blankline.nvim' }) --display indents
-    use({ 'lewis6991/gitsigns.nvim' })
-    use({ 'nvim-lualine/lualine.nvim' })
-
+    { "rcarriga/nvim-notify" },
+    { "catppuccin/nvim", name = "catppuccin" }, -- mocha (the darkest variant)
+    { 'kyazdani42/nvim-web-devicons' }, --icons
+    { 'lukas-reineke/indent-blankline.nvim' }, --display indents
+    { 'lewis6991/gitsigns.nvim' },
+    { 'nvim-lualine/lualine.nvim' },
     -- pseudo-productivity
-    use({ 'numToStr/Comment.nvim' }) --comment helper
-    use({ 'kdheepak/lazygit.vim' }) --lazygit inside vim
-    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
-        setup = function()
-            vim.g.mkdp_filetypes = { "markdown" }
-        end,
+    { 'numToStr/Comment.nvim' }, --comment helper
+    { 'kdheepak/lazygit.vim' }, --lazygit inside vim
+    { "iamcco/markdown-preview.nvim", 
+        build = "cd app && npm install",
         ft = { "markdown" }
-    })
-    -- do the packing
-    if packer_bootstrap then
-        require("packer").sync()
-    end
-end)
+    }
+}
+require("lazy").setup(plugins, {
+    defaults = { lazy= false }
+})
