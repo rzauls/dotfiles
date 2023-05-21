@@ -37,9 +37,11 @@ local ext_opts = {
 
 -- global snippets
 require("luasnip").add_snippets("all", {
-    s({ trig = "todo",
-        dscr = "A thing you should probabbly do now, but are actually too lazy\n or dont have enough time for it now." }
-        , {
+    s({
+        trig = "todo",
+        dscr = "A thing you should probabbly do now, but are actually too lazy\n or dont have enough time for it now."
+    }
+    , {
         c(1, {
             t("TODO: "),
             f(function() return "TODO(" .. get_date() .. "): " end),

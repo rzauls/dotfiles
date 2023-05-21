@@ -3,7 +3,7 @@ vim.o.termguicolors = true
 
 require("catppuccin").setup({
     flavour = "mocha", -- latte, frappe, macchiato, mocha
-    background = { -- :h background
+    background = {
         light = "latte",
         dark = "mocha",
     },

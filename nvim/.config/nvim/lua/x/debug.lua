@@ -41,5 +41,3 @@ vim.keymap.set("n", "<F12>", dapui.toggle)
 -- go premade configs for dap/delve
 require('dap-go').setup()
 vim.keymap.set("n", "<Leader>dt", require('dap-go').debug_test) -- TODO: this shouldnt be a global keybind
-
-

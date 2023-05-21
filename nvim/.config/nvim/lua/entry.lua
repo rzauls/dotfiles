@@ -10,4 +10,5 @@ require('x.misc_configs') -- short configs that dont fit anywhere else
 require('x.keymap') -- non-specific keymaps
 require('x.commands') -- custom commands
 require('x.terminal') -- inbuilt terminal related configuration
+require('x.folding') -- code folding configuration
 require('snippets.all') -- luasnip snippet dump, probably needs to be loaded elsewhere

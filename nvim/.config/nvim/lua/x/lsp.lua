@@ -68,7 +68,7 @@ lsp.on_attach(function(_, bufnr)
     -- rename symbol
     remap("n", "<F6>", buffer_functions.rename, { buffer = 0 })
     -- format buffer with lsp-defined formatter
-    remap("n", "<leader><A-f>", buffer_functions.format, { buffer = 0 })
+    remap({ "n", "v" }, "<leader><A-f>", buffer_functions.format, { buffer = 0 })
     -- list code actions (organize imports, etc)
     remap("n", "ga", buffer_functions.code_action, { buffer = 0 })
 end)
@@ -88,7 +88,7 @@ lsp.setup_nvim_cmp({
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ["<Tab>"] = cmp.mapping(function(fallback) -- smart "forward" in snippet
+        ["<Tab>"] = cmp.mapping(function(fallback)         -- smart "forward" in snippet
             if cmp.visible() then
                 cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
@@ -99,7 +99,6 @@ lsp.setup_nvim_cmp({
                 fallback()
             end
         end, { "i", "s" }),
-
         ["<S-Tab>"] = cmp.mapping(function(fallback) -- smart "back" in snippet
             if cmp.visible() then
                 cmp.select_prev_item()
