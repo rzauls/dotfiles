@@ -99,3 +99,7 @@ alias apsh='docker compose exec app bash'
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)

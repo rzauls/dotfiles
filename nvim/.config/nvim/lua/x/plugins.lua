@@ -70,18 +70,21 @@ local plugins = {
     -- decorative fluff
     { "rcarriga/nvim-notify" },
     { "catppuccin/nvim",                    name = "catppuccin" }, -- mocha (the darkest variant)
-    { 'kyazdani42/nvim-web-devicons' },                            --icons
-    { 'lukas-reineke/indent-blankline.nvim' },                     --display indents
+    { 'nvim-tree/nvim-web-devicons' },                             -- icons
+    { 'lukas-reineke/indent-blankline.nvim' },                     -- display indents
     { 'lewis6991/gitsigns.nvim' },
     { 'nvim-lualine/lualine.nvim' },
     -- pseudo-productivity
-    { 'numToStr/Comment.nvim' }, --comment helper
-    { 'kdheepak/lazygit.vim' },  --lazygit inside vim
+    { 'stevearc/overseer.nvim' }, -- task runner
+    { 'numToStr/Comment.nvim' },  -- comment helper
+    { 'kdheepak/lazygit.vim' },   -- lazygit inside vim
     {
         "iamcco/markdown-preview.nvim",
         build = "cd app && npm install",
         ft = { "markdown" }
-    }
+    },
+    -- testing weird stuff
+    { 'edluffy/hologram.nvim' } -- kitty terminal graphics protocol based image preview inside neovim
 }
 require("lazy").setup(plugins, {
     defaults = { lazy = false }
