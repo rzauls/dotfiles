@@ -121,19 +121,7 @@ local rust_lsp = lsp.build_options('rust_analyzer', {})
 require('rust-tools').setup({ server = rust_lsp })
 
 
-local go_lsp = lsp.build_options('rust_analyzer', {})
+local go_lsp = lsp.build_options('gopls', {})
 require('go').setup({ server = go_lsp })
-
--- TODO: set up jose-elias-alvarez/typescrip.nvim for better ts experience
--- require("typescript").setup({
---     disable_commands = false, -- prevent the plugin from creating Vim commands
---     debug = false, -- enable debug logging for commands
---     go_to_source_definition = {
---         fallback = true, -- fall back to standard LSP definition on failure
---     },
---     server = { -- pass options to lspconfig's setup method
---         on_attach = ...,
---     },
--- })
 
 lsp.setup()

@@ -103,3 +103,11 @@ alias apsh='docker compose exec app bash'
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
+
+gch() {
+ git checkout “$(git branch — all | fzf| tr -d ‘[:space:]’)”
+}
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH

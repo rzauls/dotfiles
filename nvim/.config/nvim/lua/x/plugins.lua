@@ -70,8 +70,8 @@ local plugins = {
     -- decorative fluff
     { "rcarriga/nvim-notify" },
     { "catppuccin/nvim",                    name = "catppuccin" }, -- mocha (the darkest variant)
-    { 'nvim-tree/nvim-web-devicons' },                             -- icons
-    { 'lukas-reineke/indent-blankline.nvim' },                     -- display indents
+    { 'nvim-tree/nvim-web-devicons' },          -- icons
+    { 'lukas-reineke/indent-blankline.nvim' },  -- display indents
     { 'lewis6991/gitsigns.nvim' },
     { 'nvim-lualine/lualine.nvim' },
     -- pseudo-productivity
