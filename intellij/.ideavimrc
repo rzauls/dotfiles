@@ -1,0 +1,71 @@
+let mapleader = " "
+set scrolloff=5
+set clipboard^=unnamedplus
+set incsearch
+set relativenumber
+set showmode
+set showcmd
+set visualbell
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+
+set surround
+set highlightedyank
+let g:highlightedyank_highlight_duration = "200"
+set notimeout
+set which-key
+
+map Q gq
+
+nmap gd <Action>(GotoDeclaration)
+nmap gi <action>(GotoImplementation)
+nmap gu <action>(ShowUsages)
+nmap g] <action>(GotoNextError)
+nmap g[ <action>(GotoPreviousError)
+
+nmap gt <Action>(GotoTest)
+nmap gy <Action>(GotoTypeDeclaration)
+
+map <leader>rn <Action>(RenameElement)
+map <leader>rm <Action>(ExtractMethod)
+map <leader>rv <Action>(IntroduceVariable)
+map <leader>rf <Action>(IntroduceField)
+map <leader>rs <Action>(ChangeSignature)
+map <leader>rr <Action>(Refactorings.QuickListPopupAction)
+
+map <leader>a <Action>(ShowIntentionActions)
+
+" Folding
+map <leader>zc :action CollapseAllRegions<CR>
+map <leader>zo :action ExpandAllRegions<CR>
+
+map <leader><leader> <action>(FindInPath)
+nmap <C-p> <action>(GotoFile)
+
+" Pane navigation
+nnoremap <A-h> <C-w>h
+nnoremap <A-l> <C-w>l
+nnoremap <A-k> <C-w>k
+nnoremap <A-j> <C-w>j
+
+inoremap jk <Esc>
+" Easy visual indentation
+vnoremap < <gv
+vnoremap > >gv
+
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+set ideajoin
