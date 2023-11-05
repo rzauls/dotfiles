@@ -102,7 +102,10 @@ alias apsh='docker compose exec app bash'
 
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+if command -v ng &> /dev/null
+then
+    source <(ng completion script)
+fi
 
 gch() {
  git checkout “$(git branch — all | fzf| tr -d ‘[:space:]’)”
