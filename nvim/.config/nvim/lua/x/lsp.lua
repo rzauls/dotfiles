@@ -43,7 +43,6 @@ vim.api.nvim_create_autocmd("CursorHold", {
 
 local lsp = require('lsp-zero')
 lsp.preset('recommended')
-lsp.nvim_workspace()
 
 lsp.set_preferences({
     set_lsp_keymaps = false
@@ -81,7 +80,7 @@ local has_words_before = function()
 end
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
-lsp.setup_nvim_cmp({
+cmp.setup({
     mapping = lsp.defaults.cmp_mappings({
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
