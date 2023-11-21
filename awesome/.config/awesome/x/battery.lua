@@ -111,6 +111,10 @@ function battery_widget:new(args)
     local batteries, mains, usb, ups = self:discover()
     local ac = mains[1] or usb[1] or ups[1]
     for i, adapter in ipairs(batteries) do
+        -- only show 1st battery
+        if i > 1 then 
+            break;
+        end;
         local _args = setmetatable({adapter = adapter, ac = ac}, {__index = args})
         table.insert(widgets, self(_args).widget)
     end
