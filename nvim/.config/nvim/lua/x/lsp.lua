@@ -65,7 +65,7 @@ lsp.on_attach(function(_, bufnr)
     -- show usages
     remap("n", "gu", buffer_functions.references, { buffer = 0 })
     -- rename symbol
-    remap("n", "<F6>", buffer_functions.rename, { buffer = 0 })
+    remap("n", "<leader>rn", buffer_functions.rename, { buffer = 0 })
     -- format buffer with lsp-defined formatter
     remap({ "n", "v" }, "<leader><A-f>", buffer_functions.format, { buffer = 0 })
     -- list code actions (organize imports, etc)
@@ -117,8 +117,12 @@ cmp.setup({
     })
 })
 
-require('lspconfig').rust_analyzer.setup{}
-require('lspconfig').gopls.setup{}
-require('lspconfig').tsserver.setup{}
+local servers = {
+    'rust_analyzer',
+    'gopls',
+    'tsserver',
+    'lua_ls'
+}
+lsp.setup_servers(servers);
 
 lsp.setup()
