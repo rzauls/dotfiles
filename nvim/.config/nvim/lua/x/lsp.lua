@@ -116,11 +116,9 @@ cmp.setup({
         end)
     })
 })
-local rust_lsp = lsp.build_options('rust_analyzer', {})
-require('rust-tools').setup({ server = rust_lsp })
 
-
-local go_lsp = lsp.build_options('gopls', {})
-require('go').setup({ server = go_lsp })
+require('lspconfig').rust_analyzer.setup{}
+require('lspconfig').gopls.setup{}
+require('lspconfig').tsserver.setup{}
 
 lsp.setup()

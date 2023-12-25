@@ -44,12 +44,6 @@ local plugins = {
             { 'rafamadriz/friendly-snippets' },
         }
     },
-    -- language specific improvements
-    { 'simrat39/rust-tools.nvim' },
-    { 'jose-elias-alvarez/typescript.nvim' },
-    { 'jwalton512/vim-blade' },
-    { 'ray-x/go.nvim' },
-    { 'ray-x/guihua.lua' },
     -- debugging
     { 'mfussenegger/nvim-dap' },
     { 'rcarriga/nvim-dap-ui' },
