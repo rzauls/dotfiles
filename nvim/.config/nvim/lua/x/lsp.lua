@@ -117,12 +117,26 @@ cmp.setup({
     })
 })
 
+vim.g.rustaceanvim = {
+  server = {
+    capabilities = lsp.get_capabilities()
+  },
+}
+
 local servers = {
-    'rust_analyzer',
     'gopls',
     'tsserver',
     'lua_ls'
 }
-lsp.setup_servers(servers);
+require('mason').setup({});
+require('mason-lspconfig').setup({
+    ensure_installed = servers,
+    handlers = {
+        lsp.default_setup,
+        rust_analyzer = lsp.noop,
+    },
+})
+
+
 
 lsp.setup()

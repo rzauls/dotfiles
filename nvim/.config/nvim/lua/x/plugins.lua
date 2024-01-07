@@ -44,6 +44,8 @@ local plugins = {
             { 'rafamadriz/friendly-snippets' },
         }
     },
+    -- rust
+    { 'mrcjkb/rustaceanvim',                version = '^3',     ft = { 'rust' } },
     -- debugging
     { 'mfussenegger/nvim-dap' },
     { 'rcarriga/nvim-dap-ui' },
@@ -57,13 +59,13 @@ local plugins = {
     -- decorative fluff
     { "rcarriga/nvim-notify" },
     { "catppuccin/nvim",                    name = "catppuccin" }, -- mocha (the darkest variant)
-    { 'nvim-tree/nvim-web-devicons' },          -- icons
-    { 'lukas-reineke/indent-blankline.nvim' },  -- display indents
+    { 'nvim-tree/nvim-web-devicons' },                             -- icons
+    { 'lukas-reineke/indent-blankline.nvim' },                     -- display indents
     { 'lewis6991/gitsigns.nvim' },
     { 'nvim-lualine/lualine.nvim' },
     -- pseudo-productivity
-    { 'numToStr/Comment.nvim' },  -- comment helper
-    { 'kdheepak/lazygit.vim' },   -- lazygit inside vim
+    { 'numToStr/Comment.nvim' }, -- comment helper
+    { 'kdheepak/lazygit.vim' },  -- lazygit inside vim
 }
 require("lazy").setup(plugins, {
     defaults = { lazy = false }
