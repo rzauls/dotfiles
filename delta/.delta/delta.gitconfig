@@ -1,3 +1,7 @@
+# how to use:
+#   1. install delta with cargo install git-delta 
+#   2.include this in your ~/.gitconfig with [include] path = ~/.delta/delta.gitconfig
+
 [core]
     pager = delta
 
