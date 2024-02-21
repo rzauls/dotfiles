@@ -66,6 +66,15 @@ local plugins = {
     -- pseudo-productivity
     { 'numToStr/Comment.nvim' }, -- comment helper
     { 'kdheepak/lazygit.vim' },  -- lazygit inside vim
+    {
+        'echasnovski/mini.nvim',
+        config = function()
+            -- around/inside helpers
+            require('mini.ai').setup()
+            -- jump around with brackets+selector
+            require('mini.bracketed').setup()
+        end
+    }
 }
 require("lazy").setup(plugins, {
     defaults = { lazy = false }
