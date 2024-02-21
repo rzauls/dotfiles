@@ -74,7 +74,8 @@ local plugins = {
             -- jump around with brackets+selector
             require('mini.bracketed').setup()
         end
-    }
+    },
+    { "j-hui/fidget.nvim", opts = {} }
 }
 require("lazy").setup(plugins, {
     defaults = { lazy = false }
