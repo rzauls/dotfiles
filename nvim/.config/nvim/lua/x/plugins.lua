@@ -15,6 +15,10 @@ vim.g.mapleader = " "
 local plugins = {
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
+    -- mayboe we need mason-tool-installer for third-party linters and stuff that mason doesnt know how to install
+    -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
+    -- { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
+
     { "nvim-lua/plenary.nvim" },
     -- telescope/system plugins
     { 'nvim-treesitter/nvim-treesitter',           build = function() vim.fn['TSUpdate']() end },
