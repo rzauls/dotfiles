@@ -118,9 +118,9 @@ cmp.setup({
 })
 
 vim.g.rustaceanvim = {
-  server = {
-    capabilities = lsp.get_capabilities()
-  },
+    server = {
+        capabilities = lsp.get_capabilities()
+    },
 }
 
 local servers = {

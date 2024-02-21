@@ -53,9 +53,7 @@ local plugins = {
     { 'nvim-telescope/telescope-dap.nvim' },
     { 'leoluz/nvim-dap-go' },
     -- auto brackets and xml tags
-    { 'windwp/nvim-autopairs' },  -- bracket pairs
     { 'windwp/nvim-ts-autotag' }, -- html auto pairs
-    { 'tpope/vim-surround' },     -- surrounding things with other things
     -- decorative fluff
     { "rcarriga/nvim-notify" },
     { "catppuccin/nvim",                    name = "catppuccin" }, -- mocha (the darkest variant)
@@ -73,6 +71,10 @@ local plugins = {
             require('mini.ai').setup()
             -- jump around with brackets+selector
             require('mini.bracketed').setup()
+            -- surrounding objects with things
+            require('mini.surround').setup()
+            -- autopairing
+            require('mini.pairs').setup()
         end
     },
     { "j-hui/fidget.nvim", opts = {} }
