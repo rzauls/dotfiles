@@ -1,15 +1,13 @@
--- main config
 require('x.plugins') -- packer and plugin list
 require('x.util') -- helper functions to debug config development
 require('x.opts') -- global options
-require('x.theme')
+require('x.theme') -- theming/colors
 require('x.telescope') -- telescope config
 require('x.lsp') -- lsp config
 require('x.debug') -- debugger/dap config
-require('x.misc_configs') -- short configs that dont fit anywhere else
+require('x.misc') -- short configs that dont fit anywhere else
 require('x.keymap') -- non-specific keymaps
 require('x.commands') -- custom commands
-require('x.terminal') -- inbuilt terminal related configuration
-require('x.folding') -- code folding configuration
-require('x.experimental') -- random experimental stuff that might break easily
-require('snippets.all') -- luasnip snippet dump, probably needs to be loaded elsewhere
+require('x.terminal') -- inbuilt terminal
+require('x.folding') -- code folding
+require('x.snippets') -- luasnip snippets
