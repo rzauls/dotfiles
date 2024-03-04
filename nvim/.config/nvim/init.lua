@@ -315,6 +315,9 @@ require("lazy").setup({
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format lua code
+				"phpcs",
+				"phpstan",
+				"staticcheck",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
