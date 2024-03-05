@@ -6,10 +6,10 @@ return {
 			null_ls.setup({
 				sources = {
 					-- php
-					null_ls.builtins.diagnostics.phpcs.with({
-						extra_args = { "--standard=config/cs/ruleset.xml" },
-					}),
-					null_ls.builtins.diagnostics.phpstan,
+					-- null_ls.builtins.diagnostics.phpcs.with({
+					-- 	extra_args = { "--standard=config/cs/ruleset.xml" },
+					-- }),
+					-- null_ls.builtins.diagnostics.phpstan,
 					-- go
 					null_ls.builtins.diagnostics.staticcheck,
 				},
