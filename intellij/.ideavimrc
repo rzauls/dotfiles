@@ -22,7 +22,7 @@ map Q gq
 
 nmap gd <Action>(GotoDeclaration)
 nmap gi <action>(GotoImplementation)
-nmap gu <action>(ShowUsages)
+nmap gr <action>(ShowUsages)
 nmap g] <action>(GotoNextError)
 nmap g[ <action>(GotoPreviousError)
 
@@ -43,6 +43,7 @@ map <leader>zc :action CollapseAllRegions<CR>
 map <leader>zo :action ExpandAllRegions<CR>
 
 map <leader><leader> <action>(FindInPath)
+nmap <leader>sf <action>(GotoFile)
 nmap <C-p> <action>(GotoFile)
 
 " Pane navigation

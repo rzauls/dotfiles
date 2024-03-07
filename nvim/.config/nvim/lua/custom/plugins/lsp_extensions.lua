@@ -6,12 +6,15 @@ return {
 			null_ls.setup({
 				sources = {
 					-- php
+					-- TODO: handle projects without rulesets
 					-- null_ls.builtins.diagnostics.phpcs.with({
 					-- 	extra_args = { "--standard=config/cs/ruleset.xml" },
 					-- }),
+					-- TODO: handle projects without rulesets
 					-- null_ls.builtins.diagnostics.phpstan,
 					-- go
-					null_ls.builtins.diagnostics.staticcheck,
+					-- TODO: handle go version issues
+					-- null_ls.builtins.diagnostics.staticcheck,
 				},
 			})
 		end,
