@@ -14,7 +14,7 @@ return {
 					-- null_ls.builtins.diagnostics.phpstan,
 					-- go
 					-- TODO: handle go version issues
-					-- null_ls.builtins.diagnostics.staticcheck,
+					null_ls.builtins.diagnostics.staticcheck,
 				},
 			})
 		end,
