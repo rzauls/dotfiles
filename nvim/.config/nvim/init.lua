@@ -284,6 +284,7 @@ require("lazy").setup({
 				clangd = {},
 				rust_analyzer = {},
 				gopls = {},
+				templ = {},
 				tsserver = {},
 				intelephense = {},
 				lua_ls = {
@@ -310,6 +311,7 @@ require("lazy").setup({
 					},
 				},
 			}
+			vim.filetype.add({ extension = { templ = "templ" } })
 
 			-- Ensure the servers and tools above are installed
 			require("mason").setup()
