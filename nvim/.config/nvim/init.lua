@@ -159,7 +159,7 @@ require("lazy").setup({
 				previewer = false,
 				layout_config = {
 					height = function(_, _, max_lines)
-						return math.min(max_lines, 40)
+						return math.min(max_lines, 25)
 					end,
 				},
 			})
