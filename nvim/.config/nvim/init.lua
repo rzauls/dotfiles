@@ -73,6 +73,18 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
+-- Netrw and file navigation
+vim.keymap.set("n", "<leader><C-e>", function()
+	vim.cmd("Explore")
+end, { desc = "Open file [E]xplorer" })
+
+-- trying some weird stuff
+vim.keymap.set("n", "<F12>", function()
+	-- TODO: fix this at some point to run a single test file
+	-- vim.cmd("!go test " .. vim.fn.expand("%") .. " -v")
+	vim.cmd("!go test ./... -v")
+end, { desc = "Run all package tests" })
+
 -- [[ Autocommands ]]
 -- Highlight when yanking text
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -142,6 +154,16 @@ require("lazy").setup({
 			{ "nvim-tree/nvim-web-devicons" },
 		},
 		config = function()
+			local long_dropdown_theme = require("telescope.themes").get_dropdown({
+				winblend = 10,
+				previewer = false,
+				layout_config = {
+					height = function(_, _, max_lines)
+						return math.min(max_lines, 40)
+					end,
+				},
+			})
+
 			require("telescope").setup({
 				-- TODO: check if something is missing from telescope in `:help telescope.setup()`
 				-- defaults = {
@@ -164,8 +186,11 @@ require("lazy").setup({
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
+
 			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
+			vim.keymap.set("n", "<leader>sf", function()
+				builtin.find_files(long_dropdown_theme)
+			end, { desc = "[S]earch [F]iles" })
 			vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
 			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
 			vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
@@ -174,13 +199,8 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
-			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
-				-- You can pass additional configuration to telescope to change theme, layout, etc.
-				builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-					winblend = 10,
-					previewer = false,
-				}))
+				builtin.current_buffer_fuzzy_find(long_dropdown_theme)
 			end, { desc = "[/] Fuzzily search in current buffer" })
 
 			-- Also possible to pass additional configuration options.
@@ -194,7 +214,7 @@ require("lazy").setup({
 
 			-- Shortcut for searching your neovim configuration files
 			vim.keymap.set("n", "<leader>sn", function()
-				builtin.find_files({ cwd = vim.fn.stdpath("config") })
+				builtin.find_files(vim.tbl_deep_extend("keep", long_dropdown_theme, { cwd = vim.fn.stdpath("config") }))
 			end, { desc = "[S]earch [N]eovim config files" })
 		end,
 	},
