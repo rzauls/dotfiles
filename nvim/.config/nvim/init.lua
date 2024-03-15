@@ -447,6 +447,3 @@ require("lazy").setup({
 	-- (only that single lua import would fail and report its failings)
 	{ import = "custom.plugins" },
 })
-
--- Modeline that sets editor settings automatically when vim opens this file
--- vim: ts=2 sts=2 sw=2 et
