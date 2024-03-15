@@ -243,11 +243,7 @@ require("lazy").setup({
 					map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
 
 					-- Fuzzy find all the symbols in your current workspace
-					map(
-						"<leader>ws",
-						require("telescope.builtin").lsp_dynamic_workspace_symbols,
-						"[W]orkspace [S]ymbols"
-					)
+					map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
 					-- Rename the variable under your cursor
 					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
@@ -318,7 +314,6 @@ require("lazy").setup({
 					},
 				},
 			}
-			vim.filetype.add({ extension = { templ = "templ" } })
 
 			-- Ensure the servers and tools above are installed
 			require("mason").setup()
