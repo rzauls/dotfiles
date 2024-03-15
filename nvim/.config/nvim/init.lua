@@ -106,7 +106,7 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Configure and install plugins ]]
 --
 require("lazy").setup({
-	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	{ "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
 	{ "numToStr/Comment.nvim", opts = {} }, -- "gc" to comment visual regions/lines
 	{ -- Add git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
@@ -121,22 +121,6 @@ require("lazy").setup({
 		},
 	},
 
-	{ -- Show you pending keybinds.
-		"folke/which-key.nvim",
-		event = "VimEnter", -- Sets the loading event to 'VimEnter'
-		config = function() -- This is the function that runs, AFTER loading
-			require("which-key").setup()
-
-			-- Document existing key chains
-			require("which-key").register({
-				["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-				["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-				["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-				["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-				["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
-			})
-		end,
-	},
 	{ -- Fuzzy Finder (files, lsp, etc)
 		"nvim-telescope/telescope.nvim",
 		event = "VimEnter",
@@ -214,7 +198,10 @@ require("lazy").setup({
 
 			-- Shortcut for searching your neovim configuration files
 			vim.keymap.set("n", "<leader>sn", function()
-				builtin.find_files(vim.tbl_deep_extend("keep", long_dropdown_theme, { cwd = vim.fn.stdpath("config") }))
+				builtin.find_files(vim.tbl_deep_extend("keep", long_dropdown_theme, {
+					prompt_title = "Find config file",
+					cwd = vim.fn.stdpath("config"),
+				}))
 			end, { desc = "[S]earch [N]eovim config files" })
 		end,
 	},
@@ -361,26 +348,6 @@ require("lazy").setup({
 		end,
 	},
 
-	{ -- Autoformat
-		"stevearc/conform.nvim",
-		opts = {
-			notify_on_error = false,
-			format_on_save = {
-				timeout_ms = 500,
-				lsp_fallback = true,
-			},
-			formatters_by_ft = {
-				lua = { "stylua" },
-				-- Conform can also run multiple formatters sequentially
-				-- python = { "isort", "black" },
-				--
-				-- You can use a sub-list to tell conform to run *until* a formatter
-				-- is found.
-				-- javascript = { { "prettierd", "prettier" } },
-			},
-		},
-	},
-
 	{ -- Autocompletion
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
@@ -458,75 +425,11 @@ require("lazy").setup({
 		end,
 	},
 
-	{ -- Color theme
-		"catppuccin/nvim",
-		lazy = false, -- make sure we load this during startup if it is your main colorscheme
-		priority = 1000, -- make sure to load this before all the other start plugins
-		opts = {
-			flavour = "mocha",
-		},
-		config = function()
-			vim.cmd.colorscheme("catppuccin")
-			-- Configure highlights
-			vim.cmd.hi("Comment gui=none")
-		end,
-	},
-
-	{ -- Filetree sidebar (ugh)
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v3.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-			"MunifTanjim/nui.nvim",
-			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-		},
-		config = function()
-			require("neo-tree").setup({
-				close_if_last_window = true,
-			})
-
-			vim.keymap.set("n", "<C-e>", function()
-				require("neo-tree.command").execute({ action = "focus", toggle = true })
-			end, { desc = "Toggle Neotree panel" })
-		end,
-	},
-
 	{ -- Highlight todo, notes, etc in comments
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
-	},
-
-	{ -- Collection of various small independent plugins/modules
-		--  NOTE: https://github.com/echasnovski/mini.nvim
-		"echasnovski/mini.nvim",
-		config = function()
-			-- Better Around/Inside textobjects
-			--
-			-- Examples:
-			--  - va)  - [V]isually select [A]round [)]paren
-			--  - yinq - [Y]ank [I]nside [N]ext [']quote
-			--  - ci'  - [C]hange [I]nside [']quote
-			require("mini.ai").setup({ n_lines = 500 })
-
-			-- Add/delete/replace surroundings (brackets, quotes, etc.)
-			--
-			-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-			-- - sd'   - [S]urround [D]elete [']quotes
-			-- - sr)'  - [S]urround [R]eplace [)] [']
-			require("mini.surround").setup()
-
-			-- Simple and easy statusline.
-			local statusline = require("mini.statusline")
-			statusline.setup()
-
-			---@diagnostic disable-next-line: duplicate-set-field
-			statusline.section_location = function()
-				return ""
-			end
-		end,
 	},
 
 	{ -- Highlight, edit, and navigate code
