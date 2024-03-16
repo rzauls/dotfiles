@@ -173,7 +173,10 @@ require("lazy").setup({
 
 			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 			vim.keymap.set("n", "<leader>sf", function()
-				builtin.find_files(long_dropdown_theme)
+				builtin.find_files(vim.tbl_deep_extend("force", long_dropdown_theme, {
+					hidden = true,
+					find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+				}))
 			end, { desc = "[S]earch [F]iles" })
 			vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
 			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
