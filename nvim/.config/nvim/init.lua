@@ -203,7 +203,9 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sn", function()
 				builtin.find_files(vim.tbl_deep_extend("keep", long_dropdown_theme, {
 					prompt_title = "Find config file",
+					hidden = true,
 					cwd = vim.fn.stdpath("config"),
+					find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
 				}))
 			end, { desc = "[S]earch [N]eovim config files" })
 		end,
