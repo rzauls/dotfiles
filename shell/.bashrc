@@ -62,7 +62,9 @@ alias l='ls -CF'
 alias python='python3'
 alias py='python3'
 alias vim='/usr/local/bin/nvim'
-alias lg='lazygit'
+# alias lg='lazygit'
+# we going crazy this time
+alias lg='vim -c Neogit'
 if command -v exa &> /dev/null
 then
     alias ls='exa -l'
