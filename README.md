@@ -8,14 +8,9 @@ This is where I store the dotfiles.
 
 ## Usage
 
-- Install GNU `stow`
-Optional:
-- Install `just` if you wanna run the Justfile commands <https://github.com/casey/just>
-
+- Install GNU `stow` (and optionally install `just` to run the Justfile <https://github.com/casey/just>)
 - Clone this repository
-- Stow the files:
-    a) Manually with `stow` relative to your home directory
-    b) Run `just stow`
+- Run `just stow` OR manually `stow` relative to your home directory
 
 ## Why
 
