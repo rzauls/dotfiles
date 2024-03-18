@@ -1,4 +1,4 @@
-# absolute voodo magic
+# exit early if shell is not interactive
 case $- in
     *i*) ;;
       *) return;;
