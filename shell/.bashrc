@@ -1,10 +1,10 @@
-# some voodoo magic
-#
+# absolute voodo magic
 case $- in
     *i*) ;;
       *) return;;
 esac
 
+# history config
 HISTCONTROL=ignoreboth
 shopt -s histappend
 HISTSIZE=10000
@@ -37,7 +37,7 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
+# ls color support
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias grep='grep --color=auto'
@@ -45,7 +45,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# import bash completion helpers
+# bash completion helpers
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -53,8 +53,31 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# fuzzy finding
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+gch() {
+ git checkout “$(git branch — all | fzf| tr -d ‘[:space:]’)”
+}
+
+# ENV vars, mostly PATH stuff
 export PATH="$HOME/.local/bin:$PATH"
-# TODO: move to bash_aliases and import here
+export EDITOR=nvim
+# go
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:~/go/bin
+# npm/nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# rust
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
+
+# various alias
 alias icat='kitty +kitten icat'
 alias ll='ls -alF'
 alias la='ls -A'
@@ -62,58 +85,6 @@ alias l='ls -CF'
 alias python='python3'
 alias py='python3'
 alias vim='/usr/local/bin/nvim'
-# alias lg='lazygit'
-# we going crazy this time
 alias lg='vim -c Neogit'
-if command -v exa &> /dev/null
-then
-    alias ls='exa -l'
-fi
-
-export EDITOR=nvim
-
-# go stuff
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:~/go/bin
-
-# npm/nvm stuff
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# ruby stuff
-if [ -b "$HOME/.rbenv/bin" ]; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)" # this loads rbenv completion
-fi
-
-# rust stuff
-if [ -f "$HOME/.cargo/env" ]; then
-    . "$HOME/.cargo/env"
-fi
-
-# sail/laravel/php stuff
-alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
-alias pint='[ -f pint ] && sh pint || vendor/bin/pint'
-
-alias apsh='docker compose exec app bash'
 
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-
-# Load Angular CLI autocompletion.
-if command -v ng &> /dev/null
-then
-    source <(ng completion script)
-fi
-
-gch() {
- git checkout “$(git branch — all | fzf| tr -d ‘[:space:]’)”
-}
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH=$BUN_INSTALL/bin:$PATH
-export PATH=$HOME/.local/share/blender:$PATH
