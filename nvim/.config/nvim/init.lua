@@ -78,13 +78,6 @@ vim.keymap.set("n", "<leader><C-e>", function()
 	vim.cmd("Explore")
 end, { desc = "Open file [E]xplorer" })
 
--- trying some weird stuff
-vim.keymap.set("n", "<F12>", function()
-	-- TODO: fix this at some point to run a single test file
-	-- vim.cmd("!go test " .. vim.fn.expand("%") .. " -v")
-	vim.cmd("!go test ./... -v")
-end, { desc = "Run all package tests" })
-
 -- [[ Autocommands ]]
 -- Highlight when yanking text
 vim.api.nvim_create_autocmd("TextYankPost", {
