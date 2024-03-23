@@ -129,6 +129,7 @@ require("lazy").setup({
 			},
 			{ "nvim-telescope/telescope-ui-select.nvim" },
 			{ "nvim-tree/nvim-web-devicons" },
+			{ "benfowler/telescope-luasnip.nvim" },
 		},
 		config = function()
 			local long_dropdown_theme = require("telescope.themes").get_dropdown({
@@ -159,6 +160,7 @@ require("lazy").setup({
 			-- Enable telescope extensions, if they are installed
 			pcall(require("telescope").load_extension, "fzf")
 			pcall(require("telescope").load_extension, "ui-select")
+			pcall(require("telescope").load_extension, "luasnip")
 
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
@@ -178,6 +180,12 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+			vim.keymap.set(
+				"n",
+				"<leader>sl",
+				require("telescope").extensions.luasnip.luasnip,
+				{ desc = "[S]earch [L]uaSnip snippets" }
+			)
 
 			vim.keymap.set("n", "<leader>/", function()
 				builtin.current_buffer_fuzzy_find(long_dropdown_theme)
