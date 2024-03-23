@@ -415,6 +415,8 @@ require("lazy").setup({
 					{ name = "path" },
 				},
 			})
+			-- load friendly-snippets (provided in vscode .json snippet format)
+			require("luasnip.loaders.from_vscode").lazy_load()
 		end,
 	},
 
