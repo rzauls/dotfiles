@@ -357,6 +357,14 @@ require("lazy").setup({
 					end
 					return "make install_jsregexp"
 				end)(),
+				dependencies = {
+					{
+						"rafamadriz/friendly-snippets",
+						config = function()
+							require("luasnip.loaders.from_vscode").lazy_load()
+						end,
+					},
+				},
 			},
 			"saadparwaiz1/cmp_luasnip",
 
@@ -365,10 +373,6 @@ require("lazy").setup({
 			--  into multiple repos for maintenance purposes.
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
-
-			-- Some preconfigured snippets
-			-- TODO: check if this is actually useful and remove it if not.
-			"rafamadriz/friendly-snippets",
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -415,8 +419,6 @@ require("lazy").setup({
 					{ name = "path" },
 				},
 			})
-			-- load friendly-snippets (provided in vscode .json snippet format)
-			require("luasnip.loaders.from_vscode").lazy_load()
 		end,
 	},
 
