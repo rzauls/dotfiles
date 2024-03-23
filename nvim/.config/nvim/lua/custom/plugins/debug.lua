@@ -13,6 +13,8 @@ return {
 	dependencies = {
 		-- Creates a beautiful debugger UI
 		"rcarriga/nvim-dap-ui",
+		-- async io
+		"nvim-neotest/nvim-nio",
 
 		-- Installs the debug adapters for you
 		"williamboman/mason.nvim",
