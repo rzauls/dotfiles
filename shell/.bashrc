@@ -67,6 +67,7 @@ export EDITOR=nvim
 # go
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/zig
 export PATH=$PATH:~/go/bin
 # npm/nvm
 export NVM_DIR="$HOME/.nvm"
