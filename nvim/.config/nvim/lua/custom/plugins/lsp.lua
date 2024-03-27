@@ -21,33 +21,33 @@ return {
 					end
 
 					-- Jump to the definition of the word under your cursor.
-					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+					map("gd", require("telescope.builtin").lsp_definitions, "[g]oto [d]efinition")
 
 					-- Find references for the word under your cursor.
-					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+					map("gr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
 
 					-- Jump to the implementation of the word under your cursor.
-					map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+					map("gI", require("telescope.builtin").lsp_implementations, "[g]oto [I]mplementation")
 
 					-- Jump to the type of the word under your cursor.
 					map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
 
 					-- Fuzzy find all the symbols in your current document.
-					map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+					map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[d]ocument [s]ymbols")
 
 					-- Fuzzy find all the symbols in your current workspace
-					map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+					map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[w]orkspace [s]ymbols")
 
 					-- Rename the variable under your cursor
-					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+					map("<leader>rn", vim.lsp.buf.rename, "[r]e[n]ame")
 
 					-- Execute a code action, usually your cursor needs to be on top of an error
 					-- or a suggestion from your LSP for this to activate.
-					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+					map("<leader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction")
 
 					-- Opens a popup that displays documentation about the word under your cursor
 					map("K", vim.lsp.buf.hover, "Hover Documentation")
-					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+					map("gD", vim.lsp.buf.declaration, "[g]oto [D]eclaration")
 
 					-- Highlight/unhighlight symbol under cursor when hovered
 					local client = vim.lsp.get_client_by_id(event.data.client_id)

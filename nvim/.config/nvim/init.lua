@@ -52,16 +52,15 @@ vim.opt.scrolloff = 10
 -- Dont wrap lines longer than screen
 vim.opt.wrap = false
 
--- [[ Keymaps ]]
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [d]iagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [d]iagnostic message" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [e]rror messages" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [q]uickfix list" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier to remember
 -- NOTE: This won't work in all terminal emulators/tmux/etc.
@@ -76,9 +75,8 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 -- Netrw and file navigation
 vim.keymap.set("n", "<leader><C-e>", function()
 	vim.cmd("Explore")
-end, { desc = "Open file [E]xplorer" })
+end, { desc = "Open file [e]xplorer" })
 
--- [[ Autocommands ]]
 -- Highlight when yanking text
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
@@ -88,7 +86,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- [[ Install `lazy.nvim` plugin manager ]]
+-- Install `lazy.nvim` plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -96,7 +94,7 @@ if not vim.loop.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
--- [[ Configure and install plugins ]]
+-- Configure and install plugins
 require("lazy").setup({
 	{ "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
 	{ "numToStr/Comment.nvim", opts = {} }, -- "gc" to comment visual regions/lines
@@ -119,6 +117,26 @@ require("lazy").setup({
 		event = "VimEnter",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
+	},
+
+	{ -- Pretty list for diagnostics and other errors
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {},
+		config = function()
+			local map = function(keys, func, desc)
+				vim.keymap.set("n", keys, func, { desc = "Trouble: " .. desc })
+			end
+			local trouble = require("trouble")
+			-- Keymaps for panel
+			map("<leader>xx", trouble.toggle, "Toggle panel")
+			map("<leader>xw", function()
+				trouble.toggle("workspace_diagnostics")
+			end, "[w]orkspace diagnostics")
+			map("<leader>xd", function()
+				trouble.toggle("document_diagnostics")
+			end, "[d]ocument diagnostics")
+		end,
 	},
 
 	{ -- Highlight, edit, and navigate code
