@@ -95,7 +95,7 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 -- Configure and install plugins
-require("lazy").setup({
+local plugins = {
 	{ "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
 	{ "numToStr/Comment.nvim", opts = {} }, -- "gc" to comment visual regions/lines
 	{ -- Add git related signs to the gutter, as well as utilities for managing changes
@@ -145,7 +145,7 @@ require("lazy").setup({
 		config = function()
 			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "bash", "c", "html", "lua", "markdown", "vim", "vimdoc", "go" },
+				ensure_installed = { "bash", "html", "lua", "markdown", "vim", "vimdoc", "go" },
 				-- Autoinstall languages that are not installed
 				auto_install = true,
 				highlight = { enable = true },
@@ -158,4 +158,12 @@ require("lazy").setup({
 	-- Doing this allows these to be less stable and break, without bricking the whole init.lua setup
 	-- (only that single lua import would fail and report its failings)
 	{ import = "custom.plugins" },
+}
+
+-- lazy.nvim setup options
+require("lazy").setup(plugins, {
+	change_detection = {
+		enabled = true,
+		notify = false,
+	},
 })
