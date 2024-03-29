@@ -136,6 +136,9 @@ local plugins = {
 			map("<leader>xd", function()
 				trouble.toggle("document_diagnostics")
 			end, "[d]ocument diagnostics")
+			map("<leader>xq", function()
+				trouble.toggle("quickfix")
+			end, "[q]uickfix list")
 		end,
 	},
 
