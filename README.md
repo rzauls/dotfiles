@@ -17,11 +17,14 @@ This is where I store the dotfiles.
 - Using `stow` makes me not have to worry about where the files should be linked to
 - Using this repo enables me to share configuration between devices
 
-## Symlinking on Windows
+## Wezterm config on Windows
 
-Stow doesnt work on Windows, however you can symlink from Win to WSL filesystem in powershell like this:
-<https://stackoverflow.com/a/76181147>
+Since `stow` doesnt work on Windows and wezterm config is required to be outside of WSL,
+I have to symlink from Win to WSL filesystem in powershell like this:
 
-`New-Item -ItemType SymbolicLink -Path "windows-path\to\symlink" -Target "\\wsl$\Ubuntu\home\yourusername\path\to\target-thing"`
+```powershell
+# source: https://stackoverflow.com/a/76181147
+New-Item -ItemType SymbolicLink -Path "C:\Users\<user>\.wezterm.lua" -Target "\\wsl$\Ubuntu\home\<user>\projects\dotfiles\wezterm\.config\wezterm\wezterm.lua"
+```
 
 
