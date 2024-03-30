@@ -11,6 +11,7 @@ config.window_padding = {
 	bottom = 0,
 }
 
+config.window_decorations = "RESIZE"
 config.font = wezterm.font("Berkeley Mono")
 
 return config
