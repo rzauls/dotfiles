@@ -4,6 +4,7 @@ local config = wezterm.config_builder()
 
 config.color_scheme = "Catppuccin Mocha"
 
+config.window_decorations = "RESIZE"
 config.window_padding = {
 	left = 0,
 	right = 0,
@@ -11,7 +12,25 @@ config.window_padding = {
 	bottom = 0,
 }
 
-config.window_decorations = "RESIZE"
-config.font = wezterm.font("Berkeley Mono")
+local font_family = "Berkeley Mono"
+config.font = wezterm.font({ family = font_family })
+config.font_rules = {
+	{
+		intensity = "Bold",
+		italic = false,
+		font = wezterm.font({
+			family = font_family,
+			weight = "Bold",
+		}),
+	},
+	{
+		intensity = "Normal",
+		italic = true,
+		font = wezterm.font({
+			family = font_family,
+			style = "Italic",
+		}),
+	},
+}
 
 return config
