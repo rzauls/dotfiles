@@ -28,6 +28,7 @@ return {
 		end
 
 		-- Autopairs for paired-symbols (brackets, quotes etc)
-		require("mini.pairs").setup()
+		-- NOTE: disabling this to force learn more mini.ai actions
+		-- require("mini.pairs").setup()
 	end,
 }
