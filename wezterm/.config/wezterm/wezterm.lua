@@ -2,6 +2,18 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
+local is_windows = function()
+	return wezterm.target_triple:find("windows") ~= nil
+end
+
+-- local is_mac = function()
+-- 	return wezterm.target_triple:find("darwin") ~= nil
+-- end
+
+if is_windows() then
+	config.default_domain = "WSL:Ubuntu"
+end
+
 config.color_scheme = "Catppuccin Mocha"
 
 config.window_decorations = "RESIZE"
