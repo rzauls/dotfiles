@@ -14,7 +14,7 @@ if is_windows() then
 	config.default_domain = "WSL:Ubuntu"
 end
 
-config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = "Kanagawa (Gogh)"
 
 config.window_decorations = "RESIZE"
 config.window_padding = {
