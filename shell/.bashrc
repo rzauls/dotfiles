@@ -87,5 +87,7 @@ alias python='python3'
 alias py='python3'
 alias vim='/usr/local/bin/nvim'
 alias lg='vim -c Neogit'
+alias ta='tmux attach -t'
+alias ta0='tmux attach -t 0'
 
 
