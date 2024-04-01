@@ -12,6 +12,7 @@ end
 
 if is_windows() then
 	config.default_domain = "WSL:Ubuntu"
+	config.audible_bell = "Disabled"
 end
 
 config.color_scheme = "Kanagawa (Gogh)"

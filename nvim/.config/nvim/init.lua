@@ -156,6 +156,7 @@ local plugins = {
 			})
 		end,
 	},
+	{ "j-hui/fidget.nvim", opts = {} },
 
 	-- Autoload all plugins from `lua/custom/plugins` directory
 	-- Doing this allows these to be less stable and break, without bricking the whole init.lua setup
