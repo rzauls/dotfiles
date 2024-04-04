@@ -51,5 +51,4 @@ alias lg='nvim -c Neogit'
 alias ta='tmux attach -t'
 alias ta0='tmux attach -t 0'
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
