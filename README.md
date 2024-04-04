@@ -1,6 +1,6 @@
 # Dotfiles
 
-This is where I store the dotfiles.
+Dotfile storage/repository.
 
 - There is a very low chance that any kind of support will be provided if someone (who is not me) wants to use these files.
 - This has no guarantee to work on any other systems than my own, and even then it can be hit or miss.
@@ -16,6 +16,11 @@ This is where I store the dotfiles.
 
 - Using `stow` makes me not have to worry about where the files should be linked to
 - Using this repo enables me to share configuration between devices
+
+## Notes
+
+- `tmux` config needs `tpm` <https://github.com/tmux-plugins/tpm> installed to work correctly
+- `zsh` config needs `oh-my-zsh` <https://ohmyz.sh/> installed to work correctly
 
 ## Wezterm config on Windows
 
