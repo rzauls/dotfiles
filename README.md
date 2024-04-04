@@ -21,6 +21,7 @@ Dotfile storage/repository.
 
 - `tmux` config needs `tpm` <https://github.com/tmux-plugins/tpm> installed to work correctly
 - `zsh` config needs `oh-my-zsh` <https://ohmyz.sh/> installed to work correctly
+- `delta` config needs `delta` <https://github.com/dandavison/delta> installed to work correctly
 
 ## Wezterm config on Windows
 
