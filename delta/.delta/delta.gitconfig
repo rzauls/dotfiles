@@ -1,6 +1,8 @@
-# how to use:
-#   1. install delta with cargo install git-delta 
-#   2.include this in your ~/.gitconfig with [include] path = ~/.delta/delta.gitconfig
+# How to use:
+#   1. Ensure `delta` is installed: `cargo install git-delta`
+#   2. Add this in your ~/.gitconfig:
+#       [include]
+#           path = ~/.delta/delta.gitconfig
 
 [core]
     pager = delta
