@@ -80,7 +80,7 @@ end, { desc = "Open file [e]xplorer" })
 -- Highlight when yanking text
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("koili-highlight-yank", { clear = true }),
+	group = vim.api.nvim_create_augroup("rzauls-highlight-yank", { clear = true }),
 	callback = function()
 		vim.highlight.on_yank()
 	end,
@@ -163,6 +163,7 @@ local plugins = {
 	-- Doing this allows these to be less stable and break, without bricking the whole init.lua setup
 	-- (only that single lua import would fail and report its failings)
 	{ import = "custom.plugins" },
+	{ "rzauls/checkmark.nvim", opts = { test = "test" } },
 }
 
 -- lazy.nvim setup options
