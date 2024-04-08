@@ -1,5 +1,5 @@
 local wezterm = require("wezterm")
-
+local mux = wezterm.mux
 local config = wezterm.config_builder()
 
 local is_windows = function()
@@ -24,6 +24,12 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
+
+-- Maximize window on launch
+wezterm.on("gui-startup", function()
+	local tab, pane, window = mux.spawn_window({})
+	window:gui_window():maximize()
+end)
 
 local font_family = "Berkeley Mono"
 config.font = wezterm.font({ family = font_family })
