@@ -164,6 +164,7 @@ local plugins = {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local checkmark = require("checkmark")
+			checkmark.setup({ log_lvl = "debug" })
 			vim.keymap.set("n", "<leader>ct", checkmark.run_tests, { desc = "Checkmark: Run tests of current file" })
 		end,
 	},
