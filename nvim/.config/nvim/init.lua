@@ -160,7 +160,7 @@ local plugins = {
 	{ "j-hui/fidget.nvim", opts = {} },
 	{
 		-- dir = "/home/rihards/projects/checkmark.nvim/",
-		"rzauls/checkmark.nvim/",
+		"rzauls/checkmark.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local checkmark = require("checkmark")
