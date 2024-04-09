@@ -73,7 +73,7 @@ vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "Move focus 
 vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "Move focus to the upper window" })
 
 -- Netrw and file navigation
-vim.keymap.set("n", "<leader><C-e>", function()
+vim.keymap.set("n", "<C-e>", function()
 	vim.cmd("Explore")
 end, { desc = "Open file [e]xplorer" })
 
@@ -164,7 +164,7 @@ local plugins = {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local checkmark = require("checkmark")
-			checkmark.setup({ log_lvl = "debug" })
+			checkmark.setup({})
 			vim.keymap.set("n", "<leader>ct", checkmark.run_tests, { desc = "Checkmark: Run tests of current file" })
 		end,
 	},

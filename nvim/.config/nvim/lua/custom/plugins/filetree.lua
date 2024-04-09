@@ -27,7 +27,7 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<C-e>", function()
+		vim.keymap.set("n", "<leader><C-e>", function()
 			require("neo-tree.command").execute({ action = "focus", toggle = true })
 		end, { desc = "Toggle Neotree (file [e]xplorer) panel" })
 	end,
