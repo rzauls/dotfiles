@@ -13,12 +13,15 @@ return {
 		config = function()
 			require("go").setup({
 				dap_debug = false, -- handle dap setup manually
-				trouble = true, -- true: use trouble to open quickfix
+				trouble = true, -- use trouble.nvim to open quickfix
 			})
 
 			vim.keymap.set("n", "<leader>gt", function()
+				local trouble = require("trouble")
+
+				trouble.close() -- close existing window (it gets reopened if tests fail)
 				require("go.gotest").test()
-				require("trouble").refresh() -- refresh trouble window
+				trouble.refresh() -- refresh trouble window
 			end, { desc = "[g]o: Run go [t]ests" })
 		end,
 		event = { "CmdlineEnter" },
