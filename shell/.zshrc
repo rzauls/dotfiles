@@ -43,7 +43,7 @@ if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
 
-source $HOME/.shell-alias
+test -f $HOME/.shell-alias && source $HOME/.shell-alias
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
