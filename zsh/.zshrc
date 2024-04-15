@@ -43,12 +43,7 @@ if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
 
-# various alias
-alias ll='ls -alF'
-
-alias vim='nvim'
-alias lg='nvim -c Neogit'
-alias ta='tmux attach -t'
-alias ta0='tmux attach -t 0'
+source $HOME/.shell-alias
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+

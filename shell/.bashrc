@@ -78,16 +78,4 @@ if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
 
-# various alias
-alias icat='kitty +kitten icat'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias python='python3'
-alias py='python3'
-alias vim='/usr/local/bin/nvim'
-alias lg='vim -c Neogit'
-alias ta='tmux attach -t'
-alias ta0='tmux attach -t 0'
-
-
+source $HOME/.shell-alias
