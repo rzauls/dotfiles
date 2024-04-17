@@ -158,16 +158,6 @@ local plugins = {
 		end,
 	},
 	{ "j-hui/fidget.nvim", opts = {} },
-	{
-		-- dir = "/home/rihards/projects/checkmark.nvim/",
-		"rzauls/checkmark.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			local checkmark = require("checkmark")
-			checkmark.setup({})
-			vim.keymap.set("n", "<leader>ct", checkmark.run_tests, { desc = "Checkmark: Run tests of current file" })
-		end,
-	},
 
 	-- Autoload all plugins from `lua/custom/plugins` directory
 	-- Doing this allows these to be less stable and break, without bricking the whole init.lua setup

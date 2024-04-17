@@ -3,6 +3,17 @@ vim.filetype.add({ extension = { templ = "templ" } })
 
 return {
 	{
+		-- dir = "/home/rihards/projects/checkmark.nvim/",
+		"rzauls/checkmark.nvim",
+		lazy = true,
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			local checkmark = require("checkmark")
+			checkmark.setup({})
+			vim.keymap.set("n", "<leader>ct", checkmark.run_tests, { desc = "Checkmark: Run tests of current file" })
+		end,
+	},
+	{
 		"ray-x/go.nvim",
 		dependencies = { -- optional packages
 			"ray-x/guihua.lua",
