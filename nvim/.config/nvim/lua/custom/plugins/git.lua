@@ -10,7 +10,8 @@ return {
 	config = function()
 		local neogit = require("neogit")
 		neogit.setup({})
-		vim.keymap.set("n", "<leader>gg", neogit.open, { desc = "Neo[g]it: open" })
-		vim.keymap.set("n", "<leader><c-p>", neogit.action("pull", "from_upstream"), { desc = "Neogit: [p]ull changes" })
+		vim.keymap.set("n", "<leader>gg", neogit.open, { desc = "Neo[g]it: open [g]it UI" })
+		vim.keymap.set("n", "<leader>gp", neogit.action("pull", "from_upstream"), { desc = "Neo[g]it: [p]ull upstream" })
+		vim.keymap.set("n", "<leader>gP", neogit.action("push", "to_upstream"), { desc = "Neo[g]it: [P]ush upstream" })
 	end,
 }
