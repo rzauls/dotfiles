@@ -17,6 +17,7 @@ end
 
 config.color_scheme = "Kanagawa (Gogh)"
 
+config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
 config.window_padding = {
 	left = 0,
