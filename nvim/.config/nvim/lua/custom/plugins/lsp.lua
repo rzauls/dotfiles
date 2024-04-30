@@ -84,6 +84,7 @@ return {
 				gopls = {},
 				templ = {},
 				tsserver = {},
+				ols = {},
 				lua_ls = {
 					-- cmd = {...}, -- Override command used to start the server
 					-- filetypes { ...}, -- Override the default list of associated filetypes for the server
