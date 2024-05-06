@@ -26,6 +26,8 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 #== ENV vars, mostly PATH stuff ===
+
+# NOTE: symlink any binaries in ~/.local/bin so they get added to path
 export PATH="$HOME/.local/bin:$PATH"
 export EDITOR=nvim
 
