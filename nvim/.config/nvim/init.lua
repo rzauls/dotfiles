@@ -55,6 +55,13 @@ vim.opt.scrolloff = 10
 -- Dont wrap lines longer than screen
 vim.opt.wrap = false
 
+-- Disable default provider plugins (they seem to cause slowness on Mac)
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
