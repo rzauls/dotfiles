@@ -56,6 +56,7 @@ fi
 
 # fuzzy finding
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+eval "$(fzf --bash)"
 
 gch() {
  git checkout “$(git branch — all | fzf| tr -d ‘[:space:]’)”
