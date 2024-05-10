@@ -76,12 +76,6 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc.
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- Split navigation (using tmux helper, so it interacts with tmux when needed)
-vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "Move focus to the upper window" })
-
 -- Netrw and file navigation
 vim.keymap.set("n", "<C-e>", function()
 	vim.cmd("Explore")
@@ -106,7 +100,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Configure and install plugins
 local plugins = {
-	{ "christoomey/vim-tmux-navigator", lazy = false },
 	{ "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
 	{ "numToStr/Comment.nvim", opts = {} }, -- "gc" to comment visual regions/lines
 	{ -- Add git related signs to the gutter, as well as utilities for managing changes
