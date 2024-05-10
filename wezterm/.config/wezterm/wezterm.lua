@@ -57,8 +57,20 @@ config.font_rules = {
 	},
 }
 
+local switch_pane_keymap = function(key, direction)
+	return {
+		key = key,
+		mods = "CTRL",
+		action = wezterm.action.ActivatePaneDirection(direction),
+	}
+end
+
 -- Keybindings
 config.keys = {
+	switch_pane_keymap("h", "Left"),
+	switch_pane_keymap("j", "Down"),
+	switch_pane_keymap("k", "Up"),
+	switch_pane_keymap("l", "Right"),
 	{ -- <S-A-t> create a new tab in current domain
 		key = "t",
 		mods = "SHIFT|ALT",
@@ -73,26 +85,6 @@ config.keys = {
 		key = '"',
 		mods = "CTRL|SHIFT|ALT",
 		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
-	},
-	{ -- <C-h> select pane left
-		key = "h",
-		mods = "CTRL",
-		action = wezterm.action.ActivatePaneDirection("Left"),
-	},
-	{ -- <C-j> select pane down
-		key = "j",
-		mods = "CTRL",
-		action = wezterm.action.ActivatePaneDirection("Down"),
-	},
-	{ -- <C-k> select pane up
-		key = "k",
-		mods = "CTRL",
-		action = wezterm.action.ActivatePaneDirection("Up"),
-	},
-	{ -- <C-l> select pane right
-		key = "l",
-		mods = "CTRL",
-		action = wezterm.action.ActivatePaneDirection("Right"),
 	},
 }
 
