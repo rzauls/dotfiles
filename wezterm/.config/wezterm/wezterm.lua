@@ -59,10 +59,40 @@ config.font_rules = {
 
 -- Keybindings
 config.keys = {
-	{ -- <S-A-t>, Create a new tab in current domain
+	{ -- <S-A-t> create a new tab in current domain
 		key = "t",
 		mods = "SHIFT|ALT",
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+	},
+	{ -- <C-S-A-%> split current pane horizontally
+		key = "%",
+		mods = "CTRL|SHIFT|ALT",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{ -- <C-S-A-"> split current pane vertically
+		key = '"',
+		mods = "CTRL|SHIFT|ALT",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	{ -- <C-h> select pane left
+		key = "h",
+		mods = "CTRL",
+		action = wezterm.action.ActivatePaneDirection("Left"),
+	},
+	{ -- <C-j> select pane down
+		key = "j",
+		mods = "CTRL",
+		action = wezterm.action.ActivatePaneDirection("Down"),
+	},
+	{ -- <C-k> select pane up
+		key = "k",
+		mods = "CTRL",
+		action = wezterm.action.ActivatePaneDirection("Up"),
+	},
+	{ -- <C-l> select pane right
+		key = "l",
+		mods = "CTRL",
+		action = wezterm.action.ActivatePaneDirection("Right"),
 	},
 }
 
