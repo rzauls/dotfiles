@@ -57,4 +57,13 @@ config.font_rules = {
 	},
 }
 
+-- Keybindings
+config.keys = {
+	{ -- <S-A-t>, Create a new tab in current domain
+		key = "t",
+		mods = "SHIFT|ALT",
+		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+	},
+}
+
 return config
