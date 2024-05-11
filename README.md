@@ -32,4 +32,9 @@ I have to symlink from Win to WSL filesystem in powershell like this:
 New-Item -ItemType SymbolicLink -Path "C:\Users\<user>\.wezterm.lua" -Target "\\wsl$\Ubuntu\home\<user>\projects\dotfiles\wezterm\.config\wezterm\wezterm.lua"
 ```
 
+Since `wezterm` cli isnt available on WSL, to make wezterm/nvim shared keybinds (pane/split navigation) work, I symlinked the windows executable to WSL like this:
+
+```bash
+ln -s /mnt/c/Program\ Files/WezTerm/wezterm.exe /usr/local/bin/wezterm
+```
 
