@@ -10,9 +10,18 @@ local is_mac = function()
 	return wezterm.target_triple:find("darwin") ~= nil
 end
 
+local function is_vim(pane)
+	return pane:get_user_vars().IS_NVIM == "true"
+end
+
 if is_windows() then
 	config.default_domain = "WSL:Ubuntu"
 	config.audible_bell = "Disabled"
+	config.window_decorations = "RESIZE"
+end
+
+if is_mac() then
+	config.native_macos_fullscreen_mode = true
 end
 
 config.color_scheme = "Kanagawa (Gogh)"
@@ -24,17 +33,6 @@ config.window_padding = {
 	top = 0,
 	bottom = 0,
 }
-
-if is_mac() then
-	config.native_macos_fullscreen_mode = true
-else
-	config.window_decorations = "RESIZE"
-	-- Maximize window on launch
-	wezterm.on("gui-startup", function()
-		local tab, pane, window = mux.spawn_window({})
-		window:gui_window():maximize()
-	end)
-end
 
 local font_family = "Berkeley Mono"
 config.font = wezterm.font({ family = font_family })
@@ -57,34 +55,65 @@ config.font_rules = {
 	},
 }
 
-local switch_pane_keymap = function(key, direction)
+local direction_keys = {
+	h = "Left",
+	j = "Down",
+	k = "Up",
+	l = "Right",
+}
+
+local function split_nav(resize_or_move, key)
 	return {
 		key = key,
-		mods = "CTRL",
-		action = wezterm.action.ActivatePaneDirection(direction),
+		mods = resize_or_move == "resize" and "META" or "CTRL",
+		action = wezterm.action_callback(function(win, pane)
+			if is_vim(pane) then
+				-- pass the keys through to vim/nvim
+				win:perform_action({
+					SendKey = { key = key, mods = resize_or_move == "resize" and "META" or "CTRL" },
+				}, pane)
+			else
+				if resize_or_move == "resize" then
+					win:perform_action({ AdjustPaneSize = { direction_keys[key], 3 } }, pane)
+				else
+					win:perform_action({ ActivatePaneDirection = direction_keys[key] }, pane)
+				end
+			end
+		end),
 	}
 end
 
 -- Keybindings
+config.leader = {
+	key = " ",
+	mods = "CTRL",
+	timeout_milliseconds = 1000,
+}
 config.keys = {
-	switch_pane_keymap("h", "Left"),
-	switch_pane_keymap("j", "Down"),
-	switch_pane_keymap("k", "Up"),
-	switch_pane_keymap("l", "Right"),
-	{ -- <S-A-t> create a new tab in current domain
-		key = "t",
-		mods = "SHIFT|ALT",
+	-- move between split panes
+	split_nav("move", "h"),
+	split_nav("move", "j"),
+	split_nav("move", "k"),
+	split_nav("move", "l"),
+	-- resize panes
+	split_nav("resize", "h"),
+	split_nav("resize", "j"),
+	split_nav("resize", "k"),
+	split_nav("resize", "l"),
+	{
+		key = "c",
+		mods = "LEADER",
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 	},
-	{ -- <C-S-A-%> split current pane horizontally
-		key = "%",
-		mods = "CTRL|SHIFT|ALT",
-		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-	},
-	{ -- <C-S-A-"> split current pane vertically
-		key = '"',
-		mods = "CTRL|SHIFT|ALT",
+	{
+		key = "v",
+		mods = "LEADER",
 		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "h",
+		mods = "LEADER",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
 }
 

@@ -100,6 +100,23 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Configure and install plugins
 local plugins = {
+	{
+		"mrjones2014/smart-splits.nvim",
+		lazy = false,
+		config = function()
+			local smartsplit = require("smart-splits")
+			-- splits
+			vim.keymap.set("n", "<C-h>", smartsplit.move_cursor_left)
+			vim.keymap.set("n", "<C-j>", smartsplit.move_cursor_down)
+			vim.keymap.set("n", "<C-k>", smartsplit.move_cursor_up)
+			vim.keymap.set("n", "<C-l>", smartsplit.move_cursor_right)
+			-- rezise
+			vim.keymap.set("n", "<A-h>", smartsplit.resize_left)
+			vim.keymap.set("n", "<A-j>", smartsplit.resize_down)
+			vim.keymap.set("n", "<A-k>", smartsplit.resize_up)
+			vim.keymap.set("n", "<A-l>", smartsplit.resize_right)
+		end,
+	},
 	{ "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
 	{ "numToStr/Comment.nvim", opts = {} }, -- "gc" to comment visual regions/lines
 	{ -- Add git related signs to the gutter, as well as utilities for managing changes
