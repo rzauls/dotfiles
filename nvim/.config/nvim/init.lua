@@ -104,17 +104,22 @@ local plugins = {
 		"mrjones2014/smart-splits.nvim",
 		lazy = false,
 		config = function()
-			local smartsplit = require("smart-splits")
+			local smartsplits = require("smart-splits")
 			-- splits
-			vim.keymap.set("n", "<C-h>", smartsplit.move_cursor_left)
-			vim.keymap.set("n", "<C-j>", smartsplit.move_cursor_down)
-			vim.keymap.set("n", "<C-k>", smartsplit.move_cursor_up)
-			vim.keymap.set("n", "<C-l>", smartsplit.move_cursor_right)
+			vim.keymap.set("n", "<C-h>", smartsplits.move_cursor_left)
+			vim.keymap.set("n", "<C-j>", smartsplits.move_cursor_down)
+			vim.keymap.set("n", "<C-k>", smartsplits.move_cursor_up)
+			vim.keymap.set("n", "<C-l>", smartsplits.move_cursor_right)
 			-- rezise
-			vim.keymap.set("n", "<A-h>", smartsplit.resize_left)
-			vim.keymap.set("n", "<A-j>", smartsplit.resize_down)
-			vim.keymap.set("n", "<A-k>", smartsplit.resize_up)
-			vim.keymap.set("n", "<A-l>", smartsplit.resize_right)
+			vim.keymap.set("n", "<A-h>", smartsplits.resize_left)
+			vim.keymap.set("n", "<A-j>", smartsplits.resize_down)
+			vim.keymap.set("n", "<A-k>", smartsplits.resize_up)
+			vim.keymap.set("n", "<A-l>", smartsplits.resize_right)
+			-- swap
+			vim.keymap.set("n", "<leader><A-h>", smartsplits.swap_buf_left)
+			vim.keymap.set("n", "<leader><A-j>", smartsplits.swap_buf_down)
+			vim.keymap.set("n", "<leader><A-k>", smartsplits.swap_buf_up)
+			vim.keymap.set("n", "<leader><A-l>", smartsplits.swap_buf_right)
 		end,
 	},
 	{ "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
