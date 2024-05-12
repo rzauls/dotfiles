@@ -1,5 +1,4 @@
 local wezterm = require("wezterm")
-local mux = wezterm.mux
 local config = wezterm.config_builder()
 
 local is_windows = function()
@@ -17,16 +16,16 @@ end
 if is_windows() then
 	config.default_domain = "WSL:Ubuntu"
 	config.audible_bell = "Disabled"
-	config.window_decorations = "RESIZE"
+	config.window_decorations = "INTEGRATED_BUTTONS|TITLE|RESIZE"
 end
 
 if is_mac() then
 	config.native_macos_fullscreen_mode = true
+	config.hide_tab_bar_if_only_one_tab = true
 end
 
 config.color_scheme = "Kanagawa (Gogh)"
 
-config.hide_tab_bar_if_only_one_tab = true
 config.window_padding = {
 	left = 0,
 	right = 0,
