@@ -105,12 +105,12 @@ config.keys = {
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 	},
 	{
-		key = "v",
+		key = "h", -- wezterm horizontal/vertical splits are opposite of how vim naming works
 		mods = "LEADER",
 		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
 	},
 	{
-		key = "h",
+		key = "v", -- wezterm horizontal/vertical splits are opposite of how vim naming works
 		mods = "LEADER",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
