@@ -57,7 +57,7 @@ return {
 		map("<leader>sf", function()
 			builtin.find_files(vim.tbl_deep_extend("force", long_dropdown_theme, {
 				hidden = true,
-				find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+				find_command = { "rg", "-uu", "--files", "--hidden", "--glob", "!**/.git/*" },
 			}))
 		end, { desc = "[s]earch [f]iles" })
 		map("<leader>ss", builtin.builtin, { desc = "[s]earch [s]elect Telescope" })
