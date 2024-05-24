@@ -111,10 +111,14 @@ local plugins = {
 			vim.keymap.set("n", "<C-k>", smartsplits.move_cursor_up)
 			vim.keymap.set("n", "<C-l>", smartsplits.move_cursor_right)
 			-- rezise
-			vim.keymap.set("n", "<A-h>", smartsplits.resize_left)
+			vim.keymap.set("n", "<A-h>", function()
+				smartsplits.resize_left(10)
+			end)
 			vim.keymap.set("n", "<A-j>", smartsplits.resize_down)
 			vim.keymap.set("n", "<A-k>", smartsplits.resize_up)
-			vim.keymap.set("n", "<A-l>", smartsplits.resize_right)
+			vim.keymap.set("n", "<A-l>", function()
+				smartsplits.resize_right(10)
+			end)
 			-- swap
 			vim.keymap.set("n", "<leader><A-h>", smartsplits.swap_buf_left)
 			vim.keymap.set("n", "<leader><A-j>", smartsplits.swap_buf_down)
