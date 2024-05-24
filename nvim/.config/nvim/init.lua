@@ -83,19 +83,11 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 -- Configure and install plugins
-local plugins = {
-	-- Any plugins that dont really need any additional configuration
-	{ "tpope/vim-sleuth" }, -- Detect tabstop and shiftwidth automatically
-	{ "numToStr/Comment.nvim", opts = {} }, -- "gc" to comment visual regions/lines
-	{ "j-hui/fidget.nvim", opts = {} },
-
-	-- Autoload all plugins from `lua/custom/plugins` directory
+require("lazy").setup({
 	-- Doing this allows these to be less stable and break, without bricking the whole init.lua setup
 	-- (only that single lua import would fail and report its failings)
 	{ import = "custom.plugins" },
-}
-
-require("lazy").setup(plugins, {
+}, {
 	change_detection = {
 		enabled = true,
 		notify = false,
