@@ -88,6 +88,7 @@ require("lazy").setup({
 	-- (only that single lua import would fail and report its failings)
 	{ import = "custom.plugins" },
 }, {
+	lazy = true,
 	change_detection = {
 		enabled = true,
 		notify = false,
