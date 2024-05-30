@@ -8,30 +8,24 @@ return {
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
-			cond = function()
-				return vim.fn.executable("make") == 1
-			end,
 		},
 		{ "nvim-telescope/telescope-ui-select.nvim" },
 		{ "nvim-tree/nvim-web-devicons" },
 		{ "benfowler/telescope-luasnip.nvim" },
 	},
 	config = function()
-		local long_dropdown_theme = require("telescope.themes").get_dropdown({
-			winblend = 10,
-			previewer = false,
-			layout_config = {
-				height = function(_, _, max_lines)
-					return math.min(max_lines, 25)
-				end,
-			},
-		})
 		local trouble = require("trouble.providers.telescope")
 
 		require("telescope").setup({
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
+				},
+			},
+			pickers = {
+				find_files = {
+					hidden = true,
+					find_command = { "rg", "-uu", "--files", "--hidden", "--glob", "!{**/node_modules/*,**/.git/*}" },
 				},
 			},
 			defaults = {
@@ -54,12 +48,7 @@ return {
 		end
 		map("<leader>sh", builtin.help_tags, { desc = "[s]earch [h]elp" })
 		map("<leader>sk", builtin.keymaps, { desc = "[s]earch [k]eymaps" })
-		map("<leader>sf", function()
-			builtin.find_files(vim.tbl_deep_extend("force", long_dropdown_theme, {
-				hidden = true,
-				find_command = { "rg", "-uu", "--files", "--hidden", "--glob", "!{**/node_modules/*,**/.git/*}" },
-			}))
-		end, { desc = "[s]earch [f]iles" })
+		map("<leader>sf", builtin.find_files, { desc = "[s]earch [f]iles" })
 		map("<leader>ss", builtin.builtin, { desc = "[s]earch [s]elect Telescope" })
 		map("<leader>sw", builtin.grep_string, { desc = "[s]earch current [w]ord" })
 		map("<leader>sg", builtin.live_grep, { desc = "[s]earch by [g]rep" })
@@ -68,10 +57,7 @@ return {
 		map("<leader>sr", builtin.resume, { desc = "[s]earch [r]esume" })
 		map("<leader>s.", builtin.oldfiles, { desc = '[s]earch Recent Files ("." for repeat)' })
 		map("<leader>sl", require("telescope").extensions.luasnip.luasnip, { desc = "[s]earch [l]uaSnip snippets" })
-
-		map("<leader>/", function()
-			builtin.current_buffer_fuzzy_find(long_dropdown_theme)
-		end, { desc = "[/] Fuzzily search in current buffer" })
+		map("<leader>/", builtin.current_buffer_fuzzy_find, { desc = "[/] Fuzzily search in current buffer" })
 
 		-- Also possible to pass additional configuration options.
 		--  See `:help telescope.builtin.live_grep()` for information about particular keys
@@ -84,12 +70,12 @@ return {
 
 		-- Shortcut for searching your neovim configuration files
 		map("<leader>sn", function()
-			builtin.find_files(vim.tbl_deep_extend("keep", long_dropdown_theme, {
+			builtin.find_files({
 				prompt_title = "Find config file",
 				hidden = true,
 				cwd = vim.fn.stdpath("config"),
 				find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-			}))
+			})
 		end, { desc = "[s]earch [n]eovim config files" })
 	end,
 }
