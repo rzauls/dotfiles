@@ -84,8 +84,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Configure and install plugins
 require("lazy").setup({
-	-- Doing this allows these to be less stable and break, without bricking the whole init.lua setup
-	-- (only that single lua import would fail and report its failings)
+	-- load everything in custom.plugins
 	{ import = "custom.plugins" },
 }, {
 	lazy = true,
