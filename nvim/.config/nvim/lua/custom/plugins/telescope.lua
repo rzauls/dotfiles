@@ -47,6 +47,7 @@ return {
 			vim.keymap.set("n", map, callback, opts)
 		end
 		map("<leader>sh", builtin.help_tags, { desc = "[s]earch [h]elp" })
+		map("<leader>sc", builtin.commands, { desc = "[s]earch [c]ommands" })
 		map("<leader>sk", builtin.keymaps, { desc = "[s]earch [k]eymaps" })
 		map("<leader>sf", builtin.find_files, { desc = "[s]earch [f]iles" })
 		map("<leader>ss", builtin.builtin, { desc = "[s]earch [s]elect Telescope" })

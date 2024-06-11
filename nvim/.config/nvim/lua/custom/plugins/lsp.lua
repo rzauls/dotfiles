@@ -49,7 +49,7 @@ return {
 					map("K", vim.lsp.buf.hover, "Hover Documentation")
 					map("gD", vim.lsp.buf.declaration, "[g]oto [D]eclaration")
 
-					-- TODO: this seems to be broken for now
+					-- TODO: when LSP crashes, this never recovers
 					-- -- Highlight/unhighlight symbol under cursor when hovered
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if client and client.server_capabilities.documentHighlightProvider then

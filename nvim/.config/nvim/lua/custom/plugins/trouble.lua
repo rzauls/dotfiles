@@ -2,22 +2,38 @@
 return {
 	"folke/trouble.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	cmd = "Trouble",
 	opts = {},
-	config = function()
-		local map = function(keys, func, desc)
-			vim.keymap.set("n", keys, func, { desc = "Trouble: " .. desc })
-		end
-		local trouble = require("trouble")
-		-- Keymaps for panel
-		map("<leader>xx", trouble.toggle, "Toggle panel")
-		map("<leader>xw", function()
-			trouble.toggle("workspace_diagnostics")
-		end, "[w]orkspace diagnostics")
-		map("<leader>xd", function()
-			trouble.toggle("document_diagnostics")
-		end, "[d]ocument diagnostics")
-		map("<leader>xq", function()
-			trouble.toggle("quickfix")
-		end, "[q]uickfix list")
-	end,
+	keys = {
+		{
+			"<leader>xX",
+			"<cmd>Trouble diagnostics toggle<cr>",
+			desc = "Trouble: Diagnostics",
+		},
+		{
+			"<leader>xx",
+			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+			desc = "Trouble: Buffer Diagnostics",
+		},
+		{
+			"<leader>cs",
+			"<cmd>Trouble symbols toggle focus=false<cr>",
+			desc = "Trouble: [s]ymbols",
+		},
+		{
+			"<leader>cl",
+			"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+			desc = "Trouble: [l]sp definitions / references / ...",
+		},
+		{
+			"<leader>xL",
+			"<cmd>Trouble loclist toggle<cr>",
+			desc = "Trouble: [L]ocation list",
+		},
+		{
+			"<leader>xQ",
+			"<cmd>Trouble qflist toggle<cr>",
+			desc = "Trouble: [Q]uickfix list",
+		},
+	},
 }
