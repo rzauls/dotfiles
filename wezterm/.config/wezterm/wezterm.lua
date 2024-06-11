@@ -20,8 +20,9 @@ if is_windows() then
 end
 
 if is_mac() then
+	config.window_decorations = "RESIZE"
 	config.native_macos_fullscreen_mode = true
-	config.hide_tab_bar_if_only_one_tab = true
+	config.hide_tab_bar_if_only_one_tab = false
 end
 
 config.color_scheme = "Kanagawa (Gogh)"
@@ -103,6 +104,11 @@ config.keys = {
 		key = "c",
 		mods = "LEADER",
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+	},
+	{
+		key = "w",
+		mods = "LEADER",
+		action = wezterm.action.SpawnWindow,
 	},
 	{
 		key = "h", -- wezterm horizontal/vertical splits are opposite of how vim naming works
