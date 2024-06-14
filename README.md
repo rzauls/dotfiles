@@ -2,15 +2,15 @@
 
 Dotfile storage/repository.
 
-- There is a very low chance that any kind of support will be provided if someone (who is not me) wants to use these files.
-- This has no guarantee to work on any other systems than my own, and even then it can be hit or miss.
-- This technically works on WSL/Windows, but primarily is used on Ubuntu.
+- There is a very low chance that any kind of support will be provided if someone (who is not me) wants to use these files
+- This has no guarantee to work on any other systems than my own, and even then it can be hit or miss
+- This technically works on WSL/Windows, but primarily is used on MacOS and Ubuntu
 
 ## Usage
 
-- Install GNU `stow` (and optionally install `just` to run the Justfile <https://github.com/casey/just>)
+- Install `stow` and `make` 
 - Clone this repository
-- Run `just stow` OR manually `stow` relative to your home directory
+- Run `make stow` OR manually `stow` relative to your home directory
 
 ## Why
 
