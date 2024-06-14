@@ -3,7 +3,7 @@ alias ll='ls -lha'
 
 # editor
 alias vim='nvim'
-alias lg='lazygit'
+alias lg='nvim -c Neogit'
 
 # tmux
 alias ta='tmux attach -t'
