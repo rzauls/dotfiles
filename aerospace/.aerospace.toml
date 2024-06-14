@@ -107,6 +107,8 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
+# disable all aerospace bindings temporarily for typing in latvian
+alt-shift-quote = 'mode typing'
 
 # 'service' binding mode declaration.
 [mode.service.binding]
@@ -120,3 +122,6 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+
+[mode.typing.binding]
+esc = ['reload-config', 'mode main']
