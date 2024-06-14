@@ -83,6 +83,14 @@ local function split_nav(resize_or_move, key)
 	}
 end
 
+wezterm.on("update-right-status", function(window, pane)
+	local leader = ""
+	if window:leader_is_active() then
+		leader = "LEADER"
+	end
+	window:set_right_status(leader)
+end)
+
 -- Keybindings
 config.leader = {
 	key = " ",
