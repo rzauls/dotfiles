@@ -10,12 +10,12 @@ return {
 		vim.keymap.set("n", "<C-k>", smartsplits.move_cursor_up)
 		vim.keymap.set("n", "<C-l>", smartsplits.move_cursor_right)
 		-- rezise
-		vim.keymap.set("n", "<A-h>", function()
+		vim.keymap.set("n", "<C-A-h>", function()
 			smartsplits.resize_left(10)
 		end)
-		vim.keymap.set("n", "<A-j>", smartsplits.resize_down)
-		vim.keymap.set("n", "<A-k>", smartsplits.resize_up)
-		vim.keymap.set("n", "<A-l>", function()
+		vim.keymap.set("n", "<C-A-j>", smartsplits.resize_down)
+		vim.keymap.set("n", "<C-A-k>", smartsplits.resize_up)
+		vim.keymap.set("n", "<C-A-l>", function()
 			smartsplits.resize_right(10)
 		end)
 		-- swap
