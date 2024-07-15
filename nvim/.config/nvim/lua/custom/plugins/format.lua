@@ -18,6 +18,7 @@ return {
 			lua = { "stylua" },
 			xml = { "xmlformat" },
 			typespec = { "typespec" },
+			sql = { "sql_formatter" },
 		},
 	},
 }
