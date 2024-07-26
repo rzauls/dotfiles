@@ -57,3 +57,4 @@ unsetopt autocd
 # fzf shortcuts
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(fzf --zsh)"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
