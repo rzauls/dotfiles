@@ -1,7 +1,7 @@
 return {
 	"github/copilot.vim",
 	-- Only load this plugin when <cmd>StartCopilot</cmd> is called
-	cmd = "StartCopilot",
+	cmd = "LoadCopilot",
 	config = function()
 		-- Example for how to keymap accept command
 		-- vim.keymap.set("i", "<C->", 'copilot#Accept("\\<CR>")', {
