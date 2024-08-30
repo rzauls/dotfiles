@@ -48,8 +48,9 @@ if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
 
-# bash/zsh shared aliases
+# bash/zsh shared includes
 test -f $HOME/.shell-alias && source $HOME/.shell-alias
+test -f $HOME/.secrets && source $HOME/.secrets
 
 # dont try to cd when I dont cd...
 unsetopt autocd
