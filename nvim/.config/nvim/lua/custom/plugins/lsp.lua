@@ -84,7 +84,6 @@ return {
 				rust_analyzer = {},
 				gopls = {},
 				templ = {},
-				tsserver = {},
 				ols = {},
 				lua_ls = {
 					-- cmd = {...}, -- Override command used to start the server
