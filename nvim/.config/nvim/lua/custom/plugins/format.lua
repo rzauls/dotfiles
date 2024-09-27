@@ -19,6 +19,7 @@ return {
 			xml = { "xmlformat" },
 			typespec = { "typespec" },
 			sql = { "sql_formatter" },
+			gohtmltmpl = { "prettier" },
 		},
 	},
 }
