@@ -110,6 +110,9 @@ alt-shift-semicolon = 'mode service'
 # disable all aerospace bindings temporarily for typing in latvian
 alt-shift-quote = 'mode typing'
 
+# fullscreen a window
+alt-space = 'fullscreen'
+
 # 'service' binding mode declaration.
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
