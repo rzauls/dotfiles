@@ -17,5 +17,13 @@ vim.keymap.set("n", "<C-e>", function()
 	vim.cmd("Explore")
 end, { desc = "Open file [e]xplorer" })
 
+vim.keymap.set("n", "<leader>so", function()
+	return vim.cmd("ObsidianQuickSwitch")
+end)
+
+vim.keymap.set("n", "<leader>sm", function()
+	return vim.cmd("ObsidianDailies")
+end)
+
 -- doesnt need to return anything for now
 return {}
