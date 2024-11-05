@@ -19,11 +19,15 @@ end, { desc = "Open file [e]xplorer" })
 
 vim.keymap.set("n", "<leader>so", function()
 	return vim.cmd("ObsidianQuickSwitch")
-end)
+end, { desc = "[s]earch [o]bsidian files" })
 
 vim.keymap.set("n", "<leader>sm", function()
 	return vim.cmd("ObsidianDailies")
-end)
+end, { desc = "[s]earch [m]obsidian dailies" })
+
+vim.keymap.set("n", "<leader>no", function()
+	return vim.cmd("ObsidianNew")
+end, { desc = "[n]ew obsidian entry" })
 
 -- doesnt need to return anything for now
 return {}
