@@ -8,12 +8,12 @@ return {
 		})
 
 		-- Document existing key chains
-		require("which-key").register({
-			["<leader>c"] = { name = "[c]ode", _ = "which_key_ignore" },
-			["<leader>d"] = { name = "[d]ocument", _ = "which_key_ignore" },
-			["<leader>r"] = { name = "[r]ename", _ = "which_key_ignore" },
-			["<leader>s"] = { name = "[s]earch", _ = "which_key_ignore" },
-			["<leader>w"] = { name = "[w]orkspace", _ = "which_key_ignore" },
+		require("which-key").add({
+			{ "<leader>c", group = "[c]ode" },
+			{ "<leader>d", group = "[d]ocument" },
+			{ "<leader>r", group = "[r]ename" },
+			{ "<leader>s", group = "[s]earch" },
+			{ "<leader>w", group = "[w]orkspace" },
 		})
 	end,
 }
