@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 let
 	username = "rihardsza";
 in {
@@ -10,19 +10,16 @@ in {
 
     stateVersion = "24.05";
     file = {
-    	"hello.txt" = {
-	  text = ''
-	  #!/usr/bin/env bash
-
-	  echo "hello, ${username} from nixos flake"
-	  '';
-	  executable = true;
-	};
+    ".config/nvim" = {
+    source = config.lib.file.mkOutOfStoreSymlink /home/rihardsza/dotfiles/nvim/.config/nvim;
+    };
     };
   };
   programs.neovim = {
-  enable = true;
-  defaultEditor = true;
+	  enable = true;
+	  defaultEditor = true;
+	  vimAlias = true;
+	  viAlias = true;
   };
     programs.zsh = {
 	    enable = true;
