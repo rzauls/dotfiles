@@ -35,7 +35,10 @@ config.window_padding = {
 }
 
 local font_family = "Berkeley Mono"
-config.font = wezterm.font({ family = font_family })
+config.font = wezterm.font_with_fallback({
+	{ family = font_family },
+	"JetBrains Mono",
+})
 config.font_rules = {
 	{
 		intensity = "Bold",
