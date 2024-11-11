@@ -25,7 +25,7 @@ return {
 			pickers = {
 				find_files = {
 					hidden = true,
-					find_command = { "rg", "-uu", "--files", "--hidden", "--glob", "!{**/node_modules/*,**/.git/*}" },
+					find_command = { "rg", "-uu", "--files", "--hidden", "--glob", "!{**/node_modules/*,**/.git/*,**/.venv/*}" },
 				},
 			},
 			defaults = {
