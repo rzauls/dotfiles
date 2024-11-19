@@ -81,3 +81,4 @@ fi
 
 test -f $HOME/.shell-alias && source $HOME/.shell-alias
 test -f $HOME/.secrets && source $HOME/.secrets
+eval "$(direnv hook bash)"

@@ -58,3 +58,4 @@ unsetopt autocd
 # fzf shortcuts
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(fzf --zsh)"
+eval "$(direnv hook zsh)"
