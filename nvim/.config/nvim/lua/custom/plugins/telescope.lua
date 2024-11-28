@@ -11,7 +11,6 @@ return {
 		},
 		{ "nvim-telescope/telescope-ui-select.nvim" },
 		{ "nvim-tree/nvim-web-devicons" },
-		{ "benfowler/telescope-luasnip.nvim" },
 	},
 	config = function()
 		local trouble = require("trouble.sources.telescope")
@@ -39,7 +38,6 @@ return {
 		-- Enable telescope extensions, if they are installed
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
-		pcall(require("telescope").load_extension, "luasnip")
 
 		-- See `:help telescope.builtin`
 		local builtin = require("telescope.builtin")
@@ -57,7 +55,6 @@ return {
 		map("<leader>sd", builtin.diagnostics, { desc = "[s]earch [d]iagnostics" })
 		map("<leader>sr", builtin.resume, { desc = "[s]earch [r]esume" })
 		map("<leader>s.", builtin.oldfiles, { desc = '[s]earch Recent Files ("." for repeat)' })
-		map("<leader>sl", require("telescope").extensions.luasnip.luasnip, { desc = "[s]earch [l]uaSnip snippets" })
 		map("<leader>/", builtin.current_buffer_fuzzy_find, { desc = "[/] Fuzzily search in current buffer" })
 
 		-- Also possible to pass additional configuration options.

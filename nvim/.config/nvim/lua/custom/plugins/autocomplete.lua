@@ -1,76 +1,50 @@
 -- Autocompletion
 return {
-	"hrsh7th/nvim-cmp",
-	event = "InsertEnter",
-	dependencies = {
-		-- Snippet Engine & its associated nvim-cmp source
-		{
-			"L3MON4D3/LuaSnip",
-			build = (function()
-				-- Build Step is needed for regex support in snippets
-				-- This step is not supported in many windows environments
-				-- Remove the below condition to re-enable on windows
-				if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-					return
-				end
-				return "make install_jsregexp"
-			end)(),
+	-- we try out blink.cmp for now
+
+	"saghen/blink.cmp",
+	lazy = false, -- lazy loading handled internally
+	-- optional: provides snippets for the snippet source
+	dependencies = "rafamadriz/friendly-snippets",
+
+	-- use a release tag to download pre-built binaries
+	version = "v0.6.2",
+
+	---@module 'blink.cmp'
+	---@type blink.cmp.Config
+	opts = {
+		-- 'default' for mappings similar to built-in completion
+		-- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+		-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+		-- see the "default configuration" section below for full documentation on how to define
+		-- your own keymap.
+		keymap = { preset = "default" },
+
+		appearance = {
+			-- Sets the fallback highlight groups to nvim-cmp's highlight groups
+			-- Useful for when your theme doesn't support blink.cmp
+			-- will be removed in a future release
+			use_nvim_cmp_as_default = true,
+			-- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+			-- Adjusts spacing to ensure icons are aligned
+			nerd_font_variant = "mono",
 		},
-		"saadparwaiz1/cmp_luasnip",
-		"onsails/lspkind-nvim",
 
-		-- Adds other completion capabilities.
-		--  nvim-cmp does not ship with all sources by default. They are split
-		--  into multiple repos for maintenance purposes.
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-path",
+		-- default list of enabled providers defined so that you can extend it
+		-- elsewhere in your config, without redefining it, via `opts_extend`
+		sources = {
+			completion = {
+				enabled_providers = { "lsp", "path", "snippets", "buffer" },
+			},
+		},
+
+		-- experimental auto-brackets support
+		-- completion = { accept = { auto_brackets = { enabled = true } } }
+
+		-- experimental signature help support
+		-- signature = { enabled = true }
 	},
-	config = function()
-		local cmp = require("cmp")
-		local luasnip = require("luasnip")
-		local lspkind = require("lspkind")
-		luasnip.config.setup({})
-
-		cmp.setup({
-			formatting = {
-				format = lspkind.cmp_format({
-					mode = "symbol_text", -- show only symbol annotations
-				}),
-			},
-			snippet = {
-				expand = function(args)
-					luasnip.lsp_expand(args.body)
-				end,
-			},
-			completion = { completeopt = "menu,menuone,noinsert" },
-
-			-- NOTE: see `:help ins-completion` for info about why these were chosen
-			mapping = cmp.mapping.preset.insert({
-				-- Select the [n]ext item
-				["<C-n>"] = cmp.mapping.select_next_item(),
-				-- Select the [p]revious item
-				["<C-p>"] = cmp.mapping.select_prev_item(),
-				-- Accept ([y]es) the completion.
-				["<C-y>"] = cmp.mapping.confirm({ select = true }),
-				-- Manually trigger a completion from nvim-cmp.
-				["<C-Space>"] = cmp.mapping.complete({}),
-				-- Move L/R in your snippet expansion.
-				["<C-l>"] = cmp.mapping(function()
-					if luasnip.expand_or_locally_jumpable() then
-						luasnip.expand_or_jump()
-					end
-				end, { "i", "s" }),
-				["<C-h>"] = cmp.mapping(function()
-					if luasnip.locally_jumpable(-1) then
-						luasnip.jump(-1)
-					end
-				end, { "i", "s" }),
-			}),
-			sources = {
-				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
-				{ name = "path" },
-			},
-		})
-	end,
+	-- allows extending the enabled_providers array elsewhere in your config
+	-- without having to redefine it
+	opts_extend = { "sources.completion.enabled_providers" },
 }
