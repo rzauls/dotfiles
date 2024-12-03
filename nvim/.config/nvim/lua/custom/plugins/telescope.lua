@@ -66,14 +66,18 @@ return {
 			})
 		end, { desc = "[s]earch [/] in Open Files" })
 
-		-- Shortcut for searching your neovim configuration files
+		-- Shortcut for searching dotfiles files
 		map("<leader>sn", function()
-			builtin.find_files({
+			local find_config_opts = {
 				prompt_title = "Find config file",
 				hidden = true,
-				cwd = vim.fn.stdpath("config"),
+				cwd = os.getenv("DOTFILES_PATH"),
 				find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-			})
-		end, { desc = "[s]earch [n]eovim config files" })
+			}
+			if os.getenv("DOTFILES_PATH") == nil then
+				find_config_opts.cwd = vim.fn.stdpath("config")
+			end
+			builtin.find_files(find_config_opts)
+		end, { desc = "[s]earch [n]eovim and user config files" })
 	end,
 }
