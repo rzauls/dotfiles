@@ -25,17 +25,6 @@ return {
 				},
 				notifications = {
 					show_after_done = true,
-					task_started = true,
-					task_completed = true,
-					border = {
-						padding = {
-							top = 0,
-							bottom = 0,
-							left = 1,
-							right = 1,
-						},
-						style = "rounded",
-					},
 				},
 				preset_commands = {
 					["projects"] = {
