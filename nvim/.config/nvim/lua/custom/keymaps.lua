@@ -21,6 +21,10 @@ vim.keymap.set("n", "<leader>so", function()
 	return vim.cmd("ObsidianQuickSwitch")
 end, { desc = "[s]earch [o]bsidian files" })
 
+vim.keymap.set("n", "<leader>ot", function()
+	return vim.cmd("ObsidianTags")
+end, { desc = "search [o]bsidian tags" })
+
 vim.keymap.set("n", "<leader>sm", function()
 	return vim.cmd("ObsidianDailies")
 end, { desc = "[s]earch [m]obsidian dailies" })
