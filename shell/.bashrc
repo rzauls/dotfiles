@@ -54,6 +54,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # fuzzy finding
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 eval "$(fzf --bash)"

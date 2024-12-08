@@ -9,6 +9,10 @@ local is_mac = function()
 	return wezterm.target_triple:find("darwin") ~= nil
 end
 
+local is_linux = function()
+	return wezterm.target_triple:find("linux") ~= nil
+end
+
 local function is_vim(pane)
 	return pane:get_user_vars().IS_NVIM == "true"
 end
@@ -23,6 +27,15 @@ if is_mac() then
 	config.window_decorations = "RESIZE"
 	config.native_macos_fullscreen_mode = true
 	config.hide_tab_bar_if_only_one_tab = false
+end
+
+if is_linux() then
+	config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+	config.hide_tab_bar_if_only_one_tab = true
+	-- wezterm.on("gui-startup", function(cmd)
+	-- 	local _, _, window = wezterm.mux.spawn_window(cmd or {})
+	-- 	window:gui_window():maximize()
+	-- end)
 end
 
 config.color_scheme = "Kanagawa (Gogh)"
