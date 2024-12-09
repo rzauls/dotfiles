@@ -24,7 +24,7 @@ key-mapping.preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = [{ monitor."XV272U" = 16 } 0]
+inner.horizontal = [{ monitor."XV272U" = 16 }, 0]
 inner.vertical =   [{ monitor."XV272U" = 16 }, 0]
 outer.left =       [{ monitor."XV272U" = 16 }, 0]
 outer.bottom =     [{ monitor."XV272U" = 16 }, 0]
