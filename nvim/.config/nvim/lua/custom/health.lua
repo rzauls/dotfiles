@@ -33,6 +33,12 @@ local check_external_reqs = function()
 	return true
 end
 
+local check_env_vars = function()
+	if os.getenv("DOTFILES_PATH") == nil then
+		vim.health.warn(string.format("DOTFILES_PATH is not set, not all configuration files will be searchable"))
+	end
+end
+
 return {
 	check = function()
 		vim.health.start("custom.nvim")
@@ -42,5 +48,6 @@ return {
 
 		check_version()
 		check_external_reqs()
+		check_env_vars()
 	end,
 }
