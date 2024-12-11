@@ -8,10 +8,6 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [d]iagn
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [e]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [q]uickfix list" })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier to remember
--- NOTE: This won't work in all terminal emulators/tmux/etc.
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
 -- Netrw and file navigation
 vim.keymap.set("n", "<C-e>", function()
 	vim.cmd("Explore")

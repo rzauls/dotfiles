@@ -93,6 +93,8 @@ require("lazy").setup({
 	lazy = true,
 	change_detection = {
 		enabled = true,
-		notify = false,
+		notify = true,
 	},
 })
+
+vim.cmd.colorscheme("tokyonight")

@@ -49,10 +49,6 @@ return {
 			vim.keymap.set("n", "<leader>ep", function()
 				executor.commands.show_presets()
 			end)
-
-			vim.keymap.set("n", "<Esc>", function()
-				executor.commands.hide_detail()
-			end)
 		end,
 	},
 }
