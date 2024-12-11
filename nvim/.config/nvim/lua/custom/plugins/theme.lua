@@ -1,6 +1,6 @@
 -- Color theme
 vim.opt.termguicolors = true
-vim.cmd.colorscheme("default")
+-- vim.cmd.colorscheme("default")
 return {
 	{
 		"rebelot/kanagawa.nvim",
@@ -13,7 +13,7 @@ return {
 		lazy = false, -- load during startup since this is main colorscheme
 		priority = 1000, -- load this before all the other start plugins
 		config = function()
-			-- vim.cmd.colorscheme("melange")
+			vim.cmd.colorscheme("melange")
 		end,
 	},
 	{

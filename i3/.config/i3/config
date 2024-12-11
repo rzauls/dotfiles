@@ -38,10 +38,13 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-# bindsym $mod+d exec --no-startup-id dmenu_run
-# A more modern dmenu replacement is rofi:
+# start rofi (a program launcher)
 bindsym $mod+d exec "rofi -modi drun,run -show drun"
+
+# start power menu
+# .config/i3/bin/rofi-power-menu
+# this might break
+bindsym $mod+Shift+d exec "rofi -show power-menu -modi power-menu:~/.config/i3/bin/rofi-power-menu"
 
 # change focus
 bindsym $mod+h focus left
