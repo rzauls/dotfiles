@@ -21,15 +21,6 @@ return {
 		-- - sr)'  - [S]urround [R]eplace [)] [']
 		require("mini.surround").setup()
 
-		-- Simple and easy statusline.
-		local statusline = require("mini.statusline")
-		statusline.setup()
-
-		---@diagnostic disable-next-line: duplicate-set-field
-		statusline.section_location = function()
-			return ""
-		end
-
 		-- Autopairs for paired-symbols (brackets, quotes etc)
 		-- NOTE: disabling this to force learn more mini.ai actions
 		-- require("mini.pairs").setup()
