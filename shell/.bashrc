@@ -81,6 +81,7 @@ if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
 
+export PATH=$PATH:/usr/local/renderdoc/bin
 test -f $HOME/.shell-alias && source $HOME/.shell-alias
 test -f $HOME/.secrets && source $HOME/.secrets
 eval "$(direnv hook bash)"
