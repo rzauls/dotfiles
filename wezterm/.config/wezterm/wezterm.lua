@@ -30,7 +30,7 @@ if is_mac() then
 end
 
 if is_linux() then
-	config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+	config.window_decorations = "RESIZE"
 	config.hide_tab_bar_if_only_one_tab = true
 	-- wezterm.on("gui-startup", function(cmd)
 	-- 	local _, _, window = wezterm.mux.spawn_window(cmd or {})
