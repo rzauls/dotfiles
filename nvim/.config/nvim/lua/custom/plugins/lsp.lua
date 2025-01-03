@@ -82,7 +82,13 @@ return {
 			-- List of servers that should be available
 			local servers = {
 				-- NOTE: see `:help lspconfig-all` for a list of all the precondigured LSPs
-				clangd = {},
+				clangd = {
+					capabilities = capabilities,
+					cmd = {
+						"clangd",
+						"--offset-encoding=utf-16",
+					},
+				},
 				rust_analyzer = {},
 				gopls = {},
 				templ = {},
