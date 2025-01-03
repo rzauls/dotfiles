@@ -46,6 +46,10 @@ bindsym $mod+d exec "rofi -modi drun,run -show drun"
 # this might break
 bindsym $mod+Shift+d exec "rofi -show power-menu -modi power-menu:~/.config/i3/bin/rofi-power-menu"
 
+# screen brigthness (required brightnessctl to be installed and udev group `video` access for the user)
+bindsym $mod+F4 exec brightnessctl +20
+bindsym $mod+F3 exec brightnessctl -20
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
