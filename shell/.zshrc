@@ -27,7 +27,6 @@ source $ZSH/oh-my-zsh.sh
 
 #== ENV vars, mostly PATH stuff ===
 
-# NOTE: symlink any binaries in ~/.local/bin so they get added to path
 export PATH="$HOME/.local/bin:$PATH"
 export EDITOR=nvim
 
@@ -39,9 +38,15 @@ export PATH=$PATH:~/go/bin
 export PATH=$PATH:~/projects/scripts/bin
 
 # npm/nvm
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# modified nvm to load only when called
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@"
 
 # rust
 if [ -f "$HOME/.cargo/env" ]; then
@@ -59,3 +64,13 @@ unsetopt autocd
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(fzf --zsh)"
 eval "$(direnv hook zsh)"
+
+#yazi file browser 
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
