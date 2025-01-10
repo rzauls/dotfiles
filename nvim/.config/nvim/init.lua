@@ -76,6 +76,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Global keyumaps
 require("custom.keymaps")
+-- experimental neovide config
+require("custom.neovide")
+-- os specific settings
+require("custom.os")
 
 -- Install `lazy.nvim` plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
