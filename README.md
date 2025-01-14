@@ -39,3 +39,11 @@ Since `wezterm` cli isnt available on WSL, to make wezterm/nvim shared keybinds 
 ln -s /mnt/c/Program\ Files/WezTerm/wezterm.exe /usr/local/bin/wezterm
 ```
 
+## Non-standard $TERM variables when SSH-ing (Ghostty)
+
+Add fallback to ssh servers with old ncurses db entries.
+```
+# .ssh/config
+Host example.com
+  SetEnv TERM=xterm-256color
+```
