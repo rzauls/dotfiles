@@ -1,0 +1,7 @@
+command = /bin/zsh
+click-repeat-interval = 500
+auto-update-channel = stable
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+font-family = Berkeley Mono
