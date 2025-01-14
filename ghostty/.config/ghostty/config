@@ -5,3 +5,59 @@ font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 font-family = Berkeley Mono
+
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+
+keybind = ctrl+space>c=new_tab
+keybind = super+comma=unbind
+
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+
+
+# config.keys = {
+#	-- move between split panes
+#	split_nav("move", "h"),
+#	split_nav("move", "j"),
+#	split_nav("move", "k"),
+#	split_nav("move", "l"),
+#	-- resize panes
+#	split_nav("resize", "h"),
+#	split_nav("resize", "j"),
+#	split_nav("resize", "k"),
+#	split_nav("resize", "l"),
+#	{
+#		key = "c",
+#		mods = "LEADER",
+#		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+#	},
+#	{
+#		key = "w",
+#		mods = "LEADER",
+#		action = wezterm.action.SpawnWindow,
+#	},
+#	{
+#		key = "h", -- wezterm horizontal/vertical splits are opposite of how vim naming works
+#		mods = "LEADER",
+#		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+#	},
+#	{
+#		key = "v", -- wezterm horizontal/vertical splits are opposite of how vim naming works
+#		mods = "LEADER",
+#		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+#	},
+#	{
+#		key = "t",
+#		mods = "LEADER",
+#		action = wezterm.action.PromptInputLine({
+#			description = "Enter new name for tab",
+#			action = wezterm.action_callback(function(window, _, line)
+#				if line then
+#					window:active_tab():set_title(line)
+#				end
+#			end),
+#		}),
+#	},
+#}
