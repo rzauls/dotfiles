@@ -11,7 +11,7 @@ return {
 			executor.setup({
 				use_split = false,
 				popup = {
-					width = math.floor(vim.o.columns * 3 / 5),
+					width = math.floor(vim.o.columns * 4 / 5),
 					height = vim.o.lines - 20,
 					border = {
 						padding = {
