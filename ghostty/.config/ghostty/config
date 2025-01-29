@@ -14,8 +14,6 @@ keybind = ctrl+l=goto_split:right
 keybind = ctrl+space>c=new_tab
 keybind = super+comma=unbind
 
-keybind = global:cmd+grave_accent=toggle_quick_terminal
-
 
 # config.keys = {
 #	-- move between split panes
