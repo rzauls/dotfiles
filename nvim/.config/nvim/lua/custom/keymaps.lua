@@ -29,5 +29,8 @@ vim.keymap.set("n", "<leader>no", function()
 	return vim.cmd("ObsidianNew")
 end, { desc = "[n]ew obsidian entry" })
 
+-- less insane way of exiting terminal mode
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
 -- doesnt need to return anything for now
 return {}
