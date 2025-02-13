@@ -14,7 +14,7 @@ return {
 	},
 	config = function()
 		local trouble = require("trouble.sources.telescope")
-
+		local exclude_rg = "!{**/node_modules/*,**/.git/*,**/.venv/*,**/.zig-cache/*}"
 		require("telescope").setup({
 			extensions = {
 				["ui-select"] = {
@@ -30,7 +30,7 @@ return {
 						"--files",
 						"--hidden",
 						"--glob",
-						"!{**/node_modules/*,**/.git/*,**/.venv/*,**/.zig-cache/*}",
+						exclude_rg,
 					},
 				},
 			},
@@ -39,6 +39,17 @@ return {
 					i = { ["<c-t>"] = trouble.open },
 					n = { ["<c-t>"] = trouble.open },
 				},
+				-- vimgrep_arguments = {
+				-- 	"rg",
+				-- 	"--color=never",
+				-- 	"--no-heading",
+				-- 	"--with-filename",
+				-- 	"--line-number",
+				-- 	"--column",
+				-- 	"--smart-case",
+				-- 	"--hidden",
+				-- 	exclude_rg,
+				-- },
 			},
 		})
 

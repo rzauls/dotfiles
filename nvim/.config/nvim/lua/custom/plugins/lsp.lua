@@ -20,6 +20,10 @@ return {
 						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
 
+					local map_mode = function(mode, keys, func, desc)
+						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+					end
+
 					-- Jump to the definition of the word under your cursor.
 					map("gd", require("telescope.builtin").lsp_definitions, "[g]oto [d]efinition")
 
@@ -43,25 +47,29 @@ return {
 
 					-- Execute a code action, usually your cursor needs to be on top of an error
 					-- or a suggestion from your LSP for this to activate.
-					map("<leader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction")
+					-- map("<leader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction")
+					map_mode({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction")
 
 					-- Opens a popup that displays documentation about the word under your cursor
 					map("K", vim.lsp.buf.hover, "Hover Documentation")
 					map("gD", vim.lsp.buf.declaration, "[g]oto [D]eclaration")
 
-					-- FIXME: when LSP crashes, this never recovers
-					-- -- Highlight/unhighlight symbol under cursor when hovered
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
-					if client and client.server_capabilities.documentHighlightProvider then
-						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-							buffer = event.buf,
-							callback = vim.lsp.buf.document_highlight,
-						})
+					if client then
+						if client.server_capabilities.documentHighlightProvider then
+							vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+								buffer = event.buf,
+								callback = vim.lsp.buf.document_highlight,
+							})
 
-						vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-							buffer = event.buf,
-							callback = vim.lsp.buf.clear_references,
-						})
+							vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+								buffer = event.buf,
+								callback = vim.lsp.buf.clear_references,
+							})
+						end
+						if client.server_capabilities.inlayHintProvider then
+							vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+						end
 					end
 				end,
 			})
@@ -99,7 +107,9 @@ return {
 					capabilities = {},
 				},
 				rust_analyzer = {},
-				gopls = {},
+				gopls = {
+					inlay_hints = { enabled = true },
+				},
 				templ = {},
 				ols = {},
 				lua_ls = {
