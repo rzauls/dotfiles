@@ -38,7 +38,8 @@ if is_linux() then
 	-- end)
 end
 
-config.color_scheme = "Kanagawa (Gogh)"
+config.color_scheme = "Apple System Colors"
+-- config.color_scheme = "Kanagawa (Gogh)"
 
 config.window_padding = {
 	left = 0,
