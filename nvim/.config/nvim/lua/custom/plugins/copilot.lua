@@ -1,4 +1,4 @@
-return {
+local plugins = {
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
@@ -50,7 +50,12 @@ return {
 			})
 		end,
 	},
-	{
+}
+
+-- chat is broken on windows so we dont load even bother
+local is_windows = vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 or vim.fn.has("win16") == 1
+if not is_windows then
+	table.insert(plugins, {
 		"CopilotC-Nvim/CopilotChat.nvim",
 		dependencies = {
 			{ "zbirenbaum/copilot.lua" },
@@ -58,5 +63,7 @@ return {
 		},
 		build = "make tiktoken", -- Only on MacOS or Linux
 		opts = {},
-	},
-}
+	})
+end
+
+return plugins
