@@ -49,6 +49,8 @@ config.window_padding = {
 }
 
 local font_family = "Berkeley Mono"
+-- local font_family = "IBM Plex Mono"
+-- local font_family = "JetBrains Mono"
 config.font = wezterm.font_with_fallback({
 	{ family = font_family },
 	"JetBrains Mono",
