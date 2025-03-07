@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
+local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
 
 local is_windows = function()
 	return wezterm.target_triple:find("windows") ~= nil
@@ -105,9 +106,39 @@ end
 wezterm.on("update-right-status", function(window, pane)
 	local leader = ""
 	if window:leader_is_active() then
-		leader = "LEADER"
+		leader = "LEADER  "
 	end
 	window:set_right_status(leader)
+end)
+
+-- session management
+wezterm.on("gui-startup", resurrect.state_manager.resurrect_on_gui_startup)
+resurrect.state_manager.periodic_save({
+	interval_seconds = 5 * 60,
+	save_workspaces = true,
+	save_windows = true,
+	save_tabs = true,
+})
+
+-- CMD Palette additional entries
+-- TODO: this doesnt work for some reason
+wezterm.on("augment-command-palette", function(window, pane)
+	return {
+		{
+			brief = "Rename tab",
+			icon = "md_rename_box",
+
+			action = wezterm.action.PromptInputLine({
+				description = "Enter new name for tab",
+				initial_value = "My Tab Name",
+				action = wezterm.action_callback(function(window, pane, line)
+					if line then
+						window:active_tab():set_title(line)
+					end
+				end),
+			}),
+		},
+	}
 end)
 
 -- Keybindings
@@ -148,16 +179,71 @@ config.keys = {
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
 	{
-		key = "t",
+		key = "w",
 		mods = "LEADER",
-		action = wezterm.action.PromptInputLine({
-			description = "Enter new name for tab",
-			action = wezterm.action_callback(function(window, _, line)
-				if line then
-					window:active_tab():set_title(line)
+		action = wezterm.action_callback(function(win, pane)
+			resurrect.state_manager.save_state(resurrect.workspace_state.get_workspace_state())
+		end),
+	},
+	{
+		key = "W",
+		mods = "LEADER",
+		action = resurrect.window_state.save_window_action(),
+	},
+	{
+		key = "T",
+		mods = "LEADER",
+		action = resurrect.tab_state.save_tab_action(),
+	},
+	{
+		key = "s",
+		mods = "LEADER",
+		action = wezterm.action_callback(function(win, pane)
+			resurrect.state_manager.save_state(resurrect.workspace_state.get_workspace_state())
+			resurrect.window_state.save_window_action()
+		end),
+	},
+	{
+		key = "l",
+		mods = "LEADER",
+		action = wezterm.action_callback(function(win, pane)
+			resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id, label)
+				local type = string.match(id, "^([^/]+)") -- match before '/'
+				id = string.match(id, "([^/]+)$") -- match after '/'
+				id = string.match(id, "(.+)%..+$") -- remove file extention
+				local opts = {
+					close_open_tabs = true,
+					window = pane:window(),
+					on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+					relative = true,
+					restore_text = true,
+				}
+				if type == "workspace" then
+					local state = resurrect.state_manager.load_state(id, "workspace")
+					resurrect.workspace_state.restore_workspace(state, opts)
+				elseif type == "window" then
+					local state = resurrect.state_manager.load_state(id, "window")
+					resurrect.window_state.restore_window(pane:window(), state, opts)
+				elseif type == "tab" then
+					local state = resurrect.state_manager.load_state(id, "tab")
+					resurrect.tab_state.restore_tab(pane:tab(), state, opts)
 				end
-			end),
-		}),
+			end)
+		end),
+	},
+	{
+		key = "d",
+		mods = "LEADER",
+		action = wezterm.action_callback(function(win, pane)
+			resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id)
+				resurrect.state_manager.delete_state(id)
+			end, {
+				title = "Delete State",
+				description = "Select State to Delete and press Enter = accept, Esc = cancel, / = filter",
+				fuzzy_description = "Search State to Delete: ",
+				is_fuzzy = true,
+			})
+		end),
 	},
 }
 
