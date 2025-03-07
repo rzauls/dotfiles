@@ -1,22 +1,17 @@
 if vim.loop.os_uname().sysname == "Darwin" then
+	-- local vaultPath = vim.fn.expand("~") .. "/projects/notes/LMT"
 	return {
 		"epwalsh/obsidian.nvim",
-		version = "v3.9.0",
+		version = "*",
 		ft = "markdown",
-		event = {
-			"BufEnter",
-		},
-
-		-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+		event = { "BufEnter" },
 		-- event = {
-		--   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-		--   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
-		--   "BufReadPre path/to/my-vault/**.md",
-		--   "BufNewFile path/to/my-vault/**.md",
+		-- 	"BufReadPre " .. vaultPath .. "/**.md",
+		-- 	"BufNewFile " .. vaultPath .. "/**.md",
 		-- },
+
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"hrsh7th/nvim-cmp",
 			"nvim-telescope/telescope.nvim",
 			"nvim-treesitter/nvim-treesitter",
 		},

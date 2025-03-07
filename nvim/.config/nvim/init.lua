@@ -80,6 +80,8 @@ require("custom.keymaps")
 require("custom.neovide")
 -- os specific settings
 require("custom.os")
+-- file type specific settings
+require("custom.ft")
 
 -- Install `lazy.nvim` plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
