@@ -1,6 +1,6 @@
 -- LSP related configuration
 return {
-	{
+	{ -- LSP signature help
 		"ray-x/lsp_signature.nvim",
 		event = "InsertEnter",
 		opts = {
@@ -10,7 +10,20 @@ return {
 			},
 		},
 	},
-	{ -- LSP Configuration & Plugins
+	{
+		"kosayoda/nvim-lightbulb",
+		opts = {
+			autocmd = { enabled = true },
+			---@type (fun(client_name:string, result:lsp.CodeAction|lsp.Command):boolean)|nil
+			filter = function(client_name, result)
+				if client_name == "gopls" and string.find(result.title, "Browse") then
+					return false
+				end
+				return true
+			end,
+		},
+	},
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for neovim
