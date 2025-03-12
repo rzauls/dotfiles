@@ -17,7 +17,6 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			xml = { "xmlformat" },
-			typespec = { "typespec" },
 			sql = { "sql_formatter" },
 			gohtmltmpl = { "prettier" },
 		},
