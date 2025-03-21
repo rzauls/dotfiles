@@ -45,6 +45,10 @@ local plugins = {
 					cvs = false,
 					["."] = false,
 				},
+				logger = {
+					print_log = false,
+					print_log_level = vim.log.levels.ERROR,
+				},
 				copilot_node_command = "node", -- Node.js version must be > 18.x
 				server_opts_overrides = {},
 			})
@@ -55,6 +59,21 @@ local plugins = {
 -- chat is broken on windows so we dont load even bother
 local is_windows = vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 or vim.fn.has("win16") == 1
 if not is_windows then
+	-- hide copilot suggestions when blink.cmp menu is open
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "BlinkCmpMenuOpen",
+		callback = function()
+			vim.b.copilot_suggestion_hidden = true
+		end,
+	})
+
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "BlinkCmpMenuClose",
+		callback = function()
+			vim.b.copilot_suggestion_hidden = false
+		end,
+	})
+
 	table.insert(plugins, {
 		"CopilotC-Nvim/CopilotChat.nvim",
 		dependencies = {
