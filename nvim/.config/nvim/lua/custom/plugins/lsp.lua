@@ -130,9 +130,7 @@ return {
 					capabilities = {},
 				},
 				rust_analyzer = {},
-				gopls = {
-					inlay_hints = { enabled = true },
-				},
+				gopls = {},
 				templ = {},
 				ols = {},
 				lua_ls = {

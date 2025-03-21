@@ -103,4 +103,4 @@ require("lazy").setup({
 	},
 })
 
-vim.cmd.colorscheme("material-darker")
+vim.cmd.colorscheme("melange")
