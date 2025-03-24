@@ -12,50 +12,16 @@ keybind = ctrl+k=goto_split:top
 keybind = ctrl+l=goto_split:right
 
 keybind = ctrl+space>c=new_tab
+keybind = ctrl+space>w=new_window
+
+keybind = ctrl+space>h=new_split:left
+keybind = ctrl+space>j=new_split:down
+keybind = ctrl+space>k=new_split:up
+keybind = ctrl+space>l=new_split:right
+
+keybind = ctrl+shift+l=resize_split:right,40
+keybind = ctrl+shift+j=resize_split:down,40
+keybind = ctrl+shift+k=resize_split:up,40
+keybind = ctrl+shift+h=resize_split:left,40
+
 keybind = super+comma=unbind
-
-
-# config.keys = {
-#	-- move between split panes
-#	split_nav("move", "h"),
-#	split_nav("move", "j"),
-#	split_nav("move", "k"),
-#	split_nav("move", "l"),
-#	-- resize panes
-#	split_nav("resize", "h"),
-#	split_nav("resize", "j"),
-#	split_nav("resize", "k"),
-#	split_nav("resize", "l"),
-#	{
-#		key = "c",
-#		mods = "LEADER",
-#		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
-#	},
-#	{
-#		key = "w",
-#		mods = "LEADER",
-#		action = wezterm.action.SpawnWindow,
-#	},
-#	{
-#		key = "h", -- wezterm horizontal/vertical splits are opposite of how vim naming works
-#		mods = "LEADER",
-#		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
-#	},
-#	{
-#		key = "v", -- wezterm horizontal/vertical splits are opposite of how vim naming works
-#		mods = "LEADER",
-#		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
-#	},
-#	{
-#		key = "t",
-#		mods = "LEADER",
-#		action = wezterm.action.PromptInputLine({
-#			description = "Enter new name for tab",
-#			action = wezterm.action_callback(function(window, _, line)
-#				if line then
-#					window:active_tab():set_title(line)
-#				end
-#			end),
-#		}),
-#	},
-#}
