@@ -114,7 +114,6 @@ return {
 
 			-- List of servers that should be available
 			local servers = {
-				-- NOTE: see `:help lspconfig-all` for a list of all the precondigured LSPs
 				rust_analyzer = {},
 				gopls = {},
 				lua_ls = {
