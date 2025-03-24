@@ -113,26 +113,8 @@ return {
 			-- List of servers that should be available
 			local servers = {
 				-- NOTE: see `:help lspconfig-all` for a list of all the precondigured LSPs
-				clangd = {
-					capabilities = capabilities,
-					cmd = {
-						"clangd",
-						"--offset-encoding=utf-16",
-					},
-				},
-				glsl_analyzer = {
-					cmd = { "glsl_analyzer" },
-					filetypes = { "glsl", "vert", "tesc", "tese", "frag", "geom", "comp" },
-					root_dir = function(fname)
-						return vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
-					end,
-					single_file_support = true,
-					capabilities = {},
-				},
 				rust_analyzer = {},
 				gopls = {},
-				templ = {},
-				ols = {},
 				lua_ls = {
 					-- cmd = {...}, -- Override command used to start the server
 					-- filetypes { ...}, -- Override the default list of associated filetypes for the server
@@ -157,6 +139,27 @@ return {
 					},
 				},
 			}
+
+			if not require("custom.util").is_mac then
+				-- add glsl clang to serverrs
+				servers.clangd = {
+					capabilities = capabilities,
+					cmd = {
+						"clangd",
+						"--offset-encoding=utf-16",
+					},
+				}
+
+				servers.glsl_analyzer = {
+					cmd = { "glsl_analyzer" },
+					filetypes = { "glsl", "vert", "tesc", "tese", "frag", "geom", "comp" },
+					root_dir = function(fname)
+						return vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
+					end,
+					single_file_support = true,
+					capabilities = {},
+				}
+			end
 
 			-- Ensure the servers and tools above are installed
 			require("mason").setup()

@@ -57,8 +57,7 @@ local plugins = {
 }
 
 -- chat is broken on windows so we dont load even bother
-local is_windows = vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 or vim.fn.has("win16") == 1
-if not is_windows then
+if not require("custom.util").is_windows then
 	-- hide copilot suggestions when blink.cmp menu is open
 	vim.api.nvim_create_autocmd("User", {
 		pattern = "BlinkCmpMenuOpen",
