@@ -12,6 +12,7 @@ return {
 	},
 	{
 		"kosayoda/nvim-lightbulb",
+		event = "VeryLazy",
 		opts = {
 			autocmd = { enabled = true },
 			---@type (fun(client_name:string, result:lsp.CodeAction|lsp.Command):boolean)|nil
@@ -26,6 +27,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		version = "*",
+		event = "VeryLazy",
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for neovim
 			"williamboman/mason.nvim",
@@ -188,6 +190,7 @@ return {
 	},
 	{ -- Various helper tools to extend lsp diagnostics with custom stuff
 		"nvimtools/none-ls.nvim",
+		event = "VeryLazy",
 		config = function()
 			local null_ls = require("null-ls")
 			null_ls.setup({

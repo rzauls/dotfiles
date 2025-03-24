@@ -1,7 +1,7 @@
 -- Display pending keybind help
 return {
 	"folke/which-key.nvim",
-	event = "VimEnter", -- Sets the loading event to 'VimEnter'
+	event = "VeryLazy", -- Sets the loading event to 'VimEnter'
 	config = function() -- This is the function that runs, AFTER loading
 		require("which-key").setup({
 			notify = false,

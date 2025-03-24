@@ -1,6 +1,7 @@
 return {
 	{ -- Run commands with a popup output
 		"rzauls/executor.nvim",
+		event = "VeryLazy",
 		dependencies = {
 			-- TODO: get rid of this dependency and use something that I already have
 			"MunifTanjim/nui.nvim",

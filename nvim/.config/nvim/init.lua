@@ -65,6 +65,9 @@ vim.g.loaded_ruby_provider = 0
 -- Required to render some markdown checkboxes
 vim.opt.conceallevel = 1
 
+-- True color support
+vim.opt.termguicolors = true
+
 -- Highlight when yanking text
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
@@ -93,6 +96,17 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Configure and install plugins
 require("lazy").setup({
+	-- main colorscheme first, since we dont want screen flickering
+	{
+		"savq/melange-nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("melange")
+		end,
+	},
 	-- load everything in custom.plugins
 	{ import = "custom.plugins" },
 }, {
@@ -102,5 +116,3 @@ require("lazy").setup({
 		notify = true,
 	},
 })
-
-vim.cmd.colorscheme("melange")
