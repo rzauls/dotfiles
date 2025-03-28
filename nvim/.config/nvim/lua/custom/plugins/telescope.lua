@@ -13,7 +13,6 @@ return {
 		{ "nvim-tree/nvim-web-devicons" },
 	},
 	config = function()
-		local trouble = require("trouble.sources.telescope")
 		local exclude_rg = "!{**/node_modules/*,**/.git/*,**/.venv/*,**/.zig-cache/*}"
 		require("telescope").setup({
 			extensions = {
@@ -33,23 +32,6 @@ return {
 						exclude_rg,
 					},
 				},
-			},
-			defaults = {
-				mappings = {
-					i = { ["<c-t>"] = trouble.open },
-					n = { ["<c-t>"] = trouble.open },
-				},
-				-- vimgrep_arguments = {
-				-- 	"rg",
-				-- 	"--color=never",
-				-- 	"--no-heading",
-				-- 	"--with-filename",
-				-- 	"--line-number",
-				-- 	"--column",
-				-- 	"--smart-case",
-				-- 	"--hidden",
-				-- 	exclude_rg,
-				-- },
 			},
 		})
 

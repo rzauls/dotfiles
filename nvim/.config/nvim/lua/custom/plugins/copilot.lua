@@ -2,7 +2,7 @@ local plugins = {
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
-		event = "VeryLazy",
+		event = "InsertEnter",
 		config = function()
 			require("copilot").setup({
 				panel = {
@@ -75,7 +75,7 @@ if not require("custom.util").is_windows then
 
 	table.insert(plugins, {
 		"CopilotC-Nvim/CopilotChat.nvim",
-		event = "VeryLazy",
+		event = "InsertEnter",
 		dependencies = {
 			{ "zbirenbaum/copilot.lua" },
 			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
