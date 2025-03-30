@@ -77,6 +77,22 @@ return {
 
 					-- Opens a popup that displays documentation about the word under your cursor
 					map("K", vim.lsp.buf.hover, "Hover Documentation")
+					-- Toggle inline diagnostics
+					map("L", function()
+						local current_value = vim.diagnostic.config().virtual_lines
+						if current_value == false then
+							vim.diagnostic.config({
+								virtual_lines = { current_line = true },
+								virtual_text = false,
+							})
+						else
+							vim.diagnostic.config({
+								virtual_lines = false,
+								virtual_text = true,
+							})
+						end
+					end, "Toggle inline virtual_line diagnostics Documentation")
+
 					map("gD", vim.lsp.buf.declaration, "[g]oto [D]eclaration")
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -105,9 +121,7 @@ return {
 
 			vim.diagnostic.config({
 				virtual_text = true,
-				virtual_lines = {
-					current_line = true,
-				},
+				virtual_lines = false,
 			})
 
 			-- LSP servers and clients are able to communicate to each other what features they support.
