@@ -23,7 +23,13 @@ Dotfile storage/repository.
 - `delta` config needs `delta` <https://github.com/dandavison/delta> installed to work correctly
 - `brightnessctl` for `i3` brightness controls require user access to the video udev group. Add it by running `sudo usermod -aG video ${USER}` and rebooting
 
+## Windows 
+
+Since I use about 1/3 of the configs on windows aswell, and `stow` doesnt exist on windows without WSL, a PS1 script exists where hardcoded paths are coded for specific configurations that I want to symlink. To use it, edit the hardcoded paths and run it with PowerShell.
+
 ## Wezterm config on Windows
+
+> This section might be outdated since I no longer use WSL on windows, and Im unsure if windows can symlink to a symlink. Dont be suprised that something breaks.
 
 Since `stow` doesnt work on Windows and wezterm config is required to be outside of WSL,
 I have to symlink from Win to WSL filesystem in powershell like this:
