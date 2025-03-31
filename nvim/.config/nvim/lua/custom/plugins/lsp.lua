@@ -50,22 +50,22 @@ return {
 					end
 
 					-- Jump to the definition of the word under your cursor.
-					map("gd", require("telescope.builtin").lsp_definitions, "[g]oto [d]efinition")
+					map("gd", vim.lsp.buf.definition, "[g]oto [d]efinition")
 
 					-- Find references for the word under your cursor.
-					map("gr", require("telescope.builtin").lsp_references, "[g]oto [r]eferences")
+					map("gr", vim.lsp.buf.references, "[g]oto [r]eferences")
 
 					-- Jump to the implementation of the word under your cursor.
-					map("gI", require("telescope.builtin").lsp_implementations, "[g]oto [I]mplementation")
+					map("gI", vim.lsp.buf.implementation, "[g]oto [I]mplementation")
 
 					-- Jump to the type of the word under your cursor.
-					map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+					map("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
 
 					-- Fuzzy find all the symbols in your current document.
-					map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[d]ocument [s]ymbols")
+					map("<leader>ds", vim.lsp.buf.document_symbol, "[d]ocument [s]ymbols")
 
 					-- Fuzzy find all the symbols in your current workspace
-					map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[w]orkspace [s]ymbols")
+					map("<leader>ws", vim.lsp.buf.workspace_symbol, "[w]orkspace [s]ymbols")
 
 					-- Rename the variable under your cursor
 					map("<leader>rn", vim.lsp.buf.rename, "[r]e[n]ame")
@@ -76,7 +76,12 @@ return {
 					map_mode({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "[c]ode [a]ction")
 
 					-- Opens a popup that displays documentation about the word under your cursor
-					map("K", vim.lsp.buf.hover, "Hover Documentation")
+					map("K", function()
+						vim.lsp.buf.hover({
+							border = "rounded",
+						})
+					end, "Hover Documentation")
+
 					-- Toggle inline diagnostics
 					map("L", function()
 						local current_value = vim.diagnostic.config().virtual_lines
@@ -113,10 +118,6 @@ return {
 						end
 					end
 				end,
-			})
-
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-				border = "rounded",
 			})
 
 			vim.diagnostic.config({
