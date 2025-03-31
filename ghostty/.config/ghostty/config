@@ -6,6 +6,7 @@ font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 font-family = Berkeley Mono
+theme = catppuccin-mocha
 
 keybind = ctrl+h=goto_split:left
 keybind = ctrl+j=goto_split:bottom
