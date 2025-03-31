@@ -13,22 +13,6 @@ vim.keymap.set("n", "<C-e>", function()
 	vim.cmd("Explore")
 end, { desc = "Open file [e]xplorer" })
 
-vim.keymap.set("n", "<leader>so", function()
-	return vim.cmd("ObsidianQuickSwitch")
-end, { desc = "[s]earch [o]bsidian files" })
-
-vim.keymap.set("n", "<leader>ot", function()
-	return vim.cmd("ObsidianTags")
-end, { desc = "search [o]bsidian tags" })
-
-vim.keymap.set("n", "<leader>sm", function()
-	return vim.cmd("ObsidianDailies")
-end, { desc = "[s]earch [m]obsidian dailies" })
-
-vim.keymap.set("n", "<leader>no", function()
-	return vim.cmd("ObsidianNew")
-end, { desc = "[n]ew obsidian entry" })
-
 -- less insane way of exiting terminal mode
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 

@@ -37,6 +37,14 @@ local check_env_vars = function()
 	if os.getenv("DOTFILES_PATH") == nil then
 		vim.health.warn(string.format("DOTFILES_PATH is not set, not all configuration files will be searchable"))
 	end
+
+	if os.getenv("TODO_NOTE_FILE") == nil then
+		vim.health.warn(
+			string.format(
+				"TODO_NOTE_FILE is not set, will create it in default location ('~/notes.md') on next 'open notes' invocation"
+			)
+		)
+	end
 end
 
 return {
