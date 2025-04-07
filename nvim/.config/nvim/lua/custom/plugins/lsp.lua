@@ -38,6 +38,8 @@ return {
 			"j-hui/fidget.nvim",
 		},
 		config = function()
+			local builtins = require("telescope.builtin")
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("koili-lsp-attach", { clear = true }),
 				callback = function(event)
@@ -49,26 +51,26 @@ return {
 						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
 
-					-- Jump to the definition of the word under your cursor.
+					-- Goto to the definition of the word under your cursor.
 					map("gd", vim.lsp.buf.definition, "[g]oto [d]efinition")
-
-					-- Find references for the word under your cursor.
-					map("gr", vim.lsp.buf.references, "[g]oto [r]eferences")
-
-					-- Jump to the implementation of the word under your cursor.
-					map("gI", vim.lsp.buf.implementation, "[g]oto [I]mplementation")
-
-					-- Jump to the type of the word under your cursor.
-					map("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
-
-					-- Fuzzy find all the symbols in your current document.
-					map("<leader>ds", vim.lsp.buf.document_symbol, "[d]ocument [s]ymbols")
-
-					-- Fuzzy find all the symbols in your current workspace
-					map("<leader>ws", vim.lsp.buf.workspace_symbol, "[w]orkspace [s]ymbols")
 
 					-- Rename the variable under your cursor
 					map("<leader>rn", vim.lsp.buf.rename, "[r]e[n]ame")
+
+					-- Goto the definition of the type of the word under your cursor.
+					map("gD", builtins.lsp_type_definitions, "[g]oto [D]eclaration")
+
+					-- Find references for the word under your cursor.
+					map("gr", builtins.lsp_references, "[g]oto [r]eferences")
+
+					-- Goto the implementation of the word under your cursor.
+					map("gI", builtins.lsp_implementations, "[g]oto [I]mplementation")
+
+					-- Fuzzy find all the symbols in your current document.
+					map("<leader>ds", builtins.lsp_document_symbols, "[d]ocument [s]ymbols")
+
+					-- Fuzzy find all the symbols in your current workspace
+					map("<leader>ws", builtins.lsp_workspace_symbols, "[w]orkspace [s]ymbols")
 
 					-- Execute a code action, usually your cursor needs to be on top of an error
 					-- or a suggestion from your LSP for this to activate.
@@ -98,8 +100,7 @@ return {
 						end
 					end, "Toggle inline virtual_line diagnostics Documentation")
 
-					map("gD", vim.lsp.buf.declaration, "[g]oto [D]eclaration")
-
+					-- Highlight reference in document on hover
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if client then
 						if client.server_capabilities.documentHighlightProvider then
@@ -132,16 +133,13 @@ return {
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 			-- extend default capabilities with blink.cmp capabilities
-			capabilities = require("blink.cmp").get_lsp_capabilities(capabilities) or {}
+			capabilities = require("blink.cmp").get_lsp_capabilities(capabilities, true) or {}
 
 			-- List of servers that should be available
 			local servers = {
 				rust_analyzer = {},
 				gopls = {},
 				lua_ls = {
-					-- cmd = {...}, -- Override command used to start the server
-					-- filetypes { ...}, -- Override the default list of associated filetypes for the server
-					-- capabilities = {}, -- Override fields in capabilities, can be used to disable certain LSP features.
 					settings = {
 						Lua = {
 							runtime = { version = "LuaJIT" },
@@ -156,8 +154,6 @@ return {
 							completion = {
 								callSnippet = "Replace",
 							},
-							-- Hide noisy `missing-fields` warnings
-							-- diagnostics = { disable = { 'missing-fields' } },
 						},
 					},
 				},
@@ -195,6 +191,7 @@ return {
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
+			---@diagnostic disable-next-line: missing-fields
 			require("mason-lspconfig").setup({
 				handlers = {
 					function(server_name)

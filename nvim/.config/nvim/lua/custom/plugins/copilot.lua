@@ -9,7 +9,15 @@ local plugins = {
 					enabled = false,
 				},
 				suggestion = {
-					enabled = false,
+					enabled = true,
+					keymap = {
+						accept = "<M-l>",
+						accept_word = false,
+						accept_line = false,
+						next = "<M-]>",
+						prev = "<M-[>",
+						dismiss = "<C-]>",
+					},
 				},
 			})
 		end,
@@ -18,6 +26,10 @@ local plugins = {
 
 -- chat is broken on windows so we dont even bother loading it
 if not require("custom.util").is_windows then
+	vim.keymap.set("n", "<leader>cc", function()
+		return vim.cmd("CopilotChat")
+	end, { desc = "[c]opilot [c]hat" })
+
 	table.insert(plugins, {
 		"CopilotC-Nvim/CopilotChat.nvim",
 		event = "InsertEnter",
