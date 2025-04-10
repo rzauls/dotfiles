@@ -104,7 +104,7 @@ require("lazy").setup({
 		},
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("melange")
+			-- vim.cmd.colorscheme("melange")
 		end,
 	},
 	-- load everything in custom.plugins
@@ -116,3 +116,4 @@ require("lazy").setup({
 		notify = true,
 	},
 })
+vim.cmd.colorscheme("codedark")
