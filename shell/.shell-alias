@@ -3,7 +3,9 @@ alias ll='ls -lha'
 
 # editor
 alias vim='nvim'
+alias neovide='/Applications/Neovide.app/Contents/MacOS/neovide'
 
 # tmux
 alias ta='tmux attach -t'
 alias ta0='tmux attach -t 0'
+
