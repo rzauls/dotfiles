@@ -5,13 +5,11 @@ local plugins = {
 		event = "InsertEnter",
 		config = function()
 			require("copilot").setup({
-				panel = {
-					enabled = false,
-				},
 				suggestion = {
+					auto_trigger = true,
 					enabled = true,
 					keymap = {
-						accept = "<M-l>",
+						accept = "<C-t>",
 						accept_word = false,
 						accept_line = false,
 						next = "<M-]>",
@@ -42,9 +40,6 @@ if not require("custom.util").is_windows then
 	})
 end
 
--- TODO: remove this if we end up staying on copilot suggestions inside blink.cmp
---
--- hide copilot suggestions when blink.cmp menu is open
 -- vim.api.nvim_create_autocmd("User", {
 -- 	pattern = "BlinkCmpMenuOpen",
 -- 	callback = function()
