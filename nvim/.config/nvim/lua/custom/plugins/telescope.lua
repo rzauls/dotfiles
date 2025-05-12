@@ -13,7 +13,7 @@ return {
 		{ "nvim-tree/nvim-web-devicons" },
 	},
 	config = function()
-		local exclude_rg = "!{**/node_modules/*,**/.git/*,**/.venv/*,**/.zig-cache/*}"
+		local exclude_rg = "!{**/node_modules/*,**/.git/*,**/.venv/*,**/.zig-cache/*,tmp/**}"
 		require("telescope").setup({
 			extensions = {
 				["ui-select"] = {
