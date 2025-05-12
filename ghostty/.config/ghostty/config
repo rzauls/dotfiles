@@ -6,6 +6,7 @@ font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 font-family = Berkeley Mono
+font-style = Regular
 theme = catppuccin-mocha
 
 background-opacity = 0.9
