@@ -1,4 +1,19 @@
--- Split/pane management (with terminal mux support)
+function resize_split_to_two_thirds()
+	local width = vim.o.columns
+	local target_width = math.floor(width * 2 / 3)
+
+	local current_width = vim.api.nvim_win_get_width(0)
+	local amount = target_width - current_width
+
+	if amount > 0 then
+		vim.cmd("vertical resize +" .. amount)
+	else
+		vim.cmd("vertical resize " .. target_width)
+	end
+end
+
+vim.api.nvim_create_user_command("ResizeSplitToTwoThirds", resize_split_to_two_thirds, {})
+
 return {
 	"mrjones2014/smart-splits.nvim",
 	lazy = false,
@@ -9,19 +24,10 @@ return {
 		vim.keymap.set("n", "<C-j>", smartsplits.move_cursor_down)
 		vim.keymap.set("n", "<C-k>", smartsplits.move_cursor_up)
 		vim.keymap.set("n", "<C-l>", smartsplits.move_cursor_right)
-		-- rezise
-		vim.keymap.set("n", "<C-A-h>", function()
-			smartsplits.resize_left(10)
-		end)
-		vim.keymap.set("n", "<C-A-j>", smartsplits.resize_down)
-		vim.keymap.set("n", "<C-A-k>", smartsplits.resize_up)
-		vim.keymap.set("n", "<C-A-l>", function()
-			smartsplits.resize_right(10)
-		end)
-		-- swap
-		vim.keymap.set("n", "<leader><A-h>", smartsplits.swap_buf_left)
-		vim.keymap.set("n", "<leader><A-j>", smartsplits.swap_buf_down)
-		vim.keymap.set("n", "<leader><A-k>", smartsplits.swap_buf_up)
-		vim.keymap.set("n", "<leader><A-l>", smartsplits.swap_buf_right)
+
+		vim.keymap.set("n", "<leader>w3", function()
+			print("Resizing split to 2/3")
+			vim.cmd("ResizeSplitToTwoThirds")
+		end, { desc = "Resize split to 2/3" })
 	end,
 }
