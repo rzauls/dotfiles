@@ -6,7 +6,10 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [d]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [d]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [e]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [q]uickfix list" })
+vim.keymap.set("n", "<leader>d", vim.diagnostic.setloclist, { desc = "Show buffer diagnostics in [q]uickfix list" })
+
+-- I like deleting buffers
+vim.keymap.set("n", "<leader>q", "<cmd>bd<cr>", { desc = "Close current buffer" })
 
 -- Netrw and file navigation
 vim.keymap.set("n", "<C-e>", function()
