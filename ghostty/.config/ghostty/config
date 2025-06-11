@@ -1,7 +1,7 @@
 command = /bin/zsh
 click-repeat-interval = 500
 auto-update-channel = stable
-macos-titlebar-style = hidden
+# macos-titlebar-style = hidden
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
@@ -9,7 +9,7 @@ font-family = Berkeley Mono
 font-style = Regular
 theme = Monokai Pro
 
-background-opacity = 0.9
+background-opacity = 1
 background-blur = true
 
 keybind = ctrl+h=goto_split:left
