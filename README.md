@@ -20,8 +20,6 @@ Dotfile storage/repository.
 ## Notes
 
 - `zsh` config needs `oh-my-zsh` <https://ohmyz.sh/> installed to work correctly
-- `delta` config needs `delta` <https://github.com/dandavison/delta> installed to work correctly
-- `brightnessctl` for `i3` brightness controls require user access to the video udev group. Add it by running `sudo usermod -aG video ${USER}` and rebooting
 
 ## Windows 
 
