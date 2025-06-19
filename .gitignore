@@ -1,2 +1,6 @@
 nvim/.config/nvim/plugin
 tmux/.config/tmux/plugins
+zed/.config/zed/conversations
+zed/.config/zed/embeddings
+zed/.config/zed/prompts
+.tmp*
