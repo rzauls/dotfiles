@@ -1,10 +1,3 @@
-// Zed keymap
-//
-// For information on binding keys, see the Zed
-// documentation: https://zed.dev/docs/key-bindings
-//
-// To see the default key bindings run `zed: open default keymap`
-// from the command palette.
 [
   {
     "context": "Workspace",
@@ -24,13 +17,10 @@
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
       "space c a": "editor::ToggleCodeActions",
-      "space s f": "file_finder::Toggle"
+      "space s f": "file_finder::Toggle",
+      "space s b": "tab_switcher::Toggle"
       // "j k": ["workspace::SendKeystrokes", "escape"]
     }
-  },
-  {
-    "context": "Workspace",
-    "bindings": {}
   },
   {
     "context": "Dock",
@@ -38,7 +28,8 @@
       "ctrl-w h": "workspace::ActivatePaneLeft",
       "ctrl-w l": "workspace::ActivatePaneRight",
       "ctrl-w k": "workspace::ActivatePaneUp",
-      "ctrl-w j": "workspace::ActivatePaneDown"
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-w q": "workspace::CloseActiveDock"
     }
   }
 ]
