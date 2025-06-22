@@ -9,20 +9,36 @@
   {
     "context": "Workspace",
     "bindings": {
-      "shift shift": "file_finder::Toggle",
-      "space s f": "file_finder::Toggle"
+      "shift shift": "file_finder::Toggle"
     }
   },
   {
     "context": "Editor",
     "bindings": {
-      "g r": "editor::FindAllReferences",
-      "space c a": "editor::ToggleCodeActions"
+      "g r": "editor::FindAllReferences"
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  },
+  {
+    // leader-based keymaps
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      "space c a": "editor::ToggleCodeActions",
+      "space s f": "file_finder::Toggle"
       // "j k": ["workspace::SendKeystrokes", "escape"]
     }
   },
   {
     "context": "Workspace",
     "bindings": {}
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w j": "workspace::ActivatePaneDown"
+    }
   }
 ]

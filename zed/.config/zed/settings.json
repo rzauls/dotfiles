@@ -15,5 +15,10 @@
   "buffer_font_family": "Berkeley Mono",
   "buffer_font_features": {
     "calt": false
+  },
+  "languages": {
+    "PHP": {
+      "language_servers": ["intelephense", "!phpactor", "..."]
+    }
   }
 }
