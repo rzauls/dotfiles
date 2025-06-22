@@ -8,10 +8,11 @@
 // from the command palette or from `Zed` application menu.
 {
   "base_keymap": "VSCode",
-  "theme": "One Dark",
+  "theme": "Gruvbox Dark Hard",
   "vim_mode": true,
   "ui_font_size": 15,
   "buffer_font_size": 16,
+  "buffer_font_family": "Berkeley Mono",
   "buffer_font_features": {
     "calt": false
   }

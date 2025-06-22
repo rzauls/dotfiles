@@ -28,6 +28,7 @@ function Manage-Symlinks {
 $paths = @(
     @{ Target = "$HOME\AppData\Local\nvim"; Source = "$HOME\projects\dotfiles\nvim\.config\nvim" }
     @{ Target = "$HOME\.wezterm.lua"; Source = "$HOME\projects\dotfiles\wezterm\.config\wezterm\wezterm.lua" }
+    @{ Target = "$HOME\AppData\Roaming\zed"; Source = "$HOME\projects\dotfiles\zed\.config\zed" }
 )
 
 Manage-Symlinks -PathPairs $paths
