@@ -8,8 +8,8 @@
   {
     "context": "Editor",
     "bindings": {
-      "g r": "editor::FindAllReferences"
-      // "j k": ["workspace::SendKeystrokes", "escape"]
+      "g r": "editor::FindAllReferences",
+      "g i": "editor::GoToImplementation"
     }
   },
   {
