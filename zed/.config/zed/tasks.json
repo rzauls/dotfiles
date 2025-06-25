@@ -46,5 +46,19 @@
     "shell": "system",
     // Represents the tags for inline runnable indicators, or spawning multiple tasks at once.
     "tags": []
+  },
+  {
+    "label": "go test ./...",
+    "command": "go test ./... -v",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    // Where to place the task's terminal item after starting the task:
+    // * `dock` — in the terminal dock, "regular" terminal items' place (default)
+    // * `center` — in the central pane group, "main" editor area
+    "reveal_target": "center",
+    "hide": "never",
+    "shell": "system",
+    "tags": ["test"]
   }
 ]

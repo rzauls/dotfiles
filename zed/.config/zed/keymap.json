@@ -15,6 +15,7 @@
     "bindings": {
       "g r": "editor::FindAllReferences",
       "g i": "editor::GoToImplementation",
+      "space r n": "editor::Rename",
       "space c a": "editor::ToggleCodeActions",
       "space s f": "file_finder::Toggle",
       "space s b": "tab_switcher::Toggle",
