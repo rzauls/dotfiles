@@ -16,6 +16,14 @@
   "buffer_font_features": {
     "calt": false
   },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true
+  },
+  "file_finder": {
+    "modal_max_width": "medium",
+    "include_ignored": true
+  },
   "languages": {
     "PHP": {
       "language_servers": ["intelephense", "!phpactor", "..."]

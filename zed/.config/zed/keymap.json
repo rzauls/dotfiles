@@ -7,15 +7,14 @@
   },
   {
     "context": "Editor",
-    "bindings": {
-      "g r": "editor::FindAllReferences",
-      "g i": "editor::GoToImplementation"
-    }
+    "bindings": {}
   },
   {
-    // leader-based keymaps
+    // vim keymaps
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
+      "g r": "editor::FindAllReferences",
+      "g i": "editor::GoToImplementation",
       "space c a": "editor::ToggleCodeActions",
       "space s f": "file_finder::Toggle",
       "space s b": "tab_switcher::Toggle"
