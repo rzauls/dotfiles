@@ -17,7 +17,7 @@
       "space r n": "editor::Rename",
       "space c a": "editor::ToggleCodeActions",
       "space s f": "file_finder::Toggle",
-      "space s b": "tab_switcher::Toggle",
+      "space s b": "tab_switcher::ToggleAll",
       "space s p": ["projects::OpenRecent", { "create_new_window": false }],
       "space g g": "git_panel::ToggleFocus",
       "space space": "pane::DeploySearch"
