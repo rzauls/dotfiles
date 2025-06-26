@@ -24,6 +24,9 @@
   "buffer_font_features": {
     "calt": false
   },
+  "tab_bar": {
+    "show": false
+  },
   "tabs": {
     "file_icons": true,
     "git_status": true
