@@ -25,7 +25,7 @@
     "calt": false
   },
   "tab_bar": {
-    "show": false
+    "show": true
   },
   "tabs": {
     "file_icons": true,

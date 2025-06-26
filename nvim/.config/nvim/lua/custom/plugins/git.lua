@@ -1,7 +1,6 @@
 return {
 	{ -- Magit clone for neovim
 		"NeogitOrg/neogit",
-		event = "VeryLazy",
 		branch = "master",
 		dependencies = {
 			"nvim-lua/plenary.nvim",

@@ -11,6 +11,17 @@
     "tags": ["test"]
   },
   {
+    "label": "Neogit",
+    "command": "nvim -c Neogit",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "reveal_target": "center",
+    "hide": "always",
+    "shell": "system",
+    "tags": ["git"]
+  },
+  {
     "label": "File Finder",
     "command": "zed \"$(tv files)\"",
     "hide": "always",

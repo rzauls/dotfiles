@@ -18,13 +18,13 @@
       "space c a": "editor::ToggleCodeActions",
       "space s b": "tab_switcher::ToggleAll",
       "space s p": ["projects::OpenRecent", { "create_new_window": false }],
-      "space g g": "git_panel::ToggleFocus",
       "space s f": "file_finder::Toggle",
-      "space space": "pane::DeploySearch"
-      // "space s f": [
-      //   "task::Spawn",
-      //   { "task_name": "File Finder", "reveal_target": "center" }
-      // ],
+      "space space": "pane::DeploySearch",
+      // "space g g": "git_panel::ToggleFocus",
+      "space g g": [
+        "task::Spawn",
+        { "task_name": "Neogit", "reveal_target": "center" }
+      ]
       // "space space": [
       //   "task::Spawn",
       //   { "task_name": "Find in Files", "reveal_target": "center" }
