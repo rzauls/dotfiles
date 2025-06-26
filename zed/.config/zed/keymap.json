@@ -10,7 +10,6 @@
     "bindings": {}
   },
   {
-    // vim keymaps
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
       "g r": "editor::FindAllReferences",
@@ -19,8 +18,9 @@
       "space c a": "editor::ToggleCodeActions",
       "space s f": "file_finder::Toggle",
       "space s b": "tab_switcher::Toggle",
+      "space s p": ["projects::OpenRecent", { "create_new_window": false }],
+      "space g g": "git_panel::ToggleFocus",
       "space space": "pane::DeploySearch"
-      // "j k": ["workspace::SendKeystrokes", "escape"]
     }
   },
   {
