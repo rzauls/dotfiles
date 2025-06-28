@@ -1,6 +1,6 @@
 [
   {
-    "label": "go test",
+    "label": "Run all tests (go)",
     "command": "go test ./... -v",
     "use_new_terminal": false,
     "allow_concurrent_runs": false,
@@ -9,6 +9,26 @@
     "hide": "on_success",
     "shell": "system",
     "tags": ["test"]
+  },
+  {
+    "label": "Run selected test (go)",
+    "command": "go test ./... -v -run $ZED_SELECTED_TEXT ",
+    "use_new_terminal": true,
+    "reveal": "always",
+    "reveal_target": "center",
+    "hide": "on_success",
+    "shell": "system",
+    "tags": ["test", "go"]
+  },
+  {
+    "label": "Run selected test (rust)",
+    "command": "cargo test &ZED_SELECTED_TEXT",
+    "use_new_terminal": true,
+    "reveal": "always",
+    "reveal_target": "center",
+    "hide": "on_success",
+    "shell": "system",
+    "tags": ["test", "rust"]
   },
   {
     "label": "Neogit",

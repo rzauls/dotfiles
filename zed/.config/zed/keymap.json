@@ -21,6 +21,10 @@
       "space s o": "workspace::Open",
       "space s f": "file_finder::Toggle",
       "space space": "pane::DeploySearch",
+      "space r t": [
+        "task::Spawn",
+        { "task_name": "Run selected test (go)", "reveal_target": "center" }
+      ],
       // "space g g": "git_panel::ToggleFocus",
       "space g g": [
         "task::Spawn",
