@@ -31,6 +31,9 @@
     "file_icons": true,
     "git_status": true
   },
+  "terminal": {
+    "font_size": 12
+  },
   "file_finder": {
     "modal_max_width": "medium",
     "include_ignored": true
