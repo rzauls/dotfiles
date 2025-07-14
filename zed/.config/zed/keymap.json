@@ -1,14 +1,9 @@
 [
   {
-    "context": "Workspace",
+    "context": "!AgentPanel",
     "bindings": {
-      "shift shift": "file_finder::Toggle",
       "space s f": "file_finder::Toggle"
     }
-  },
-  {
-    "context": "Editor",
-    "bindings": {}
   },
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
