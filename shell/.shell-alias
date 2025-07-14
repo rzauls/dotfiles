@@ -30,24 +30,30 @@ require("lazy").setup({
     "NeogitOrg/neogit",
     dependencies = {"nvim-lua/plenary.nvim", "sindrets/diffview.nvim", "nvim-telescope/telescope.nvim"},
     config = function()
-      require('neogit').setup({kind = "tab"})
+      require('neogit').setup({
+        kind = "tab",
+        mappings = {
+          status = {
+            ["q"] = function() vim.cmd("qa!") end,
+          }
+        }
+      })
       vim.defer_fn(function() require('neogit').open() end, 100)
       
-      -- Handle neogit close event
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "NeogitClose", 
-        callback = function() vim.cmd("qa!") end
-      })
-      
-      -- Override 'q' key in neogit status buffer to quit neovim
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "NeogitStatus",
+      vim.api.nvim_create_autocmd("BufEnter", {
         callback = function()
-          vim.api.nvim_buf_set_keymap(0, "n", "q", "<cmd>qa!<CR>", {noremap = true, silent = true})
+          if vim.bo.filetype:match("^Neogit") then
+            vim.keymap.set("n", "q", "<cmd>qa!<CR>", { 
+              buffer = true, 
+              nowait = true, 
+              noremap = true, 
+              silent = true 
+            })
+          end
         end,
       })
-    end,
-  },
+    end
+  }
 })
 EOF
 
