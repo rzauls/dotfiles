@@ -2,7 +2,8 @@
   {
     "context": "Workspace",
     "bindings": {
-      "shift shift": "file_finder::Toggle"
+      "shift shift": "file_finder::Toggle",
+      "space s f": "file_finder::Toggle"
     }
   },
   {
@@ -19,6 +20,7 @@
       "space s b": "tab_switcher::ToggleAll",
       "space s p": ["projects::OpenRecent", { "create_new_window": false }],
       "space s o": "workspace::Open",
+      "space s d": "diagnostics::Deploy",
       "space s f": "file_finder::Toggle",
       "space space": "pane::DeploySearch",
       "space r t": [
