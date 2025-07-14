@@ -9,3 +9,53 @@ alias neovide='/Applications/Neovide.app/Contents/MacOS/neovide'
 alias ta='tmux attach -t'
 alias ta0='tmux attach -t 0'
 
+
+# standalone neogit invocation with better startup time
+neogit() {
+    local temp_config=$(mktemp -d)
+    
+    # Create minimal init.lua
+    mkdir -p "$temp_config/nvim"
+    cat > "$temp_config/nvim/init.lua" << 'EOF'
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({"git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath})
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Setup neogit
+require("lazy").setup({
+  {
+    "NeogitOrg/neogit",
+    dependencies = {"nvim-lua/plenary.nvim", "sindrets/diffview.nvim", "nvim-telescope/telescope.nvim"},
+    config = function()
+      require('neogit').setup({kind = "tab"})
+      vim.defer_fn(function() require('neogit').open() end, 100)
+      
+      -- Handle neogit close event
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "NeogitClose", 
+        callback = function() vim.cmd("qa!") end
+      })
+      
+      -- Override 'q' key in neogit status buffer to quit neovim
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "NeogitStatus",
+        callback = function()
+          vim.api.nvim_buf_set_keymap(0, "n", "q", "<cmd>qa!<CR>", {noremap = true, silent = true})
+        end,
+      })
+    end,
+  },
+})
+EOF
+
+    # Launch with temporary config directory
+    XDG_CONFIG_HOME="$temp_config" nvim
+    
+    # Cleanup
+    rm -rf "$temp_config"
+}
+
+alias lg='neogit'

@@ -63,7 +63,7 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 
 -- Required to render some markdown checkboxes
-vim.opt.conceallevel = 1
+-- vim.opt.conceallevel = 1
 
 -- True color support
 vim.opt.termguicolors = true
