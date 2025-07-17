@@ -1,6 +1,6 @@
 [
   {
-    "context": "!AgentPanel",
+    "context": "EmptyPane || SharedScreen",
     "bindings": {
       "space s f": "file_finder::Toggle"
     }

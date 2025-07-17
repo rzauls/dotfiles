@@ -1,19 +1,11 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run the `open default settings` command
-// from the command palette or from `Zed` application menu.
+// https://zed.dev/docs/configuring-zed
 {
   "agent": {
     "model_parameters": [],
     "default_model": {
       "provider": "copilot_chat",
       "model": "claude-sonnet-4"
-    },
-    "version": "2"
+    }
   },
   "base_keymap": "VSCode",
   "theme": "Catppuccin Mocha - No Italics",
@@ -32,15 +24,22 @@
     "git_status": true
   },
   "terminal": {
-    "font_size": 12
+    "font_size": 14,
+    "dock": "left"
   },
   "file_finder": {
     "modal_max_width": "medium",
     "include_ignored": true
   },
+
   "languages": {
     "PHP": {
-      "language_servers": ["intelephense", "!phpactor", "..."]
+      "language_servers": ["intelephense", "!phpactor", "..."],
+      "prettier": {
+        "allowed": true,
+        "plugins": ["@prettier/plugin-php"],
+        "parser": "php"
+      }
     }
   }
 }
