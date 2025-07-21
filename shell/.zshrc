@@ -1,27 +1,33 @@
-# allow zprof 
+# start shell profiler if ZSH_DEBUGRC=true
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
     zmodload zsh/zprof
 fi
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-
-zstyle ':omz:update' mode auto      # update automatically without asking
-zstyle ':omz:update' frequency 7
-
-# Disable marking untracked files under VCS as dirty. 
-# This makes repository status check for large repositories much, much faster.
+# disable checking for auto updates
+DISABLE_AUTO_UPDATE="true"
+DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_COMPFIX="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
+# compile autocopmletions once a day and cache them
+autoload -Uz compinit
+setopt EXTENDEDGLOB
+for dump in ~/.zcompdump(N.mh+24); do
+    compinit
+    if [[ -s "$dump" && (! -s "${dump}.zwc" || "$dump" -nt "${dump}.zwc") ]]; then
+        zcompile "$dump"
+    fi
+done
+unsetopt EXTENDEDGLOB
+compinit -C
+
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+
+unsetopt autocd
 
 export PATH="$HOME/.local/bin:$PATH"
 export EDITOR=nvim
@@ -35,26 +41,55 @@ export PATH=$PATH:~/projects/scripts/bin
 test -f $HOME/.shell-alias && source $HOME/.shell-alias
 test -f $HOME/.secrets && source $HOME/.secrets
 
+# lazy initialize nvm/node/npm/npx
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm() {
+    unfunction nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    nvm "$@"
+}
 
-# modified nvm to load only when called, this breaks node usage in nvim
-# alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@"
+node() {
+    unfunction node
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    node "$@"
+}
+
+npm() {
+    unfunction npm
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    npm "$@"
+}
+
+npx() {
+    unfunction npx
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    npx "$@"
+}
+
+# old way of initializing nvm
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 
 # rust
 if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
 
-# dont try to cd when I dont cd...
-unsetopt autocd
 
-# fzf shortcuts
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(fzf --zsh)"
-eval "$(direnv hook zsh)"
+# fzf
+if [[ $- == *i* ]]; then  # only in interactive shells
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    eval "$(fzf --zsh)"
+    eval "$(direnv hook zsh)"
+fi
 
+# end of profiler
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
     zprof
 fi
