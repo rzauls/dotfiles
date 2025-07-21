@@ -21,6 +21,9 @@ done
 unsetopt EXTENDEDGLOB
 compinit -C
 
+# ignore case for completions
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
 unsetopt autocd
 
 export PATH="$HOME/.local/bin:$PATH"
