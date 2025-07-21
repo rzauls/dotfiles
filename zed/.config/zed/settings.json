@@ -1,5 +1,9 @@
 // https://zed.dev/docs/configuring-zed
 {
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
   "agent": {
     "model_parameters": [],
     "default_model": {
