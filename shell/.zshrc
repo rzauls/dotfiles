@@ -21,12 +21,6 @@ done
 unsetopt EXTENDEDGLOB
 compinit -C
 
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-
 unsetopt autocd
 
 export PATH="$HOME/.local/bin:$PATH"
@@ -88,6 +82,8 @@ if [[ $- == *i* ]]; then  # only in interactive shells
     eval "$(fzf --zsh)"
     eval "$(direnv hook zsh)"
 fi
+
+PROMPT='%F{green}%n@%m% %F{blue} %~%f: '
 
 # end of profiler
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
