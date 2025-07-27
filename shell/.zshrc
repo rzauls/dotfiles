@@ -34,6 +34,8 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/usr/local/zig
 export PATH=$PATH:~/go/bin
 export PATH=$PATH:~/projects/scripts/bin
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+export PATH=$PATH:~/projects/godot/bin
 
 test -f $HOME/.shell-alias && source $HOME/.shell-alias
 test -f $HOME/.secrets && source $HOME/.secrets
