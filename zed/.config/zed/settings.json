@@ -7,7 +7,7 @@
   "agent": {
     "model_parameters": [],
     "default_model": {
-      "provider": "copilot_chat",
+      "provider": "zed.dev",
       "model": "claude-sonnet-4"
     }
   },
@@ -39,6 +39,14 @@
   "languages": {
     "PHP": {
       "language_servers": ["intelephense", "!phpactor", "..."]
+    }
+  },
+  "lsp": {
+    "gdscript": {
+      "binary": {
+        "path": "/usr/bin/nc",
+        "arguments": ["127.0.0.1", "6005"]
+      }
     }
   }
 }
