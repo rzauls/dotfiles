@@ -7,7 +7,7 @@ font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 font-family = Berkeley Mono
-font-style = Regular
+font-style = Bold
 theme = Monokai Pro
 
 background-opacity = 1
@@ -18,6 +18,7 @@ keybind = ctrl+j=goto_split:bottom
 keybind = ctrl+k=goto_split:top
 keybind = ctrl+l=goto_split:right
 
+keybind = ctrl+space>r=reload_config
 keybind = ctrl+space>c=new_tab
 keybind = ctrl+space>w=new_window
 
