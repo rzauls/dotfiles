@@ -17,42 +17,8 @@ Dotfile storage/repository.
 - Using `stow` makes me not have to worry about where the files should be linked to
 - Using this repo enables me to share configuration between devices
 
-## Notes
 
-- `zsh` config needs `oh-my-zsh` <https://ohmyz.sh/> installed to work correctly
-
-## Windows 
-
-Since I use about 1/3 of the configs on windows aswell, and `stow` doesnt exist on windows without WSL, a PS1 script exists where hardcoded paths are coded for specific configurations that I want to symlink. To use it, edit the hardcoded paths and run it with PowerShell.
-
-## Wezterm config on Windows
-
-> This section might be outdated since I no longer use WSL on windows, and Im unsure if windows can symlink to a symlink. Dont be suprised that something breaks.
-
-Since `stow` doesnt work on Windows and wezterm config is required to be outside of WSL,
-I have to symlink from Win to WSL filesystem in powershell like this:
-
-```powershell
-# source: https://stackoverflow.com/a/76181147
-New-Item -ItemType SymbolicLink -Path "C:\Users\<user>\.wezterm.lua" -Target "\\wsl$\Ubuntu\home\<user>\projects\dotfiles\wezterm\.config\wezterm\wezterm.lua"
-```
-
-Since `wezterm` cli isnt available on WSL, to make wezterm/nvim shared keybinds (pane/split navigation) work, I symlinked the windows executable to WSL like this:
-
-```bash
-ln -s /mnt/c/Program\ Files/WezTerm/wezterm.exe /usr/local/bin/wezterm
-```
-
-## Non-standard $TERM variables when SSH-ing (Ghostty)
-
-Add fallback to ssh servers with old ncurses db entries.
-```
-# .ssh/config
-Host example.com
-  SetEnv TERM=xterm-256color
-```
-
-## rofi
+## Rofi (dmenu)
 
 Since linux does not have Raycast support and the default Super menu is extremely slow, we can use rofi.
 
@@ -63,3 +29,18 @@ Go to settings -> Custom keyboard shortcuts
 `rofi -show combi -combi-modes "window,drun" -modes combi`
 
 This includes running new instances (drun) and switching windows (window)
+
+## Non-standard $TERM variables when SSH-ing (Ghostty)
+
+Add fallback to ssh servers with old ncurses db entries.
+```
+# .ssh/config
+Host example.com
+  SetEnv TERM=xterm-256color
+```
+
+## Windows 
+
+Since I use about 1/3 of the configs on windows aswell, and `stow` doesnt exist on windows without WSL, a PS1 script exists where hardcoded paths are coded for specific configurations that I want to symlink. To use it, edit the hardcoded paths and run it with PowerShell.
+
+
