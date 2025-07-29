@@ -51,3 +51,15 @@ Add fallback to ssh servers with old ncurses db entries.
 Host example.com
   SetEnv TERM=xterm-256color
 ```
+
+## rofi
+
+Since linux does not have Raycast support and the default Super menu is extremely slow, we can use rofi.
+
+`sudo apt install rofi`
+
+Go to settings -> Custom keyboard shortcuts
+
+`rofi -show combi -combi-modes "window,drun" -modes combi`
+
+This includes running new instances (drun) and switching windows (window)
