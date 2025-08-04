@@ -19,6 +19,7 @@
   "mini.nvim": { "branch": "main", "commit": "efff26174ca363c059f92e906753db47e81d870b" },
   "neogit": { "branch": "master", "commit": "a1bcc7b9ab5137f691dcac1e61d5a9b3e9a46507" },
   "netrw_keepdir_fix": { "branch": "main", "commit": "4dd42b32664bdb8d6f35120230e3508368a76054" },
+  "no-neck-pain.nvim": { "branch": "main", "commit": "ecdfe60f23134089fac92659e688b65fdd8b5cc0" },
   "none-ls.nvim": { "branch": "main", "commit": "46f2713c88a0b4e4bf134b59577659851ddd31cf" },
   "nui.nvim": { "branch": "main", "commit": "de740991c12411b663994b2860f1a4fd0937c130" },
   "nvim": { "branch": "main", "commit": "55ad613dd0171a3460a8d4b0fea464c6c96e2f97" },
