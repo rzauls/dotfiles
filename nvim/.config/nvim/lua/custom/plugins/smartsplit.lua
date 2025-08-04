@@ -25,8 +25,7 @@ return {
 		vim.keymap.set("n", "<C-k>", smartsplits.move_cursor_up)
 		vim.keymap.set("n", "<C-l>", smartsplits.move_cursor_right)
 
-		vim.keymap.set("n", "<leader>w3", function()
-			print("Resizing split to 2/3")
+		vim.keymap.set("n", "<C-w>r", function()
 			vim.cmd("ResizeSplitToTwoThirds")
 		end, { desc = "Resize split to 2/3" })
 	end,
