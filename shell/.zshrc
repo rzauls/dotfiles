@@ -36,50 +36,21 @@ export PATH=$PATH:~/go/bin
 export PATH=$PATH:~/projects/scripts/bin
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 export PATH=$PATH:~/projects/godot/bin
+export PATH=$PATH:~/.config/composer/vendor/bin
 
 test -f $HOME/.shell-alias && source $HOME/.shell-alias
 test -f $HOME/.secrets && source $HOME/.secrets
 
-# lazy initialize nvm/node/npm/npx
 export NVM_DIR="$HOME/.nvm"
-nvm() {
-    unfunction nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-    nvm "$@"
-}
 
-node() {
-    unfunction node
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-    node "$@"
-}
-
-npm() {
-    unfunction npm
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-    npm "$@"
-}
-
-npx() {
-    unfunction npx
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-    npx "$@"
-}
-
-# old way of initializing nvm
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 
 # rust
 if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
-
 
 # fzf
 if [[ $- == *i* ]]; then  # only in interactive shells
@@ -94,3 +65,16 @@ PROMPT='%F{green}%n@%m% %F{blue} %~%f: '
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
     zprof
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/rihards/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/rihards/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/rihards/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/rihards/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+PATH=$(pyenv root)/shims:$PATH
