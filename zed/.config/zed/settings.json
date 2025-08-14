@@ -12,7 +12,7 @@
     }
   },
   "base_keymap": "VSCode",
-  "theme": "Catppuccin Mocha - No Italics",
+  "theme": "Catppuccin Macchiato",
   "vim_mode": true,
   "ui_font_size": 15,
   "buffer_font_size": 16,
@@ -46,7 +46,8 @@
       }
     },
     "PHP": {
-      "language_servers": ["intelephense", "!phpactor", "..."]
+      "language_servers": ["intelephense", "!phpactor", "..."],
+      "formatter": "language_server"
     }
   },
   "lsp": {
