@@ -9,6 +9,9 @@ alias neovide='/Applications/Neovide.app/Contents/MacOS/neovide'
 alias ta='tmux attach -t'
 alias ta0='tmux attach -t 0'
 
+# fuzzy stuff
+alias p='cd ~/projects/$(fd -t d . ~/projects | sed "s|^$HOME/projects/||" | fzf)'
+
 
 # standalone neogit invocation with better startup time
 neogit() {
