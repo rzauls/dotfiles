@@ -116,4 +116,4 @@ require("lazy").setup({
 		notify = true,
 	},
 })
-vim.cmd.colorscheme("vague")
+vim.cmd.colorscheme("catppuccin-frappe")
