@@ -26,7 +26,7 @@ keybind = ctrl+b>w=new_window
 keybind = ctrl+b>h=new_split:left
 keybind = ctrl+b>j=new_split:down
 keybind = ctrl+b>k=new_split:up
-keybind = ctrl+space>l=new_split:right
+keybind = ctrl+b>l=new_split:right
 
 keybind = ctrl+shift+l=resize_split:right,40
 keybind = ctrl+shift+j=resize_split:down,40
