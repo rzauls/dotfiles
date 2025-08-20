@@ -26,9 +26,8 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 unsetopt autocd
 
-export PATH="$HOME/.local/bin:$PATH"
 export EDITOR=nvim
-
+export PATH="$HOME/.local/bin:$PATH"
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/usr/local/zig
@@ -64,22 +63,17 @@ fi
 
 PROMPT='%F{green}%n@%m% %F{blue} %~%f: '
 
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv >/dev/null 2>&1; then
+    eval "$(pyenv init - zsh)"
+    PATH=$(pyenv root)/shims:$PATH
+fi
+
+bindkey -s ^f "tmux-sessionizer\n"
+
 # end of profiler
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
     zprof
 fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/rihards/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/rihards/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/rihards/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/rihards/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
-
-PATH=$(pyenv root)/shims:$PATH
-
-bindkey -s ^f "tmux-sessionizer\n"
