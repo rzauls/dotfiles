@@ -37,6 +37,9 @@ export PATH=$PATH:~/projects/scripts/bin
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 export PATH=$PATH:~/projects/godot/bin
 export PATH=$PATH:~/.config/composer/vendor/bin
+export PATH=$PATH:~/.scripts/bin
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 test -f $HOME/.shell-alias && source $HOME/.shell-alias
 test -f $HOME/.secrets && source $HOME/.secrets
@@ -78,3 +81,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - zsh)"
 
 PATH=$(pyenv root)/shims:$PATH
+
+bindkey -s ^f "tmux-sessionizer\n"
