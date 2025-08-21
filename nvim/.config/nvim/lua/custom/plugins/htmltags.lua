@@ -1,28 +1,21 @@
-return {
-	"windwp/nvim-ts-autotag",
-	event = "VeryLazy",
+return
+{
+	'windwp/nvim-ts-autotag',
+	dependencies = 'nvim-treesitter/nvim-treesitter',
 	config = function()
-		require("nvim-ts-autotag").setup({
-			filetypes = {
-				"html",
-				"javascript",
-				"typescript",
-				"javascriptreact",
-				"typescriptreact",
-				"svelte",
-				"vue",
-				"tsx",
-				"jsx",
-				"rescript",
-				"xml",
-				"php",
-				"markdown",
-				"astro",
-				"glimmer",
-				"handlebars",
-				"hbs",
-				"templ", -- templ is the only non-default one
+		require('nvim-ts-autotag').setup({
+			opts = {
+				-- Defaults
+				enable_close = true,     -- Auto close tags
+				enable_rename = true,    -- Auto rename pairs of tags
+				enable_close_on_slash = true -- Auto close on trailing </
 			},
+			-- Also override individual filetype configs, these take priority.
+			per_filetype = {
+				["html"] = {
+					enable_close = false
+				}
+			}
 		})
 	end,
 }
