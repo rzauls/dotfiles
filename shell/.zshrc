@@ -27,8 +27,14 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 unsetopt autocd
 
 export EDITOR=nvim
-export PATH="$HOME/.local/bin:$PATH"
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+PROMPT='%F{green}%n@%m% %F{blue} %~%f: '
+
+test -f $HOME/.shell-alias && source $HOME/.shell-alias
+test -f $HOME/.secrets && source $HOME/.secrets
+
+# path
+export PATH="$HOME/.local/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/usr/local/zig
 export PATH=$PATH:~/go/bin
@@ -40,14 +46,10 @@ export PATH=$PATH:~/.scripts/bin
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
-test -f $HOME/.shell-alias && source $HOME/.shell-alias
-test -f $HOME/.secrets && source $HOME/.secrets
-
+# node
 export NVM_DIR="$HOME/.nvm"
-
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
 
 # rust
 if [ -f "$HOME/.cargo/env" ]; then
@@ -61,16 +63,7 @@ if [[ $- == *i* ]]; then  # only in interactive shells
     eval "$(direnv hook zsh)"
 fi
 
-PROMPT='%F{green}%n@%m% %F{blue} %~%f: '
-
-
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv >/dev/null 2>&1; then
-    eval "$(pyenv init - zsh)"
-    PATH=$(pyenv root)/shims:$PATH
-fi
-
+# keybinds
 bindkey -s ^f "tmux-sessionizer\n"
 
 # end of profiler
