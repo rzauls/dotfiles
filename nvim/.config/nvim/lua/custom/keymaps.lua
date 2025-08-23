@@ -16,10 +16,10 @@ vim.keymap.set("n", "<C-e>", function()
 	vim.cmd("Explore")
 end, { desc = "Open file [e]xplorer" })
 
--- less insane way of exiting terminal mode
+-- Less insane way of exiting terminal mode
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- tmux session stuff
+-- Tmux session wrangler
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
--- doesnt need to return anything for now
+
 return {}

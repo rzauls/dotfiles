@@ -1,7 +1,7 @@
-return { 
+return {
 	"shortcuts/no-neck-pain.nvim",
 	version = "*",
-	config = function() 
+	config = function()
 		local neckpain = require("no-neck-pain")
 
 		vim.keymap.set("n", "<C-w>t", function()

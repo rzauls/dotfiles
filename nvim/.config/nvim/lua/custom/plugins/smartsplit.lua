@@ -1,3 +1,4 @@
+-- TODO: i think i dont use this anymore since tmux reappeared in my life
 function resize_split_to_two_thirds()
 	local width = vim.o.columns
 	local target_width = math.floor(width * 2 / 3)

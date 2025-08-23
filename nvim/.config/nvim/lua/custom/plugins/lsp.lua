@@ -11,20 +11,6 @@ return {
 		},
 	},
 	{
-		"kosayoda/nvim-lightbulb",
-		event = "VeryLazy",
-		opts = {
-			autocmd = { enabled = true },
-			---@type (fun(client_name:string, result:lsp.CodeAction|lsp.Command):boolean)|nil
-			filter = function(client_name, result)
-				if client_name == "gopls" and string.find(result.title, "Browse") then
-					return false
-				end
-				return true
-			end,
-		},
-	},
-	{
 		"neovim/nvim-lspconfig",
 		version = "*",
 		event = "VeryLazy",

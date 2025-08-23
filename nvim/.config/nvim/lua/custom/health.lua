@@ -21,6 +21,8 @@ local check_external_reqs = function()
 		"fzf",
 		"fd",
 		"curl",
+		"go",
+		"cargo"
 	}) do
 		local is_executable = vim.fn.executable(exe) == 1
 		if is_executable then
