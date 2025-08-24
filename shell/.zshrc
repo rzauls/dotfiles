@@ -64,7 +64,28 @@ if [[ $- == *i* ]]; then  # only in interactive shells
 fi
 
 # keybinds
-bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^f "tmux-sessionizer\n" # <leader>f to switch projects
+
+# edit cmdline in editor
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line # v in normal mode
+
+# display block/beam cursor depending on current vi mode
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'  # Block cursor for normal mode
+  elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'  # Beam cursor for insert mode
+  fi
+}
+
+zle -N zle-keymap-select
+zle-line-init() {
+    echo -ne "\e[5 q"  # Beam cursor on startup
+}
+zle -N zle-line-init
+preexec() { echo -ne '\e[5 q' ;}
 
 # end of profiler
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
