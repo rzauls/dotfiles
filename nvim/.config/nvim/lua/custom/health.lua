@@ -36,10 +36,6 @@ local check_external_reqs = function()
 end
 
 local check_env_vars = function()
-	if os.getenv("DOTFILES_PATH") == nil then
-		vim.health.warn(string.format("DOTFILES_PATH is not set, not all configuration files will be searchable"))
-	end
-
 	if os.getenv("TODO_NOTE_FILE") == nil then
 		vim.health.warn(
 			string.format(
