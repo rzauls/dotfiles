@@ -115,4 +115,4 @@ require("lazy").setup({
 	},
 })
 -- vim.cmd.colorscheme("catppuccin-frappe")
-vim.cmd.colorscheme("monokai-pro")
+-- vim.cmd.colorscheme("monokai-pro")

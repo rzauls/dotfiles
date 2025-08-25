@@ -24,8 +24,6 @@ return {
 			"j-hui/fidget.nvim",
 		},
 		config = function()
-			local builtins = require("telescope.builtin")
-
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("koili-lsp-attach", { clear = true }),
 				callback = function(event)
@@ -37,26 +35,8 @@ return {
 						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
 
-					-- Goto to the definition of the word under your cursor.
-					map("gd", vim.lsp.buf.definition, "[g]oto [d]efinition")
-
-					-- Rename the variable under your cursor
+					-- Most keymaps are in snacks.lua since they produce multiple results and require a picker from snacks.picker
 					map("<leader>rn", vim.lsp.buf.rename, "[r]e[n]ame")
-
-					-- Goto the definition of the type of the word under your cursor.
-					map("gD", builtins.lsp_type_definitions, "[g]oto [D]eclaration")
-
-					-- Find references for the word under your cursor.
-					map("gr", builtins.lsp_references, "[g]oto [r]eferences")
-
-					-- Goto the implementation of the word under your cursor.
-					map("gI", builtins.lsp_implementations, "[g]oto [I]mplementation")
-
-					-- Fuzzy find all the symbols in your current document.
-					map("<leader>ds", builtins.lsp_document_symbols, "[d]ocument [s]ymbols")
-
-					-- Fuzzy find all the symbols in your current workspace
-					map("<leader>ws", builtins.lsp_workspace_symbols, "[w]orkspace [s]ymbols")
 
 					-- Execute a code action, usually your cursor needs to be on top of an error
 					-- or a suggestion from your LSP for this to activate.
