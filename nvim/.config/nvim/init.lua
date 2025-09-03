@@ -114,5 +114,4 @@ require("lazy").setup({
 		notify = true,
 	},
 })
--- vim.cmd.colorscheme("catppuccin-frappe")
--- vim.cmd.colorscheme("monokai-pro")
+vim.cmd.colorscheme("minicyan")
