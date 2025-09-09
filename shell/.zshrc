@@ -25,10 +25,36 @@ compinit -C
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 unsetopt autocd
+setopt CORRECT
 
 export EDITOR=nvim
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-PROMPT='%F{green}%n@%m% %F{blue} %~%f: '
+
+# show running jobs in prompt
+setopt PROMPT_SUBST
+job_status() {
+    local stopped=$(jobs -s | wc -l | tr -d ' ')
+    local running=$(jobs -r | wc -l | tr -d ' ')
+    local output=""
+    if [[ $stopped -gt 0 ]]; then
+        output="${output}%F{yellow}⏸${stopped}%f"
+    fi
+
+    if [[ $running -gt 0 ]]; then
+        output="${output}%F{green}▶${running}%f"
+    fi
+
+    if [[ -n "$output" ]]; then
+        JOB_STATUS="[${output}] "
+    else
+        JOB_STATUS=""
+    fi
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd job_status
+
+PROMPT='${JOB_STATUS}%F{green}%n@%m% %F{blue} %~%f: '
 
 test -f $HOME/.shell-alias && source $HOME/.shell-alias
 test -f $HOME/.secrets && source $HOME/.secrets
