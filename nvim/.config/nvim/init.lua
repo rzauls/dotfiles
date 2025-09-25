@@ -114,4 +114,4 @@ require("lazy").setup({
 		notify = true,
 	},
 })
-vim.cmd.colorscheme("minicyan")
+vim.cmd.colorscheme("catppuccin-mocha")
