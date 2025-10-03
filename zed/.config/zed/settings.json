@@ -5,6 +5,7 @@
     "metrics": false
   },
   "agent": {
+    "default_profile": "write",
     "model_parameters": [],
     "default_model": {
       "provider": "zed.dev",
