@@ -123,6 +123,15 @@ return {
 						},
 					},
 				},
+				intelephense = {
+					settings = {
+						intelephense = {
+							codeLens = {
+								enable = true,
+							},
+						},
+					},
+				},
 			}
 
 			if not require("custom.util").is_mac then
