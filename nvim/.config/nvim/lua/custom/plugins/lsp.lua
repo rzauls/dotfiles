@@ -11,6 +11,15 @@ return {
 		},
 	},
 	{
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+	{
 		"neovim/nvim-lspconfig",
 		version = "*",
 		event = "VeryLazy",
@@ -66,8 +75,9 @@ return {
 						end
 					end, "Toggle inline virtual_line diagnostics Documentation")
 
-					-- Highlight reference in document on hover
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+					-- Highlight reference in document on hover
 					if client then
 						if client.server_capabilities.documentHighlightProvider then
 							vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
@@ -92,46 +102,16 @@ return {
 				virtual_lines = false,
 			})
 
-			-- LSP servers and clients are able to communicate to each other what features they support.
-			--  By default, Neovim doesn't support everything that is in the LSP Specification.
-			--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-			--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 			-- extend default capabilities with blink.cmp capabilities
 			capabilities = require("blink.cmp").get_lsp_capabilities(capabilities, true) or {}
 
-			-- List of servers that should be available
 			local servers = {
 				rust_analyzer = {},
 				gopls = {},
-				lua_ls = {
-					settings = {
-						Lua = {
-							runtime = { version = "LuaJIT" },
-							workspace = {
-								checkThirdParty = false,
-								-- Help lua_ls find all neovim config files
-								library = {
-									"${3rd}/luv/library",
-									unpack(vim.api.nvim_get_runtime_file("", true)),
-								},
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
-					},
-				},
-				intelephense = {
-					settings = {
-						intelephense = {
-							codeLens = {
-								enable = true,
-							},
-						},
-					},
-				},
+				lua_ls = {},
+				intelephense = {},
 			}
 
 			if not require("custom.util").is_mac then
@@ -171,9 +151,6 @@ return {
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
-						-- This handles overriding only values explicitly passed
-						-- by the server configuration above. Useful when disabling
-						-- certain features of an LSP (for example, turning off formatting for tsserver)
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
 					end,
@@ -181,16 +158,18 @@ return {
 			})
 		end,
 	},
-	{ -- Various helper tools to extend lsp diagnostics with custom stuff
-		"nvimtools/none-ls.nvim",
-		event = "VeryLazy",
+	{
+		"mfussenegger/nvim-lint",
 		config = function()
-			local null_ls = require("null-ls")
-			null_ls.setup({
-				sources = {
-					null_ls.builtins.diagnostics.staticcheck,
-					null_ls.builtins.diagnostics.golangci_lint,
-				},
+			require("lint").linters_by_ft = {
+				go = { "golangcilint" },
+				php = { "phpstan" },
+			}
+			-- lint on save
+			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+				callback = function()
+					require("lint").try_lint()
+				end,
 			})
 		end,
 	},

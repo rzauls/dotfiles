@@ -14,12 +14,18 @@ return {
 				args = { "format", "$FILENAME" },
 				stdin = false,
 			},
+			pint = {
+				command = "vendor/bin/pint",
+				args = { "$FILENAME" },
+				stdin = false,
+			},
 		},
 		formatters_by_ft = {
 			lua = { "stylua" },
 			xml = { "xmlformat" },
 			sql = { "sql_formatter" },
 			gohtmltmpl = { "prettier" },
+			php = { "pint" },
 		},
 	},
 }
