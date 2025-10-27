@@ -165,12 +165,14 @@ return {
 				go = { "golangcilint" },
 				php = { "phpstan" },
 			}
-			-- lint on save
-			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-				callback = function()
-					require("lint").try_lint()
-				end,
-			})
+			-- lint on save (only if NVIM_FORMAT_ON_SAVE is enabled)
+			if require("custom.util").should_format_on_save() then
+				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+					callback = function()
+						require("lint").try_lint()
+					end,
+				})
+			end
 		end,
 	},
 }

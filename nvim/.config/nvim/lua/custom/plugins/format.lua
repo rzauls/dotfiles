@@ -4,10 +4,10 @@ return {
 	event = "InsertEnter",
 	opts = {
 		notify_on_error = false,
-		format_on_save = {
+		format_on_save = require("custom.util").should_format_on_save() and {
 			timeout_ms = 500,
 			lsp_fallback = true,
-		},
+		} or false,
 		formatters = {
 			typespec = {
 				command = "tsp",
