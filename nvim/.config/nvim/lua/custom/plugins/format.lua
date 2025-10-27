@@ -15,7 +15,19 @@ return {
 				stdin = false,
 			},
 			pint = {
-				command = "vendor/bin/pint",
+				command = function(self, ctx)
+					local vendor_pint = vim.fn.getcwd() .. "/vendor/bin/pint"
+					if vim.fn.executable(vendor_pint) == 1 then
+						return vendor_pint
+					end
+
+					local global_pint = vim.fn.expand("~/.composer/vendor/bin/pint")
+					if vim.fn.executable(global_pint) == 1 then
+						return global_pint
+					end
+
+					return "pint"
+				end,
 				args = { "$FILENAME" },
 				stdin = false,
 			},

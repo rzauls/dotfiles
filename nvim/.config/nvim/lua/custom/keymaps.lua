@@ -22,4 +22,9 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 -- Tmux session wrangler
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
+-- Format visual selection (visual and visual-line modes)
+vim.keymap.set({ "v", "x" }, "<leader>ff", function()
+	require("conform").format()
+end, { desc = "[f]ormat visual selection" })
+
 return {}
