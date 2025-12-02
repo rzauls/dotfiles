@@ -32,7 +32,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {
     "NeogitOrg/neogit",
-    dependencies = {"nvim-lua/plenary.nvim", "sindrets/diffview.nvim", "nvim-telescope/telescope.nvim"},
+    dependencies = {"nvim-lua/plenary.nvim", "sindrets/diffview.nvim", "folke/snacks.nvim"},
     config = function()
       require('neogit').setup({
         kind = "tab",
