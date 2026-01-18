@@ -1,66 +1,55 @@
-<#
-.SYNOPSIS
-    Backup script for syncing Dropbox to external drive using rclone
+# Backup script for syncing Dropbox to external drive using rclone
+# Usage: .\sync_dropbox.ps1 [-r remote_name] [-p remote_path] [-t target_dir]
+# Options:
+#   -r  Remote name (default: dropbox)
+#   -p  Remote path to sync (default: root)
+#   -t  Target directory (default: script directory)
+#   -h  Show this help message
+# Examples:
+#   .\sync_dropbox.ps1                           # sync dropbox root to script dir
+#   .\sync_dropbox.ps1 -p /Documents             # sync /Documents to script dir
+#   .\sync_dropbox.ps1 -t D:\backup              # sync dropbox root to custom dir
+#   .\sync_dropbox.ps1 -r mydropbox -p /Photos -t D:\backup
+#
+# EXECUTION POLICY:
+# If you get an error about execution policy, run this command in PowerShell as Administrator:
+#     Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+# Or run this script with:
+#     powershell -ExecutionPolicy Bypass -File .\sync_dropbox.ps1
 
-.DESCRIPTION
-    This script syncs content from a Dropbox remote (configured in rclone) to the 
-    directory where this script is located (typically an external drive).
-
-.PARAMETER RemoteName
-    The name of the rclone remote (default: "dropbox")
-
-.PARAMETER RemotePath
-    Optional path within the remote to sync (default: "" which syncs entire remote)
-
-.EXAMPLE
-    .\sync_dropbox.ps1
-    Syncs entire Dropbox using default "dropbox" remote name
-
-.EXAMPLE
-    .\sync_dropbox.ps1 -RemoteName my_dropbox
-    Syncs entire Dropbox using custom remote name
-
-.EXAMPLE
-    .\sync_dropbox.ps1 -RemoteName dropbox -RemotePath "Work/Projects"
-    Syncs specific folder from Dropbox
-
-.NOTES
-    EXECUTION POLICY:
-    If you get an error about execution policy, run this command in PowerShell as Administrator:
-        Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-    
-    Or run this script with:
-        powershell -ExecutionPolicy Bypass -File .\sync_dropbox.ps1
-#>
-
-param(
-    [string]$RemoteName = "dropbox",
-    [string]$RemotePath = ""
-)
-
-# Get script directory
+# Configuration defaults
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$RemoteName = "dropbox"
+$RemotePath = ""
+$TargetDir = $ScriptDir
 
-# Function to write colored output
-function Write-ColorOutput($ForegroundColor) {
-    $fc = $host.UI.RawUI.ForegroundColor
-    $host.UI.RawUI.ForegroundColor = $ForegroundColor
-    if ($args) {
-        Write-Output $args
+# Parse flags
+function Show-Help {
+    Get-Content $MyInvocation.ScriptName | Select-Object -Skip 1 -First 14 | ForEach-Object { $_ -replace '^# ?', '' }
+    exit 0
+}
+
+$i = 0
+while ($i -lt $args.Count) {
+    switch ($args[$i]) {
+        "-r" { $RemoteName = $args[$i + 1]; $i += 2 }
+        "-p" { $RemotePath = $args[$i + 1]; $i += 2 }
+        "-t" { $TargetDir = $args[$i + 1]; $i += 2 }
+        "-h" { Show-Help }
+        default { Show-Help }
     }
-    $host.UI.RawUI.ForegroundColor = $fc
 }
 
 # Check if rclone is installed
 $rcloneCommand = Get-Command rclone -ErrorAction SilentlyContinue
 if (-not $rcloneCommand) {
-    Write-ColorOutput Red "Error: rclone is not installed"
-    Write-Output ""
-    Write-Output "Please install rclone first:"
-    Write-Output "  Option 1: choco install rclone"
-    Write-Output "  Option 2: scoop install rclone"
-    Write-Output "  Option 3: Download from https://rclone.org/downloads/"
-    Write-Output ""
+    Write-Host "Error: rclone is not installed" -ForegroundColor Red
+    Write-Host ""
+    Write-Host "Please install rclone first:"
+    Write-Host "  Option 1: choco install rclone"
+    Write-Host "  Option 2: scoop install rclone"
+    Write-Host "  Option 3: Download from https://rclone.org/downloads/"
+    Write-Host ""
     Read-Host "Press Enter to exit"
     exit 1
 }
@@ -70,13 +59,13 @@ $remotes = & rclone listremotes 2>$null
 $remoteExists = $remotes | Where-Object { $_ -eq "${RemoteName}:" }
 
 if (-not $remoteExists) {
-    Write-ColorOutput Red "Error: Remote '${RemoteName}' not found"
-    Write-Output ""
-    Write-Output "Available remotes:"
-    $remotes | ForEach-Object { Write-Output "  $_" }
-    Write-Output ""
-    Write-Output "To configure a remote, run: rclone config"
-    Write-Output ""
+    Write-Host "Error: Remote '${RemoteName}' not found" -ForegroundColor Red
+    Write-Host ""
+    Write-Host "Available remotes:"
+    $remotes | ForEach-Object { Write-Host "  $_" }
+    Write-Host ""
+    Write-Host "To configure a remote, run: rclone config"
+    Write-Host ""
     Read-Host "Press Enter to exit"
     exit 1
 }
@@ -84,31 +73,31 @@ if (-not $remoteExists) {
 # Build the source path
 if ([string]::IsNullOrEmpty($RemotePath)) {
     $Source = "${RemoteName}:"
-    Write-ColorOutput Green "Syncing entire ${RemoteName} to ${ScriptDir}"
+    Write-Host "Syncing entire ${RemoteName} to ${TargetDir}" -ForegroundColor Green
 } else {
     # Normalize path separators
     $RemotePath = $RemotePath.Replace("\", "/")
     $Source = "${RemoteName}:${RemotePath}"
-    Write-ColorOutput Green "Syncing ${RemoteName}:${RemotePath} to ${ScriptDir}"
+    Write-Host "Syncing ${RemoteName}:${RemotePath} to ${TargetDir}" -ForegroundColor Green
 }
 
 # Confirmation prompt
-Write-Output ""
-Write-Output "This will sync from:"
-Write-Output "  Source: ${Source}"
-Write-Output "  Destination: ${ScriptDir}"
-Write-Output ""
+Write-Host ""
+Write-Host "This will sync from:"
+Write-Host "  Source: ${Source}"
+Write-Host "  Destination: ${TargetDir}"
+Write-Host ""
 $confirmation = Read-Host "Continue? (y/n)"
 
 if ($confirmation -ne 'y' -and $confirmation -ne 'Y') {
-    Write-Output "Sync cancelled"
+    Write-Host "Sync cancelled"
     exit 0
 }
 
 # Run the sync
-Write-ColorOutput Yellow "`nStarting sync...`n"
+Write-Host "`nStarting sync...`n" -ForegroundColor Yellow
 
-& rclone sync $Source $ScriptDir `
+& rclone sync $Source $TargetDir `
     --progress `
     --verbose `
     --transfers 4 `
@@ -117,12 +106,13 @@ Write-ColorOutput Yellow "`nStarting sync...`n"
     --timeout 300s `
     --retries 3 `
     --low-level-retries 10 `
-    --stats 1s
+    --stats 1s `
+    --exclude "._*"
 
 if ($LASTEXITCODE -eq 0) {
-    Write-Output ""
-    Write-ColorOutput Green "✓ Sync complete!"
+    Write-Host ""
+    Write-Host "Sync complete!" -ForegroundColor Green
 } else {
-    Write-Output ""
-    Write-ColorOutput Red "✗ Sync failed with exit code: $LASTEXITCODE"
+    Write-Host ""
+    Write-Host "Sync failed with exit code: $LASTEXITCODE" -ForegroundColor Red
 }
